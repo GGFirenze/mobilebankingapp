@@ -1,0 +1,4630 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Banking App</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🏦</text></svg>">
+    
+    <!-- Amplitude SDK -->
+    <script src="https://cdn.amplitude.com/script/0e1a577f277d178838c8972121bc30d2.js"></script>
+    <script>
+        window.amplitude.add(window.sessionReplay.plugin({sampleRate: 1}));
+        window.amplitude.init('0e1a577f277d178838c8972121bc30d2', {
+            "fetchRemoteConfig": true,
+            "autocapture": {
+                "sessions": true,
+                "pageViews": false,
+                "attribution": true,
+                "fileDownloads": false,
+                "formInteractions": false,
+                "elementInteractions": false
+            }
+        });
+    </script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background-color: #f5f6fa;
+            color: #333;
+            min-height: 100vh;
+            max-width: 375px;
+            margin: 0 auto;
+            position: relative;
+            padding-bottom: 80px;
+        }
+
+        /* Page visibility */
+        .page {
+            display: none;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        /* Status bar */
+        .status-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 20px;
+            background-color: #f5f6fa;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .status-left {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .status-right {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        /* Header */
+        .header {
+            padding: 20px;
+            background-color: #f5f6fa;
+        }
+
+        .profile-section {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .profile-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: #1e3a8a;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            position: relative;
+        }
+
+        .profile-icon::after {
+            content: '';
+            position: absolute;
+            top: -2px;
+            right: -2px;
+            width: 12px;
+            height: 12px;
+            background-color: #ef4444;
+            border-radius: 50%;
+        }
+
+        .greeting {
+            font-size: 18px;
+            color: #1e3a8a;
+            font-weight: 500;
+        }
+
+        /* Tabs */
+        .tabs {
+            display: flex;
+            gap: 30px;
+        }
+
+        .tab {
+            font-size: 16px;
+            color: #6b7280;
+            text-decoration: none;
+            padding-bottom: 8px;
+            border-bottom: 2px solid transparent;
+            transition: all 0.2s;
+            cursor: pointer;
+        }
+
+        .tab.active {
+            color: #1e3a8a;
+            border-bottom-color: #1e3a8a;
+            font-weight: 500;
+        }
+
+        /* Main content */
+        .main-content {
+            padding: 0 20px;
+        }
+
+        /* Home page styles */
+        .debit-card {
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 20px;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .debit-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .card-icon {
+            width: 32px;
+            height: 32px;
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .debit-text {
+            font-size: 16px;
+            font-weight: 500;
+        }
+
+        .see-card {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            opacity: 0.9;
+            cursor: pointer;
+        }
+
+        .accounts-section {
+            background: white;
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .accounts-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+
+        .accounts-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #1f2937;
+        }
+
+        .balance {
+            font-size: 14px;
+            color: #6b7280;
+        }
+
+        .add-button {
+            background-color: #dbeafe;
+            color: #1e3a8a;
+            border: none;
+            border-radius: 20px;
+            padding: 8px 16px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+        }
+
+        .account-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+        }
+
+        .account-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .account-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #0ea5e9 0%, #06b6d4 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+
+        .account-details h3 {
+            font-size: 14px;
+            font-weight: 500;
+            color: #1f2937;
+            margin-bottom: 2px;
+        }
+
+        .account-details p {
+            font-size: 12px;
+            color: #6b7280;
+        }
+
+        .account-balance {
+            font-size: 16px;
+            font-weight: 600;
+            color: #1f2937;
+        }
+
+        .more-options {
+            margin-left: 8px;
+            color: #6b7280;
+            cursor: pointer;
+        }
+
+        .credit-card {
+            background: white;
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .credit-header {
+            font-size: 18px;
+            font-weight: 600;
+            color: #1f2937;
+            margin-bottom: 16px;
+        }
+
+        .credit-promo {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            border-radius: 12px;
+            padding: 16px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .promo-content {
+            flex: 1;
+        }
+
+        .promo-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #1f2937;
+            margin-bottom: 8px;
+        }
+
+        .promo-description {
+            font-size: 12px;
+            color: #6b7280;
+            line-height: 1.4;
+            margin-bottom: 16px;
+        }
+
+        .lets-go-button {
+            background-color: #1e3a8a;
+            color: white;
+            border: none;
+            border-radius: 24px;
+            padding: 12px 24px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .promo-image {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(45deg, #fbbf24, #f59e0b);
+            border-radius: 8px;
+            position: relative;
+            margin-left: 16px;
+            overflow: hidden;
+        }
+
+        .promo-image::before {
+            content: '💳';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 24px;
+        }
+
+        .close-promo {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            background: none;
+            border: none;
+            font-size: 18px;
+            color: #6b7280;
+            cursor: pointer;
+        }
+
+        .activity-section {
+            background: white;
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .activity-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .activity-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #1f2937;
+        }
+
+        .activity-arrow {
+            color: #6b7280;
+            font-size: 14px;
+        }
+
+        /* Payments page styles */
+        .payment-option {
+            background: white;
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .payment-option:hover {
+            background-color: #f8fafc;
+        }
+
+        .payment-info {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            flex: 1;
+        }
+
+        .payment-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            color: white;
+        }
+
+        .payment-icon.send-money {
+            background: linear-gradient(135deg, #60a5fa 0%, #3b82f6 100%);
+        }
+
+        .payment-icon.move-money {
+            background: linear-gradient(135deg, #1e3a8a 0%, #3730a3 100%);
+        }
+
+        .payment-icon.add-money {
+            background: linear-gradient(135deg, #1e40af 0%, #1d4ed8 100%);
+        }
+
+        .payment-icon.schedule-payment {
+            background: linear-gradient(135deg, #60a5fa 0%, #3b82f6 100%);
+        }
+
+        .payment-details {
+            flex: 1;
+        }
+
+        .payment-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #1f2937;
+            margin-bottom: 4px;
+        }
+
+        .payment-description {
+            font-size: 14px;
+            color: #6b7280;
+            line-height: 1.4;
+        }
+
+        .payment-arrow {
+            color: #6b7280;
+            font-size: 18px;
+        }
+
+        .payments-promo-section {
+            background: white;
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .payments-promo-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 16px;
+        }
+
+        .payments-promo-text {
+            flex: 1;
+        }
+
+        .payments-promo-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #1f2937;
+            margin-bottom: 12px;
+        }
+
+        .payments-promo-description {
+            font-size: 14px;
+            color: #6b7280;
+            line-height: 1.4;
+            margin-bottom: 20px;
+        }
+
+        .setup-button {
+            background-color: #1e3a8a;
+            color: white;
+            border: none;
+            border-radius: 24px;
+            padding: 12px 20px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .payments-promo-illustration {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #3b82f6 0%, #1e40af 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: white;
+            flex-shrink: 0;
+        }
+
+        /* Discover page styles */
+        .discover-header {
+            padding: 40px 20px 20px 20px;
+            text-align: center;
+        }
+
+        .discover-title {
+            font-size: 24px;
+            font-weight: 600;
+            color: #1e3a8a;
+            margin: 0;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            padding: 20px;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 16px;
+            padding: 24px 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            min-height: 140px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .product-card:hover {
+            background-color: #f8fafc;
+        }
+
+        .product-icon {
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            margin-bottom: 16px;
+            color: white;
+        }
+
+        .product-icon.savings-icon {
+            background: linear-gradient(135deg, #60a5fa 0%, #3b82f6 100%);
+        }
+
+        .product-icon.credit-card-icon {
+            background: linear-gradient(135deg, #1e40af 0%, #1d4ed8 100%);
+        }
+
+        .product-icon.investments-icon {
+            background: linear-gradient(135deg, #1e40af 0%, #3730a3 100%);
+        }
+
+        .product-icon.current-account-icon {
+            background: linear-gradient(135deg, #0ea5e9 0%, #06b6d4 100%);
+        }
+
+        .product-name {
+            font-size: 16px;
+            font-weight: 600;
+            color: #1f2937;
+            margin-bottom: 4px;
+        }
+
+        .product-subtitle {
+            font-size: 12px;
+            color: #6b7280;
+            font-weight: 400;
+        }
+
+        /* Support page styles */
+        .support-header {
+            padding: 40px 20px 30px 20px;
+            text-align: center;
+        }
+
+        .support-title {
+            font-size: 24px;
+            font-weight: 600;
+            color: #1f2937;
+            margin: 0;
+        }
+
+        .search-section {
+            background: white;
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .search-input-container {
+            display: flex;
+            align-items: center;
+            background: #f3f4f6;
+            border-radius: 12px;
+            padding: 12px 16px;
+            margin-bottom: 16px;
+            gap: 12px;
+        }
+
+        .search-icon {
+            color: #1e3a8a;
+            font-size: 18px;
+        }
+
+        .search-input {
+            flex: 1;
+            border: none;
+            background: none;
+            outline: none;
+            font-size: 16px;
+            color: #1f2937;
+        }
+
+        .search-input::placeholder {
+            color: #9ca3af;
+        }
+
+        .search-button {
+            background-color: #1e3a8a;
+            color: white;
+            border: none;
+            border-radius: 24px;
+            padding: 12px 32px;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        .search-history {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 16px;
+            color: #6b7280;
+            font-size: 14px;
+        }
+
+        .history-icon {
+            font-size: 16px;
+        }
+
+        .popular-topics-section {
+            background: white;
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .section-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #1f2937;
+            margin: 0 0 20px 0;
+        }
+
+        .topic-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 0;
+            border-bottom: 1px solid #f3f4f6;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .topic-item:last-of-type {
+            border-bottom: none;
+        }
+
+        .topic-item:hover {
+            background-color: #f8fafc;
+            margin: 0 -20px;
+            padding: 16px 20px;
+        }
+
+        .topic-text {
+            font-size: 16px;
+            color: #1f2937;
+            font-weight: 400;
+        }
+
+        .topic-arrow {
+            color: #6b7280;
+            font-size: 16px;
+        }
+
+        .browse-faqs {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 16px 0;
+            cursor: pointer;
+            margin-top: 8px;
+        }
+
+        .faq-icon {
+            color: #1e3a8a;
+            font-size: 18px;
+        }
+
+        .faq-text {
+            font-size: 16px;
+            color: #1f2937;
+            font-weight: 500;
+            flex: 1;
+        }
+
+        .faq-arrow {
+            color: #6b7280;
+            font-size: 16px;
+        }
+
+        /* Move Money Modal Styles */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            display: none;
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .move-money-modal {
+            background: #f5f6fa;
+            width: 100%;
+            max-width: 375px;
+            height: 100vh;
+            position: relative;
+            overflow-y: auto;
+            padding-bottom: 100px;
+        }
+
+        .modal-header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 16px 20px;
+            background: #f5f6fa;
+            position: relative;
+        }
+
+        .modal-close {
+            position: absolute;
+            left: 20px;
+            background: none;
+            border: none;
+            font-size: 20px;
+            color: #6b7280;
+            cursor: pointer;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.2s;
+        }
+
+        .modal-close:hover {
+            background-color: #f3f4f6;
+        }
+
+        .modal-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #1f2937;
+        }
+
+        .amount-display {
+            text-align: center;
+            padding: 40px 20px;
+            position: relative;
+        }
+
+        .amount-text {
+            font-size: 64px;
+            font-weight: 300;
+            color: #1f2937;
+            margin: 0;
+        }
+
+        .amount-circle {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 200px;
+            height: 200px;
+            border: 3px solid #f97316;
+            border-radius: 50%;
+            display: none;
+        }
+
+        .amount-circle.visible {
+            display: block;
+        }
+
+        .account-section {
+            padding: 0 20px 20px 20px;
+        }
+
+        .account-row {
+            background: white;
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+        }
+
+        .account-info-modal {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex: 1;
+        }
+
+        .account-icon-modal {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+
+        .account-icon-modal.chase-saver {
+            background: linear-gradient(135deg, #1e40af 0%, #3730a3 100%);
+        }
+
+        .account-icon-modal.giuliano-account {
+            background: linear-gradient(135deg, #0ea5e9 0%, #06b6d4 100%);
+        }
+
+        .account-details-modal {
+            flex: 1;
+        }
+
+        .account-label {
+            font-size: 12px;
+            color: #6b7280;
+            margin-bottom: 2px;
+        }
+
+        .account-name {
+            font-size: 16px;
+            font-weight: 500;
+            color: #1e3a8a;
+            margin-bottom: 2px;
+        }
+
+        .account-balance-info {
+            text-align: right;
+        }
+
+        .account-balance-modal {
+            font-size: 16px;
+            font-weight: 600;
+            color: #1f2937;
+        }
+
+        .balance-description {
+            font-size: 12px;
+            color: #6b7280;
+            margin-top: 2px;
+        }
+
+        .swap-button {
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 48px;
+            height: 48px;
+            background: white;
+            border: 2px solid #e5e7eb;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 20px;
+            color: #1e3a8a;
+            z-index: 10;
+        }
+
+        .swap-button.highlighted {
+            border-color: #f97316;
+            background-color: #fef3c7;
+        }
+
+        .accounts-container {
+            position: relative;
+        }
+
+        .additional-options {
+            padding: 0 20px;
+        }
+
+        .option-row {
+            background: white;
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+        }
+
+        .option-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .option-icon {
+            width: 24px;
+            height: 24px;
+            color: #1e3a8a;
+            font-size: 18px;
+        }
+
+        .option-text {
+            font-size: 16px;
+            color: #1f2937;
+            font-weight: 400;
+        }
+
+        .option-action {
+            font-size: 14px;
+            color: #1e3a8a;
+            font-weight: 500;
+        }
+
+        .modal-footer {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: white;
+            padding: 20px;
+            border-top: 1px solid #e5e7eb;
+            max-width: 375px;
+            margin: 0 auto;
+        }
+
+        .next-button {
+            background-color: #1e3a8a;
+            color: white;
+            border: none;
+            border-radius: 28px;
+            padding: 18px 32px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            min-height: 56px;
+        }
+
+        .next-button:disabled {
+            background-color: #9ca3af;
+            cursor: not-allowed;
+        }
+
+        /* Modal step management */
+        .modal-step {
+            display: none;
+        }
+
+        .modal-step.active {
+            display: block;
+        }
+
+        /* Amount input field */
+        .amount-input {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border: none;
+            background: transparent;
+            outline: none;
+            text-align: center;
+            font-size: 64px;
+            font-weight: 300;
+            color: #1f2937;
+            width: 300px;
+            z-index: 10;
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .amount-input.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .amount-input:focus {
+            caret-color: #1e3a8a;
+        }
+
+        .amount-text {
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .amount-text.hidden {
+            opacity: 0;
+        }
+
+        /* Check details screen styles */
+        .modal-back {
+            position: absolute;
+            left: 20px;
+            background: none;
+            border: none;
+            font-size: 20px;
+            color: #1f2937;
+            cursor: pointer;
+        }
+
+        .transfer-summary {
+            padding: 60px 20px 40px 20px;
+        }
+
+        .transfer-accounts {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .summary-account {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+            flex: 1;
+        }
+
+        .summary-account-icon {
+            width: 80px;
+            height: 80px;
+            border-radius: 20px;
+            background: #e5e7eb;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            color: white;
+        }
+
+        .summary-account-name {
+            font-size: 16px;
+            font-weight: 500;
+            color: #1f2937;
+            text-align: center;
+        }
+
+        .transfer-arrow {
+            display: flex;
+            gap: 4px;
+            color: #6b7280;
+            font-size: 20px;
+            margin: 0 10px;
+        }
+
+        .amount-summary {
+            background: white;
+            border-radius: 16px;
+            padding: 20px;
+            margin: 0 20px 20px 20px;
+        }
+
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .summary-label {
+            font-size: 16px;
+            color: #1f2937;
+            font-weight: 400;
+        }
+
+        .summary-value {
+            font-size: 16px;
+            color: #1f2937;
+            font-weight: 600;
+        }
+
+        /* Success screen styles */
+        .success-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 100px 20px;
+            min-height: 60vh;
+        }
+
+        .success-icon {
+            margin-bottom: 40px;
+        }
+
+        .checkmark-circle {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto;
+        }
+
+        .checkmark {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background-color: #1e3a8a;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .success-message {
+            font-size: 20px;
+            font-weight: 500;
+            color: #1f2937;
+            line-height: 1.4;
+            max-width: 280px;
+        }
+
+        /* Button styles for new screens */
+        .move-money-button,
+        .done-button,
+        .send-money-button {
+            background-color: #1e3a8a;
+            color: white;
+            border: none;
+            border-radius: 28px;
+            padding: 18px 32px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            min-height: 56px;
+        }
+
+        /* Send Money Modal Styles */
+        .payee-option {
+            background: white;
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .payee-option:hover {
+            background-color: #f8fafc;
+        }
+
+        .payee-info {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            flex: 1;
+        }
+
+        .payee-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            color: white;
+            background: linear-gradient(135deg, #60a5fa 0%, #3b82f6 100%);
+        }
+
+        .payee-details {
+            flex: 1;
+        }
+
+        .payee-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #1f2937;
+            margin-bottom: 4px;
+        }
+
+        .payee-description {
+            font-size: 14px;
+            color: #6b7280;
+            line-height: 1.4;
+        }
+
+        .payee-arrow {
+            color: #6b7280;
+            font-size: 18px;
+        }
+
+        .section-header {
+            font-size: 18px;
+            font-weight: 600;
+            color: #1f2937;
+            margin: 30px 20px 16px 20px;
+        }
+
+        .existing-payee {
+            background: white;
+            border-radius: 16px;
+            padding: 16px 20px;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .existing-payee:hover {
+            background-color: #f8fafc;
+        }
+
+        .existing-payee-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex: 1;
+        }
+
+        .existing-payee-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: #e5e7eb;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            font-weight: 600;
+            color: #1f2937;
+        }
+
+        .existing-payee-details h3 {
+            font-size: 16px;
+            font-weight: 600;
+            color: #1f2937;
+            margin-bottom: 2px;
+        }
+
+        .existing-payee-details p {
+            font-size: 14px;
+            color: #6b7280;
+        }
+
+        .existing-payee-more {
+            color: #6b7280;
+            font-size: 16px;
+        }
+
+        .search-button-header {
+            position: absolute;
+            right: 20px;
+            background: none;
+            border: none;
+            font-size: 18px;
+            color: #1f2937;
+            cursor: pointer;
+        }
+
+        .account-bank {
+            font-size: 12px;
+            color: #6b7280;
+            margin-top: 2px;
+        }
+
+        /* Send money specific styles */
+        .send-details-container {
+            padding: 0 20px;
+        }
+
+        .bank-info-section {
+            background: white;
+            border-radius: 16px;
+            padding: 20px;
+            margin: 0 20px 20px 20px;
+        }
+
+        .bank-info-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid #f3f4f6;
+        }
+
+        .bank-info-row:last-child {
+            border-bottom: none;
+        }
+
+        .bank-info-label {
+            font-size: 16px;
+            color: #1f2937;
+            font-weight: 400;
+        }
+
+        .bank-info-value {
+            font-size: 16px;
+            color: #1f2937;
+            font-weight: 600;
+        }
+
+        .transfer-notice {
+            font-size: 14px;
+            color: #6b7280;
+            line-height: 1.4;
+            text-align: center;
+            padding: 20px;
+        }
+
+        /* Add New Payee Flow Styles */
+        .fraud-alert-content {
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .warning-icon {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 30px auto;
+        }
+
+        .warning-triangle {
+            width: 60px;
+            height: 60px;
+            background-color: #f97316;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+            color: white;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .fraud-title {
+            font-size: 22px;
+            font-weight: 600;
+            color: #1f2937;
+            margin-bottom: 20px;
+        }
+
+        .fraud-subtitle {
+            font-size: 16px;
+            color: #6b7280;
+            margin-bottom: 30px;
+        }
+
+        .fraud-list {
+            text-align: left;
+            margin: 20px 0;
+            padding: 0 20px;
+        }
+
+        .fraud-list li {
+            font-size: 16px;
+            color: #1f2937;
+            margin-bottom: 12px;
+            line-height: 1.4;
+        }
+
+        .fraud-footer-text {
+            font-size: 16px;
+            color: #1f2937;
+            font-weight: 500;
+            margin: 30px 0 20px 0;
+        }
+
+        .fraud-checkbox-container {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin: 20px 0 40px 0;
+            text-align: left;
+        }
+
+        .fraud-checkbox {
+            width: 20px;
+            height: 20px;
+            border: 2px solid #d1d5db;
+            border-radius: 4px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .fraud-checkbox.checked {
+            background-color: #1e3a8a;
+            border-color: #1e3a8a;
+            color: white;
+        }
+
+        .fraud-checkbox-text {
+            font-size: 16px;
+            color: #1f2937;
+            line-height: 1.4;
+            cursor: pointer;
+        }
+
+        /* Payment Purpose Selection Styles */
+        .purpose-content {
+            padding: 20px;
+        }
+
+        .purpose-subtitle {
+            font-size: 16px;
+            color: #6b7280;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .purpose-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-bottom: 40px;
+        }
+
+        .purpose-option {
+            background: white;
+            border-radius: 16px;
+            padding: 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            border: 2px solid transparent;
+        }
+
+        .purpose-option:hover {
+            background-color: #f8fafc;
+        }
+
+        .purpose-option.selected {
+            border-color: #1e3a8a;
+            background-color: #dbeafe;
+        }
+
+        .purpose-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            margin: 0 auto 12px auto;
+            background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+        }
+
+        .purpose-title {
+            font-size: 14px;
+            font-weight: 500;
+            color: #1f2937;
+            line-height: 1.3;
+        }
+
+        /* Add Payee Form Styles */
+        .add-payee-form {
+            padding: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 24px;
+        }
+
+        .form-label {
+            font-size: 16px;
+            font-weight: 500;
+            color: #1f2937;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .form-input {
+            width: 100%;
+            border: none;
+            border-bottom: 2px solid #d1d5db;
+            padding: 12px 0;
+            font-size: 16px;
+            background: transparent;
+            outline: none;
+        }
+
+        .form-input:focus {
+            border-bottom-color: #1e3a8a;
+        }
+
+        .business-checkbox-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin: 30px 0;
+        }
+
+        .business-checkbox {
+            width: 20px;
+            height: 20px;
+            border: 2px solid #d1d5db;
+            border-radius: 4px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .business-checkbox.checked {
+            background-color: #1e3a8a;
+            border-color: #1e3a8a;
+            color: white;
+        }
+
+        .business-label {
+            font-size: 16px;
+            color: #1f2937;
+            cursor: pointer;
+        }
+
+        .paste-button {
+            background-color: #dbeafe;
+            color: #1e3a8a;
+            border: none;
+            border-radius: 20px;
+            padding: 12px 20px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin: 20px auto;
+        }
+
+        .understand-button {
+            background-color: #1e3a8a;
+            color: white;
+            border: none;
+            border-radius: 28px;
+            padding: 18px 32px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            min-height: 56px;
+        }
+
+        /* Verification and Passcode Styles */
+        .verification-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 80px 20px;
+            min-height: 50vh;
+        }
+
+        .verification-title {
+            font-size: 22px;
+            font-weight: 600;
+            color: #1f2937;
+            margin-bottom: 20px;
+        }
+
+        .verification-message {
+            font-size: 16px;
+            color: #6b7280;
+            line-height: 1.4;
+            max-width: 300px;
+            margin-bottom: 40px;
+        }
+
+        .add-payee-button {
+            background-color: #1e3a8a;
+            color: white;
+            border: none;
+            border-radius: 28px;
+            padding: 18px 32px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            min-height: 56px;
+        }
+
+        /* Passcode Entry Styles */
+        .passcode-content {
+            padding: 60px 20px 40px 20px;
+            text-align: center;
+        }
+
+        .passcode-title {
+            font-size: 24px;
+            font-weight: 600;
+            color: #1f2937;
+            margin-bottom: 40px;
+        }
+
+        .passcode-dots {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            margin-bottom: 60px;
+        }
+
+        .passcode-dot {
+            width: 20px;
+            height: 20px;
+            border: 2px solid #1e3a8a;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+        }
+
+        .passcode-dot.filled {
+            background-color: #1e3a8a;
+        }
+
+        .number-pad {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            max-width: 240px;
+            margin: 0 auto;
+        }
+
+        .number-button {
+            width: 60px;
+            height: 60px;
+            border: none;
+            border-radius: 50%;
+            background: transparent;
+            color: #1e3a8a;
+            font-size: 24px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.2s;
+        }
+
+        .number-button:hover {
+            background-color: #f3f4f6;
+        }
+
+        .number-button:active {
+            background-color: #e5e7eb;
+        }
+
+        /* Account/Payee Selection Modal Styles */
+        .selection-check {
+            color: #1e3a8a;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .account-option {
+            position: relative;
+        }
+
+        .payee-option-select {
+            position: relative;
+        }
+
+        /* Make account rows in send flow clickable */
+        #send-from-account,
+        #send-to-account {
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        #send-from-account:hover,
+        #send-to-account:hover {
+            background-color: #f8fafc;
+        }
+
+        /* Bottom navigation */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            max-width: 375px;
+            background: white;
+            border-top: 1px solid #e5e7eb;
+            display: flex;
+            justify-content: space-around;
+            padding: 12px 0 28px 0;
+        }
+
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            text-decoration: none;
+            color: #6b7280;
+            transition: color 0.2s;
+            cursor: pointer;
+        }
+
+        .nav-item.active {
+            color: #1e3a8a;
+        }
+
+        .nav-icon {
+            width: 24px;
+            height: 24px;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+        }
+
+        .nav-item.active .nav-icon {
+            background-color: #1e3a8a;
+            color: white;
+        }
+
+        .nav-label {
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        /* Icons */
+        .icon-card::before { content: '💳'; }
+        .icon-account::before { content: '🏦'; }
+        .icon-pound::before { content: '£'; }
+        .icon-transfer::before { content: '⇄'; }
+        .icon-pound-plus::before { content: '£+'; }
+        .icon-calendar::before { content: '📅'; }
+        .icon-rocket::before { content: '🚀'; }
+        .icon-home::before { content: '🏠'; }
+        .icon-payments::before { content: '💸'; }
+        .icon-discover::before { content: '🧭'; }
+        .icon-support::before { content: '💬'; }
+        .icon-chevron::before { content: '›'; }
+        .icon-more::before { content: '⋮'; }
+        .icon-arrow::before { content: '→'; }
+        .icon-plus::before { content: '+'; }
+        .icon-piggy::before { content: '🐷'; }
+        .icon-chart::before { content: '📈'; }
+
+        /* Responsive design */
+        @media (min-width: 376px) {
+            body {
+                border: 1px solid #e5e7eb;
+                border-radius: 20px;
+                margin: 20px auto;
+                overflow: hidden;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Status Bar -->
+    <div class="status-bar">
+        <div class="status-left">
+            <span>09:56</span>
+            <span>✈️</span>
+        </div>
+        <div class="status-right">
+            <span>📶</span>
+            <span>📶</span>
+            <span>🔋</span>
+        </div>
+    </div>
+
+    <!-- Home Page -->
+    <div id="home-page" class="page active">
+        <!-- Header -->
+        <div class="header">
+            <div class="profile-section">
+                <div class="profile-icon">
+                    <span>👤</span>
+                </div>
+                <div class="greeting">Good morning, Giuliano</div>
+            </div>
+
+            <div class="tabs">
+                <a href="#" class="tab active" data-nav="Spend">Spend</a>
+                <a href="#" class="tab" data-nav="Save & Invest">Save & Invest</a>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Debit Card Section -->
+            <div class="debit-card">
+                <div class="debit-info">
+                    <div class="card-icon icon-card"></div>
+                    <span class="debit-text">Debit</span>
+                </div>
+                <div class="see-card">
+                    <span>See card</span>
+                    <span class="icon-chevron"></span>
+                </div>
+            </div>
+
+            <!-- Current Accounts Section -->
+            <div class="accounts-section">
+                <div class="accounts-header">
+                    <div>
+                        <div class="accounts-title">Current accounts</div>
+                        <div class="balance">Balance: £0.00</div>
+                    </div>
+                    <button class="add-button">Add +</button>
+                </div>
+
+                <div class="account-item">
+                    <div class="account-info">
+                        <div class="account-icon icon-account"></div>
+                        <div class="account-details">
+                            <h3>Spending from</h3>
+                            <p>Giuliano's Account</p>
+                        </div>
+                    </div>
+                    <div style="display: flex; align-items: center;">
+                        <span class="account-balance">£0.00</span>
+                        <span class="more-options icon-more"></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Credit Card Section -->
+            <div class="credit-card">
+                <div class="credit-header">Credit card</div>
+                <div class="credit-promo">
+                    <button class="close-promo">×</button>
+                    <div class="promo-content">
+                        <div class="promo-title">Introducing the Chase credit card</div>
+                        <div class="promo-description">Find out more and check if you're eligible – without impacting your credit score</div>
+                        <button class="lets-go-button">
+                            <span>Let's go</span>
+                            <span class="icon-arrow"></span>
+                        </button>
+                    </div>
+                    <div class="promo-image"></div>
+                </div>
+            </div>
+
+            <!-- Activity Section -->
+            <div class="activity-section">
+                <div class="activity-header">
+                    <div class="activity-title">All activity</div>
+                    <span class="activity-arrow icon-chevron"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Payments Page -->
+    <div id="payments-page" class="page">
+        <!-- Main Content -->
+        <div class="main-content" style="padding-top: 20px;">
+            <!-- Payment Options -->
+            <div class="payment-option">
+                <div class="payment-info">
+                    <div class="payment-icon send-money icon-pound"></div>
+                    <div class="payment-details">
+                        <div class="payment-title">Send money</div>
+                        <div class="payment-description">Pay a person or business – and manage your payees</div>
+                    </div>
+                </div>
+                <div class="payment-arrow icon-chevron"></div>
+            </div>
+
+            <div class="payment-option">
+                <div class="payment-info">
+                    <div class="payment-icon move-money icon-transfer"></div>
+                    <div class="payment-details">
+                        <div class="payment-title">Move money</div>
+                        <div class="payment-description">Transfer between your Chase accounts</div>
+                    </div>
+                </div>
+                <div class="payment-arrow icon-chevron"></div>
+            </div>
+
+            <div class="payment-option">
+                <div class="payment-info">
+                    <div class="payment-icon add-money icon-pound-plus"></div>
+                    <div class="payment-details">
+                        <div class="payment-title">Add money</div>
+                        <div class="payment-description">See or share your account details to pay money in from another bank</div>
+                    </div>
+                </div>
+                <div class="payment-arrow icon-chevron"></div>
+            </div>
+
+            <div class="payment-option">
+                <div class="payment-info">
+                    <div class="payment-icon schedule-payment icon-calendar"></div>
+                    <div class="payment-details">
+                        <div class="payment-title">Schedule a payment</div>
+                        <div class="payment-description">Set up a standing order or future payment</div>
+                    </div>
+                </div>
+                <div class="payment-arrow icon-chevron"></div>
+            </div>
+
+            <!-- Promotional Section -->
+            <div class="payments-promo-section">
+                <button class="close-promo">×</button>
+                <div class="payments-promo-content">
+                    <div class="payments-promo-text">
+                        <div class="payments-promo-title">Stay a step ahead</div>
+                        <div class="payments-promo-description">You're less likely to miss a future or regular payment if you schedule it ahead of time.</div>
+                        <button class="setup-button">
+                            <span>Set up</span>
+                            <span class="icon-plus"></span>
+                        </button>
+                    </div>
+                    <div class="payments-promo-illustration icon-rocket"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Discover Page -->
+    <div id="discover-page" class="page">
+        <!-- Header -->
+        <div class="discover-header">
+            <h1 class="discover-title">Put your money to work</h1>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Product Grid -->
+            <div class="product-grid">
+                <div class="product-card">
+                    <div class="product-icon savings-icon">
+                        <span class="icon-piggy"></span>
+                    </div>
+                    <div class="product-name">Savings</div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-icon credit-card-icon">
+                        <span class="icon-card"></span>
+                    </div>
+                    <div class="product-name">Credit card</div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-icon investments-icon">
+                        <span class="icon-chart"></span>
+                    </div>
+                    <div class="product-name">Investments</div>
+                    <div class="product-subtitle">By Nutmeg</div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-icon current-account-icon">
+                        <span class="icon-account"></span>
+                    </div>
+                    <div class="product-name">Current account</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Support Page -->
+    <div id="support-page" class="page">
+        <!-- Header -->
+        <div class="support-header">
+            <h1 class="support-title">How can we help you?</h1>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Search Section -->
+            <div class="search-section">
+                <div class="search-input-container">
+                    <div class="search-icon">🔍</div>
+                    <input type="text" class="search-input" placeholder="Start typing...">
+                </div>
+                <button class="search-button">Search</button>
+                
+                <div class="search-history">
+                    <div class="history-icon">🕐</div>
+                    <span class="history-text">Your Search History</span>
+                </div>
+            </div>
+
+            <!-- Popular Topics Section -->
+            <div class="popular-topics-section">
+                <h2 class="section-title">Popular topics</h2>
+                
+                <div class="topic-item">
+                    <span class="topic-text">My card is expiring - what happens next?</span>
+                    <span class="topic-arrow">↗</span>
+                </div>
+                
+                <div class="topic-item">
+                    <span class="topic-text">Cashback</span>
+                    <span class="topic-arrow">›</span>
+                </div>
+                
+                <div class="topic-item">
+                    <span class="topic-text">Can I travel with Chase?</span>
+                    <span class="topic-arrow">›</span>
+                </div>
+                
+                <div class="topic-item">
+                    <span class="topic-text">Where are my statements and documents?</span>
+                    <span class="topic-arrow">›</span>
+                </div>
+                
+                <div class="topic-item">
+                    <span class="topic-text">Payment and spending limits</span>
+                    <span class="topic-arrow">›</span>
+                </div>
+                
+                <div class="browse-faqs">
+                    <div class="faq-icon">ℹ️</div>
+                    <span class="faq-text">Browse FAQs</span>
+                    <span class="faq-arrow">↗</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Move Money Modal -->
+    <div id="move-money-modal" class="modal-overlay">
+        <div class="move-money-modal">
+            <!-- Step 1: Enter Payment Details -->
+            <div id="payment-details-step" class="modal-step active">
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <button class="modal-close">×</button>
+                    <h2 class="modal-title">Enter payment details</h2>
+                </div>
+
+                <!-- Amount Display -->
+                <div class="amount-display">
+                    <div class="amount-circle" id="amount-circle"></div>
+                    <h1 class="amount-text" id="amount-text">£0.00</h1>
+                    <input type="number" class="amount-input" id="amount-input" step="0.01" min="0" placeholder="0">
+                </div>
+
+                <!-- Account Selection -->
+                <div class="account-section">
+                    <div class="accounts-container">
+                        <div class="account-row" id="from-account">
+                            <div class="account-info-modal">
+                                <div class="account-icon-modal chase-saver">🏦</div>
+                                <div class="account-details-modal">
+                                    <div class="account-label">From</div>
+                                    <div class="account-name">Chase Saver</div>
+                                </div>
+                            </div>
+                            <div class="account-balance-info">
+                                <div class="account-balance-modal" id="from-balance">£1,000,000.00</div>
+                                <div class="balance-description" id="from-description"></div>
+                            </div>
+                        </div>
+
+                        <button class="swap-button" id="swap-accounts">⇅</button>
+
+                        <div class="account-row" id="to-account">
+                            <div class="account-info-modal">
+                                <div class="account-icon-modal giuliano-account">🏦</div>
+                                <div class="account-details-modal">
+                                    <div class="account-label">To</div>
+                                    <div class="account-name">Giuliano's Account</div>
+                                </div>
+                            </div>
+                            <div class="account-balance-info">
+                                <div class="account-balance-modal" id="to-balance">£0.00</div>
+                                <div class="balance-description" id="to-description"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Additional Options -->
+                <div class="additional-options">
+                    <div class="option-row">
+                        <div class="option-info">
+                            <div class="option-icon">📝</div>
+                            <span class="option-text">Reference</span>
+                        </div>
+                        <span class="option-action">Add</span>
+                    </div>
+
+                    <div class="option-row">
+                        <div class="option-info">
+                            <div class="option-icon">📅</div>
+                            <span class="option-text">Schedule this payment</span>
+                        </div>
+                        <span class="option-action">Set up</span>
+                    </div>
+                </div>
+
+                <!-- Modal Footer -->
+                <div class="modal-footer">
+                    <button class="next-button" id="next-button" disabled>Next</button>
+                </div>
+            </div>
+
+            <!-- Step 2: Check the Details -->
+            <div id="check-details-step" class="modal-step">
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <button class="modal-back">←</button>
+                    <h2 class="modal-title">Check the details</h2>
+                </div>
+
+                <!-- Transfer Summary -->
+                <div class="transfer-summary">
+                    <div class="transfer-accounts">
+                        <div class="summary-account">
+                            <div class="summary-account-icon" id="summary-from-icon">🏦</div>
+                            <div class="summary-account-name" id="summary-from-name">Chase Saver</div>
+                        </div>
+                        
+                        <div class="transfer-arrow">
+                            <span>›</span>
+                            <span>›</span>
+                            <span>›</span>
+                        </div>
+                        
+                        <div class="summary-account">
+                            <div class="summary-account-icon" id="summary-to-icon">🏦</div>
+                            <div class="summary-account-name" id="summary-to-name">Giuliano's Account</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Amount Summary -->
+                <div class="amount-summary">
+                    <div class="summary-row">
+                        <span class="summary-label">Amount</span>
+                        <span class="summary-value" id="summary-amount">£1.00</span>
+                    </div>
+                </div>
+
+                <!-- Modal Footer -->
+                <div class="modal-footer">
+                    <button class="move-money-button" id="move-money-button">Move money</button>
+                </div>
+            </div>
+
+            <!-- Step 3: Success Confirmation -->
+            <div id="success-step" class="modal-step">
+                <!-- Success Content -->
+                <div class="success-content">
+                    <div class="success-icon">
+                        <div class="checkmark-circle">
+                            <div class="checkmark">✓</div>
+                        </div>
+                    </div>
+                    
+                    <div class="success-message" id="success-message">
+                        You've moved £1.00 from Chase Saver to Giuliano's Account
+                    </div>
+                </div>
+
+                <!-- Modal Footer -->
+                <div class="modal-footer">
+                    <button class="done-button" id="done-button">Done</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Send Money Modal -->
+    <div id="send-money-modal" class="modal-overlay">
+        <div class="move-money-modal">
+            <!-- Step 1: Choose Who to Send Money To -->
+            <div id="choose-payee-step" class="modal-step active">
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <button class="modal-close send-modal-close">×</button>
+                    <h2 class="modal-title">Choose who to send money to</h2>
+                    <button class="search-button-header">🔍</button>
+                </div>
+
+                <!-- Main Content -->
+                <div class="main-content" style="padding-top: 20px;">
+                    <!-- Someone New Option -->
+                    <div class="payee-option" data-payee="new">
+                        <div class="payee-info">
+                            <div class="payee-icon">👤+</div>
+                            <div class="payee-details">
+                                <div class="payee-title">Someone new</div>
+                                <div class="payee-description">Pay a UK account for the first time</div>
+                            </div>
+                        </div>
+                        <div class="payee-arrow">›</div>
+                    </div>
+
+                    <!-- All Payees Section -->
+                    <div class="section-header">All payees</div>
+                    
+                    <div class="send-details-container">
+                        <div class="existing-payee" data-payee="hsbc">
+                            <div class="existing-payee-info">
+                                <div class="existing-payee-avatar">GG</div>
+                                <div class="existing-payee-details">
+                                    <h3>Giuliano Giannini</h3>
+                                    <p>HSBC UK BANK PLC</p>
+                                </div>
+                            </div>
+                            <div class="existing-payee-more">⋮</div>
+                        </div>
+
+                        <div class="existing-payee" data-payee="revolut">
+                            <div class="existing-payee-info">
+                                <div class="existing-payee-avatar">GG</div>
+                                <div class="existing-payee-details">
+                                    <h3>Giuliano Giannini</h3>
+                                    <p>REVOLUT LTD</p>
+                                </div>
+                            </div>
+                            <div class="existing-payee-more">⋮</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 2: Fraud Alert 1 (Add New Payee) -->
+            <div id="fraud-alert-1-step" class="modal-step">
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <button class="modal-close send-modal-close">×</button>
+                </div>
+
+                <!-- Fraud Alert Content -->
+                <div class="fraud-alert-content">
+                    <div class="warning-icon">
+                        <div class="warning-triangle">!</div>
+                    </div>
+                    
+                    <h2 class="fraud-title">We've seen a rise in scams recently</h2>
+                    <p class="fraud-subtitle">Please be aware that scammers will often:</p>
+                    
+                    <ul class="fraud-list">
+                        <li>Pressure you to make an urgent payment</li>
+                        <li>Instruct you to give false information</li>
+                        <li>Tell you to ignore fraud warnings in your bank app</li>
+                    </ul>
+                    
+                    <p class="fraud-footer-text">Chase will never ask you to do this.</p>
+                    
+                    <div class="fraud-checkbox-container">
+                        <div class="fraud-checkbox" id="fraud-checkbox-1">✓</div>
+                        <div class="fraud-checkbox-text">I confirm that I'm making this payment on my own behalf with truthful information.</div>
+                    </div>
+                </div>
+
+                <!-- Modal Footer -->
+                <div class="modal-footer">
+                    <button class="next-button" id="fraud-next-1" disabled>Next</button>
+                </div>
+            </div>
+
+            <!-- Step 3: Payment Purpose Selection -->
+            <div id="payment-purpose-step" class="modal-step">
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <button class="modal-back purpose-modal-back">←</button>
+                    <h2 class="modal-title">Why are you adding this payee?</h2>
+                </div>
+
+                <!-- Purpose Content -->
+                <div class="purpose-content">
+                    <p class="purpose-subtitle">This is to help keep you safe from scams.</p>
+                    
+                    <div class="purpose-grid">
+                        <div class="purpose-option" data-purpose="family">
+                            <div class="purpose-icon">👥</div>
+                            <div class="purpose-title">Paying family or a friend</div>
+                        </div>
+                        
+                        <div class="purpose-option" data-purpose="moving">
+                            <div class="purpose-icon">🏠</div>
+                            <div class="purpose-title">Moving my money</div>
+                        </div>
+                        
+                        <div class="purpose-option" data-purpose="item">
+                            <div class="purpose-icon">🛍️</div>
+                            <div class="purpose-title">Paying for an item</div>
+                        </div>
+                        
+                        <div class="purpose-option" data-purpose="investments">
+                            <div class="purpose-icon">📊</div>
+                            <div class="purpose-title">Investments</div>
+                        </div>
+                        
+                        <div class="purpose-option" data-purpose="home">
+                            <div class="purpose-icon">🏡</div>
+                            <div class="purpose-title">Buying a home or paying a solicitor</div>
+                        </div>
+                        
+                        <div class="purpose-option" data-purpose="builder">
+                            <div class="purpose-icon">🔨</div>
+                            <div class="purpose-title">Paying a builder or tradesperson</div>
+                        </div>
+                        
+                        <div class="purpose-option" data-purpose="invoice">
+                            <div class="purpose-icon">£</div>
+                            <div class="purpose-title">Paying an invoice</div>
+                        </div>
+                        
+                        <div class="purpose-option" data-purpose="other">
+                            <div class="purpose-icon">?</div>
+                            <div class="purpose-title">Something else</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 4: Fraud Alert 2 -->
+            <div id="fraud-alert-2-step" class="modal-step">
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <button class="modal-back fraud-2-back">←</button>
+                    <h2 class="modal-title">Why are you adding this payee?</h2>
+                </div>
+
+                <!-- Fraud Alert Content -->
+                <div class="fraud-alert-content">
+                    <div class="warning-icon">
+                        <div class="warning-triangle">!</div>
+                    </div>
+                    
+                    <h2 class="fraud-title">We've seen a rise in scams recently</h2>
+                    <p class="fraud-subtitle">Please be aware that scammers will often:</p>
+                    
+                    <ul class="fraud-list">
+                        <li>Pressure you to make an urgent payment</li>
+                        <li>Instruct you to give false information</li>
+                        <li>Tell you to ignore fraud warnings in your bank app</li>
+                    </ul>
+                    
+                    <p class="fraud-footer-text">Chase will never ask you to do this.</p>
+                </div>
+
+                <!-- Modal Footer -->
+                <div class="modal-footer">
+                    <button class="understand-button" id="understand-button">I understand</button>
+                </div>
+            </div>
+
+            <!-- Step 5: Add Payee Form -->
+            <div id="add-payee-form-step" class="modal-step">
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <button class="modal-back add-payee-back">←</button>
+                    <h2 class="modal-title">Add payee</h2>
+                </div>
+
+                <!-- Add Payee Form -->
+                <div class="add-payee-form">
+                    <div class="form-group">
+                        <label class="form-label">Full name</label>
+                        <input type="text" class="form-input" id="payee-name-input" placeholder="">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Sort code</label>
+                        <input type="text" class="form-input" id="sort-code-input" placeholder="">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Account number</label>
+                        <input type="text" class="form-input" id="account-number-input" placeholder="">
+                    </div>
+                    
+                    <div class="business-checkbox-container">
+                        <div class="business-checkbox" id="business-checkbox">✓</div>
+                        <div class="business-label">Is this a business?</div>
+                    </div>
+                    
+                    <button class="paste-button">
+                        <span>📋</span>
+                        <span>Paste payee details</span>
+                    </button>
+                </div>
+
+                <!-- Modal Footer -->
+                <div class="modal-footer">
+                    <button class="next-button" id="add-payee-next" disabled>Check details</button>
+                </div>
+            </div>
+
+            <!-- Step 6: Account Details Verified -->
+            <div id="details-verified-step" class="modal-step">
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <button class="modal-close send-modal-close">×</button>
+                </div>
+
+                <!-- Verification Content -->
+                <div class="verification-content">
+                    <div class="success-icon">
+                        <div class="checkmark-circle">
+                            <div class="checkmark">✓</div>
+                        </div>
+                    </div>
+                    
+                    <h2 class="verification-title">Those details are correct</h2>
+                    <p class="verification-message">We've found an account with the name, account number and sort code you gave us.</p>
+                </div>
+
+                <!-- Modal Footer -->
+                <div class="modal-footer">
+                    <button class="add-payee-button" id="add-payee-button">Add payee</button>
+                </div>
+            </div>
+
+            <!-- Step 7: Enter Passcode -->
+            <div id="enter-passcode-step" class="modal-step">
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <button class="modal-close send-modal-close">×</button>
+                    <h2 class="modal-title">Enter your passcode</h2>
+                </div>
+
+                <!-- Passcode Content -->
+                <div class="passcode-content">
+                    <div class="passcode-dots">
+                        <div class="passcode-dot" id="dot-1"></div>
+                        <div class="passcode-dot" id="dot-2"></div>
+                        <div class="passcode-dot" id="dot-3"></div>
+                        <div class="passcode-dot" id="dot-4"></div>
+                        <div class="passcode-dot" id="dot-5"></div>
+                        <div class="passcode-dot" id="dot-6"></div>
+                    </div>
+
+                    <div class="number-pad">
+                        <button class="number-button" data-number="1">1</button>
+                        <button class="number-button" data-number="2">2</button>
+                        <button class="number-button" data-number="3">3</button>
+                        <button class="number-button" data-number="4">4</button>
+                        <button class="number-button" data-number="5">5</button>
+                        <button class="number-button" data-number="6">6</button>
+                        <button class="number-button" data-number="7">7</button>
+                        <button class="number-button" data-number="8">8</button>
+                        <button class="number-button" data-number="9">9</button>
+                        <button class="number-button"></button>
+                        <button class="number-button" data-number="0">0</button>
+                        <button class="number-button"></button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 8: Enter Payment Details (Send Money) -->
+            <div id="send-payment-details-step" class="modal-step">
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <button class="modal-close send-modal-close">×</button>
+                    <h2 class="modal-title">Enter payment details</h2>
+                </div>
+
+                <!-- Amount Display -->
+                <div class="amount-display">
+                    <div class="amount-circle" id="send-amount-circle"></div>
+                    <h1 class="amount-text" id="send-amount-text">£0.00</h1>
+                    <input type="number" class="amount-input" id="send-amount-input" step="0.01" min="0" placeholder="0">
+                </div>
+
+                <!-- Account Selection (No Swap Button) -->
+                <div class="account-section">
+                    <div class="account-row" id="send-from-account">
+                        <div class="account-info-modal">
+                            <div class="account-icon-modal giuliano-account">🏦</div>
+                            <div class="account-details-modal">
+                                <div class="account-label">From</div>
+                                <div class="account-name">Giuliano's Account</div>
+                            </div>
+                        </div>
+                        <div class="account-balance-info">
+                            <div class="account-balance-modal" id="send-from-balance">£1.00</div>
+                            <div class="balance-description" id="send-from-description"></div>
+                            <div class="payment-arrow icon-chevron" style="margin-left: 12px;"></div>
+                        </div>
+                    </div>
+
+                    <div class="account-row" id="send-to-account">
+                        <div class="account-info-modal">
+                            <div class="existing-payee-avatar" style="margin-right: 8px;">GG</div>
+                            <div class="account-details-modal">
+                                <div class="account-label">To</div>
+                                <div class="account-name" id="send-to-name">Giuliano Giannini</div>
+                                <div class="account-bank" id="send-to-bank">04-00-75 78386004</div>
+                            </div>
+                        </div>
+                        <div class="payment-arrow icon-chevron"></div>
+                    </div>
+                </div>
+
+                <!-- Additional Options -->
+                <div class="additional-options">
+                    <div class="option-row">
+                        <div class="option-info">
+                            <div class="option-icon">📝</div>
+                            <span class="option-text">Reference</span>
+                        </div>
+                        <span class="option-action">Edit</span>
+                    </div>
+
+                    <div class="option-row">
+                        <div class="option-info">
+                            <div class="option-icon">📅</div>
+                            <span class="option-text">Schedule this payment</span>
+                        </div>
+                        <span class="option-action">Set up</span>
+                    </div>
+                </div>
+
+                <!-- Modal Footer -->
+                <div class="modal-footer">
+                    <button class="next-button" id="send-next-button" disabled>Next</button>
+                </div>
+            </div>
+
+            <!-- Step 3: Check the Details (Send Money) -->
+            <div id="send-check-details-step" class="modal-step">
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <button class="modal-back send-modal-back">←</button>
+                    <h2 class="modal-title">Check the details</h2>
+                </div>
+
+                <!-- Transfer Summary -->
+                <div class="transfer-summary">
+                    <div class="transfer-accounts">
+                        <div class="summary-account">
+                            <div class="summary-account-icon" id="send-summary-from-icon">👁️</div>
+                            <div class="summary-account-name" id="send-summary-from-name">Giuliano's Account</div>
+                        </div>
+                        
+                        <div class="transfer-arrow">
+                            <span>›</span>
+                            <span>›</span>
+                            <span>›</span>
+                        </div>
+                        
+                        <div class="summary-account">
+                            <div class="existing-payee-avatar" style="width: 80px; height: 80px; font-size: 24px;" id="send-summary-to-avatar">GG</div>
+                            <div class="summary-account-name" id="send-summary-to-name">Giuliano Giannini</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bank Info Summary -->
+                <div class="bank-info-section">
+                    <div class="bank-info-row">
+                        <span class="bank-info-label">Bank name</span>
+                        <span class="bank-info-value" id="send-bank-name">REVOLUT LTD</span>
+                    </div>
+                    <div class="bank-info-row">
+                        <span class="bank-info-label">Sort code</span>
+                        <span class="bank-info-value" id="send-sort-code">04-00-75</span>
+                    </div>
+                    <div class="bank-info-row">
+                        <span class="bank-info-label">Account number</span>
+                        <span class="bank-info-value" id="send-account-number">78386004</span>
+                    </div>
+                    <div class="bank-info-row">
+                        <span class="bank-info-label">Amount</span>
+                        <span class="bank-info-value" id="send-summary-amount">£1.00</span>
+                    </div>
+                    <div class="bank-info-row">
+                        <span class="bank-info-label">Reference</span>
+                        <span class="bank-info-value" id="send-reference">Chase</span>
+                    </div>
+                </div>
+
+                <div class="transfer-notice">
+                    We'll send the payment now and it should arrive within 2 hours.
+                </div>
+
+                <!-- Modal Footer -->
+                <div class="modal-footer">
+                    <button class="send-money-button" id="send-money-button">Send money</button>
+                </div>
+            </div>
+
+            <!-- Step 4: Success Confirmation (Send Money) -->
+            <div id="send-success-step" class="modal-step">
+                <!-- Success Content -->
+                <div class="success-content">
+                    <div class="success-icon">
+                        <div class="checkmark-circle">
+                            <div class="checkmark">✓</div>
+                        </div>
+                    </div>
+                    
+                    <div class="success-message" id="send-success-message">
+                        You've sent £1.00 to Giuliano Giannini
+                    </div>
+                    
+                    <div class="transfer-notice">
+                        The money should reach them within 2 hours.
+                    </div>
+                </div>
+
+                <!-- Modal Footer -->
+                <div class="modal-footer">
+                    <button class="done-button" id="send-done-button">Done</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Send Money From Account Selection Modal -->
+    <div id="send-from-account-modal" class="modal-overlay">
+        <div class="move-money-modal">
+            <div class="modal-step active">
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <button class="modal-close send-from-modal-close">×</button>
+                    <h2 class="modal-title">Send money from:</h2>
+                </div>
+
+                <!-- Account Options -->
+                <div class="main-content" style="padding-top: 20px;">
+                    <div class="send-details-container">
+                        <div class="existing-payee account-option" data-account="giuliano">
+                            <div class="existing-payee-info">
+                                <div class="account-icon-modal giuliano-account">👁️</div>
+                                <div class="existing-payee-details">
+                                    <h3>Giuliano's Account</h3>
+                                    <p id="giuliano-balance-display">£0.00</p>
+                                </div>
+                            </div>
+                            <div class="selection-check" id="giuliano-check">✓</div>
+                        </div>
+
+                        <div class="existing-payee account-option" data-account="chase-saver">
+                            <div class="existing-payee-info">
+                                <div class="account-icon-modal chase-saver">🐷</div>
+                                <div class="existing-payee-details">
+                                    <h3>Chase Saver</h3>
+                                    <p id="chase-balance-display">£1,000,000.00</p>
+                                    <p style="font-size: 12px; color: #6b7280; margin-top: 2px;">4.75% AER • Boosted</p>
+                                </div>
+                            </div>
+                            <div class="selection-check" id="chase-check" style="display: none;">✓</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Send Money To Payee Selection Modal -->
+    <div id="send-to-payee-modal" class="modal-overlay">
+        <div class="move-money-modal">
+            <div class="modal-step active">
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <button class="modal-close send-to-modal-close">×</button>
+                    <h2 class="modal-title">Send money to:</h2>
+                </div>
+
+                <!-- Payee Options -->
+                <div class="main-content" style="padding-top: 20px;">
+                    <div class="send-details-container">
+                        <div class="existing-payee payee-option-select" data-payee="revolut">
+                            <div class="existing-payee-info">
+                                <div class="existing-payee-avatar">GG</div>
+                                <div class="existing-payee-details">
+                                    <h3>Giuliano Giannini</h3>
+                                    <p>REVOLUT LTD</p>
+                                </div>
+                            </div>
+                            <div class="selection-check" id="revolut-check">✓</div>
+                        </div>
+
+                        <div class="existing-payee payee-option-select" data-payee="hsbc">
+                            <div class="existing-payee-info">
+                                <div class="existing-payee-avatar">GG</div>
+                                <div class="existing-payee-details">
+                                    <h3>Giuliano Giannini</h3>
+                                    <p>HSBC UK BANK PLC</p>
+                                </div>
+                            </div>
+                            <div class="selection-check" id="hsbc-check" style="display: none;">✓</div>
+                        </div>
+
+                        <div class="existing-payee" style="margin-top: 20px;">
+                            <div class="existing-payee-info">
+                                <div class="payee-icon" style="width: 40px; height: 40px; font-size: 16px;">+</div>
+                                <div class="existing-payee-details">
+                                    <h3>Add account</h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bottom Navigation -->
+    <div class="bottom-nav">
+        <div class="nav-item active" data-nav="Home">
+            <div class="nav-icon icon-home"></div>
+            <span class="nav-label">Home</span>
+        </div>
+        <div class="nav-item" data-nav="Payments">
+            <div class="nav-icon icon-payments"></div>
+            <span class="nav-label">Payments</span>
+        </div>
+        <div class="nav-item" data-nav="Discover">
+            <div class="nav-icon icon-discover"></div>
+            <span class="nav-label">Discover</span>
+        </div>
+        <div class="nav-item" data-nav="Support">
+            <div class="nav-icon icon-support"></div>
+            <span class="nav-label">Support</span>
+        </div>
+    </div>
+
+    <script>
+        let currentPage = 'home';
+
+        // Event tracking for navigation menu buttons using Amplitude
+        function trackNavMenuClick(buttonName) {
+            // Track event with Amplitude (no identify call)
+            window.amplitude.track('Nav Menu Button Clicked', {
+                buttonName: buttonName,
+                page: currentPage
+            });
+            
+            // Log to console for demo purposes
+            console.log('Amplitude event tracked: Nav Menu Button Clicked', {
+                buttonName: buttonName,
+                page: currentPage
+            });
+        }
+
+        // SPA navigation function with virtual page view tracking
+        function navigateToPage(pageName) {
+            // Hide all pages
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active');
+            });
+
+            // Show selected page
+            const targetPage = document.getElementById(`${pageName.toLowerCase()}-page`);
+            if (targetPage) {
+                targetPage.classList.add('active');
+                currentPage = pageName.toLowerCase();
+                
+                // Update document title
+                document.title = `Banking App - ${pageName}`;
+                
+                // Track virtual page view event
+                window.amplitude.track('[Amplitude] Page Viewed', {
+                    page_location: window.location.href + '#' + pageName.toLowerCase(),
+                    page_title: document.title,
+                    virtual_page: pageName.toLowerCase(),
+                    page_type: 'virtual'
+                });
+                
+                // Log to console for demo purposes
+                console.log('Amplitude virtual page view tracked:', {
+                    page: pageName.toLowerCase(),
+                    title: document.title
+                });
+            }
+        }
+
+        // Add click event listeners to navigation items only
+        document.addEventListener('DOMContentLoaded', function() {
+            // Track initial page view for home page
+            window.amplitude.track('[Amplitude] Page Viewed', {
+                page_location: window.location.href + '#home',
+                page_title: 'Banking App - Home',
+                virtual_page: 'home',
+                page_type: 'virtual'
+            });
+            
+            console.log('Initial virtual page view tracked: Home');
+            
+            const navItems = document.querySelectorAll('.nav-item');
+            
+            navItems.forEach(item => {
+                item.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    // Get button name from data attribute
+                    const buttonName = this.getAttribute('data-nav');
+                    
+                    // Remove active class from all nav items
+                    navItems.forEach(nav => nav.classList.remove('active'));
+                    
+                    // Add active class to clicked item
+                    this.classList.add('active');
+                    
+                    // Track the event with Amplitude (maintains same session)
+                    trackNavMenuClick(buttonName);
+                    
+                    // Navigate within SPA (no page reload)
+                    if (buttonName === 'Home') {
+                        navigateToPage('home');
+                    } else if (buttonName === 'Payments') {
+                        navigateToPage('payments');
+                    } else if (buttonName === 'Discover') {
+                        navigateToPage('discover');
+                    } else if (buttonName === 'Support') {
+                        navigateToPage('support');
+                    }
+                });
+            });
+
+            // Tab functionality without tracking (visual only)
+            const tabs = document.querySelectorAll('.tab');
+            tabs.forEach(tab => {
+                tab.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    // Remove active class from all tabs
+                    tabs.forEach(t => t.classList.remove('active'));
+                    
+                    // Add active class to clicked tab
+                    this.classList.add('active');
+                    
+                    // No tracking for tabs as requested
+                });
+            });
+
+            // Payment option interactions
+            const paymentOptions = document.querySelectorAll('.payment-option');
+            paymentOptions.forEach(option => {
+                option.addEventListener('click', function() {
+                    const title = this.querySelector('.payment-title').textContent;
+                    
+                    if (title === 'Move money') {
+                        openMoveMoneyModal();
+                    } else if (title === 'Send money') {
+                        openSendMoneyModal();
+                    } else {
+                        // When implementing other transaction types, use consistent tracking:
+                        // 
+                        // Add money: transactionType: 'add' 
+                        // Schedule payment: transactionType: 'scheduled'
+                        //
+                        alert(`${title} - Feature not implemented yet`);
+                    }
+                });
+            });
+
+            // Close promo functionality
+            const closePromoButtons = document.querySelectorAll('.close-promo');
+            closePromoButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    this.parentElement.style.display = 'none';
+                });
+            });
+
+            // Setup button functionality
+            const setupButton = document.querySelector('.setup-button');
+            if (setupButton) {
+                setupButton.addEventListener('click', function() {
+                    alert('Schedule payment setup - Feature not implemented yet');
+                });
+            }
+
+            // Lets go button functionality
+            const letsGoButton = document.querySelector('.lets-go-button');
+            if (letsGoButton) {
+                letsGoButton.addEventListener('click', function() {
+                    alert('Chase credit card - Feature not implemented yet');
+                });
+            }
+
+            // Product card interactions (Discover page)
+            const productCards = document.querySelectorAll('.product-card');
+            productCards.forEach(card => {
+                card.addEventListener('click', function() {
+                    const productName = this.querySelector('.product-name').textContent;
+                    alert(`${productName} - Feature not implemented yet`);
+                });
+            });
+
+            // Support page interactions
+            const searchButton = document.querySelector('.search-button');
+            if (searchButton) {
+                searchButton.addEventListener('click', function() {
+                    const searchInput = document.querySelector('.search-input');
+                    const query = searchInput.value.trim();
+                    if (query) {
+                        alert(`Search for: "${query}" - Feature not implemented yet`);
+                    } else {
+                        alert('Please enter a search term');
+                    }
+                });
+            }
+
+            const searchInput = document.querySelector('.search-input');
+            if (searchInput) {
+                searchInput.addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter') {
+                        const query = this.value.trim();
+                        if (query) {
+                            alert(`Search for: "${query}" - Feature not implemented yet`);
+                        }
+                    }
+                });
+            }
+
+            const topicItems = document.querySelectorAll('.topic-item');
+            topicItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    const topicText = this.querySelector('.topic-text').textContent;
+                    alert(`${topicText} - Feature not implemented yet`);
+                });
+            });
+
+            const browseFaqs = document.querySelector('.browse-faqs');
+            if (browseFaqs) {
+                browseFaqs.addEventListener('click', function() {
+                    alert('Browse FAQs - Feature not implemented yet');
+                });
+            }
+
+            const searchHistory = document.querySelector('.search-history');
+            if (searchHistory) {
+                searchHistory.addEventListener('click', function() {
+                    alert('Search History - Feature not implemented yet');
+                });
+                searchHistory.style.cursor = 'pointer';
+            }
+
+            // Move Money Modal Functionality
+            initializeMoveMoneyModal();
+
+            // Send Money Modal Functionality
+            initializeSendMoneyModal();
+        });
+
+        // Global Account Balances (persistent across the app)
+        let globalBalances = {
+            'Chase Saver': 1000000.00,
+            "Giuliano's Account": 0.00
+        };
+
+        // Move Money Modal State
+        let moveMoneyState = {
+            fromAccount: {
+                name: 'Chase Saver',
+                balance: 1000000.00,
+                icon: 'chase-saver'
+            },
+            toAccount: {
+                name: "Giuliano's Account", 
+                balance: 0.00,
+                icon: 'giuliano-account'
+            },
+            amount: 0
+        };
+
+        function openMoveMoneyModal() {
+            const modal = document.getElementById('move-money-modal');
+            modal.classList.add('active');
+            resetMoveMoneyForm();
+            
+            // Update status bar time
+            document.querySelectorAll('.status-left span').forEach(span => {
+                if (span.textContent.includes(':')) {
+                    span.textContent = '11:47';
+                }
+            });
+
+            // Track Transaction Started event
+            window.amplitude.track('Transaction Started', {
+                transactionType: 'move',
+                fromAccount: 'Chase Saver',
+                toAccount: "Giuliano's Account",
+                screenName: 'Move Money - Enter Details'
+            });
+
+            // Track virtual page view for Move Money step 1
+            window.amplitude.track('[Amplitude] Page Viewed', {
+                page_location: window.location.href + '#move-money-enter-details',
+                page_title: 'Move Money - Enter Payment Details',
+                virtual_page: 'move-money-enter-details',
+                page_type: 'virtual'
+            });
+
+            console.log('Amplitude events tracked: Transaction Started (move) + Page Viewed');
+        }
+
+        function closeMoveMoneyModal() {
+            const modal = document.getElementById('move-money-modal');
+            modal.classList.remove('active');
+            
+            // Reset status bar time
+            document.querySelectorAll('.status-left span').forEach(span => {
+                if (span.textContent.includes(':')) {
+                    span.textContent = '09:56';
+                }
+            });
+        }
+
+        function resetMoveMoneyForm() {
+            // Reset state with current global balances
+            moveMoneyState.amount = 0;
+            moveMoneyState.fromAccount = {
+                name: 'Chase Saver',
+                balance: globalBalances['Chase Saver'],
+                icon: 'chase-saver'
+            };
+            moveMoneyState.toAccount = {
+                name: "Giuliano's Account",
+                balance: globalBalances["Giuliano's Account"],
+                icon: 'giuliano-account'
+            };
+
+            // Reset to step 1
+            showModalStep('payment-details-step');
+
+            // Reset UI
+            updateMoveMoneyDisplay();
+            const amountInput = document.getElementById('amount-input');
+            const amountText = document.getElementById('amount-text');
+            
+            amountInput.value = '';
+            amountInput.classList.remove('active');
+            amountText.classList.remove('hidden');
+            amountText.textContent = '£0.00';
+            document.getElementById('amount-circle').classList.remove('visible');
+            document.getElementById('next-button').disabled = true;
+        }
+
+        function showModalStep(stepId) {
+            // Hide all steps
+            document.querySelectorAll('.modal-step').forEach(step => {
+                step.classList.remove('active');
+            });
+
+            // Show selected step
+            document.getElementById(stepId).classList.add('active');
+        }
+
+        function goToCheckDetails() {
+            // Update check details screen with current transfer data
+            updateCheckDetailsDisplay();
+            showModalStep('check-details-step');
+            
+            // Update status bar time for check details
+            document.querySelectorAll('.status-left span').forEach(span => {
+                if (span.textContent.includes(':')) {
+                    span.textContent = '12:17';
+                }
+            });
+
+            // Track Amount Added event
+            window.amplitude.track('Amount Added', {
+                transactionType: 'move',
+                amount: moveMoneyState.amount,
+                fromAccount: moveMoneyState.fromAccount.name,
+                toAccount: moveMoneyState.toAccount.name,
+                screenName: 'Move Money - Check Details'
+            });
+
+            // Track virtual page view for Move Money step 2
+            window.amplitude.track('[Amplitude] Page Viewed', {
+                page_location: window.location.href + '#move-money-check-details',
+                page_title: 'Move Money - Check the Details',
+                virtual_page: 'move-money-check-details',
+                page_type: 'virtual'
+            });
+
+            console.log('Amplitude events tracked: Amount Added (move) + Page Viewed (Check Details)', {
+                transactionType: 'move',
+                amount: moveMoneyState.amount,
+                fromAccount: moveMoneyState.fromAccount.name,
+                toAccount: moveMoneyState.toAccount.name
+            });
+        }
+
+        function updateCheckDetailsDisplay() {
+            // Update account names
+            document.getElementById('summary-from-name').textContent = moveMoneyState.fromAccount.name;
+            document.getElementById('summary-to-name').textContent = moveMoneyState.toAccount.name;
+            
+            // Update amount
+            document.getElementById('summary-amount').textContent = `£${moveMoneyState.amount.toFixed(2)}`;
+            
+            // Update account icons based on account type
+            const fromIcon = document.getElementById('summary-from-icon');
+            const toIcon = document.getElementById('summary-to-icon');
+            
+            if (moveMoneyState.fromAccount.icon === 'chase-saver') {
+                fromIcon.style.background = 'linear-gradient(135deg, #1e40af 0%, #3730a3 100%)';
+                fromIcon.textContent = '🐷';
+            } else {
+                fromIcon.style.background = 'linear-gradient(135deg, #0ea5e9 0%, #06b6d4 100%)';
+                fromIcon.textContent = '👁️';
+            }
+            
+            if (moveMoneyState.toAccount.icon === 'chase-saver') {
+                toIcon.style.background = 'linear-gradient(135deg, #1e40af 0%, #3730a3 100%)';
+                toIcon.textContent = '🐷';
+            } else {
+                toIcon.style.background = 'linear-gradient(135deg, #0ea5e9 0%, #06b6d4 100%)';
+                toIcon.textContent = '👁️';
+            }
+        }
+
+        function completeTransfer() {
+            const amount = moveMoneyState.amount;
+            const fromAccount = moveMoneyState.fromAccount.name;
+            const toAccount = moveMoneyState.toAccount.name;
+
+            if (amount > 0 && amount <= globalBalances[fromAccount]) {
+                // Actually transfer the money
+                globalBalances[fromAccount] -= amount;
+                globalBalances[toAccount] += amount;
+
+                // Update the main app account displays
+                updateMainAppBalances();
+
+                // Update success message
+                const successMessage = document.getElementById('success-message');
+                successMessage.textContent = `You've moved £${amount.toFixed(2)} from ${fromAccount} to ${toAccount}`;
+
+                // Show success screen
+                showModalStep('success-step');
+
+                // Track Transaction Completed event with transaction type
+                window.amplitude.track('Transaction Completed', {
+                    transactionType: 'move',
+                    amount: amount,
+                    fromAccount: fromAccount,
+                    toAccount: toAccount,
+                    screenName: 'Move Money - Success'
+                });
+
+                // Track virtual page view for Move Money step 3 (success)
+                window.amplitude.track('[Amplitude] Page Viewed', {
+                    page_location: window.location.href + '#move-money-success',
+                    page_title: 'Move Money - Success',
+                    virtual_page: 'move-money-success',
+                    page_type: 'virtual'
+                });
+
+                console.log('Amplitude events tracked: Transaction Completed (move) + Page Viewed (Success)', {
+                    transactionType: 'move',
+                    amount: amount,
+                    fromAccount: fromAccount,
+                    toAccount: toAccount
+                });
+            }
+        }
+
+        function goBackToPaymentDetails() {
+            showModalStep('payment-details-step');
+            
+            // Update status bar time back to payment details time
+            document.querySelectorAll('.status-left span').forEach(span => {
+                if (span.textContent.includes(':')) {
+                    span.textContent = '11:47';
+                }
+            });
+
+            // Track virtual page view for returning to payment details
+            window.amplitude.track('[Amplitude] Page Viewed', {
+                page_location: window.location.href + '#move-money-enter-details',
+                page_title: 'Move Money - Enter Payment Details',
+                virtual_page: 'move-money-enter-details',
+                page_type: 'virtual'
+            });
+
+            console.log('Amplitude event tracked: Page Viewed (Back to Enter Details)');
+        }
+
+        function returnToPayments() {
+            closeMoveMoneyModal();
+            
+            // Reset status bar time to original
+            document.querySelectorAll('.status-left span').forEach(span => {
+                if (span.textContent.includes(':')) {
+                    span.textContent = '09:56';
+                }
+            });
+            
+            navigateToPage('payments');
+        }
+
+        function updateMainAppBalances() {
+            // Update the main home page account balance if visible
+            const mainAccountBalance = document.querySelector('#home-page .account-balance');
+            if (mainAccountBalance) {
+                mainAccountBalance.textContent = `£${globalBalances["Giuliano's Account"].toLocaleString('en-GB', {minimumFractionDigits: 2})}`;
+            }
+
+            // Update the current accounts section balance
+            const currentAccountsBalance = document.querySelector('#home-page .balance');
+            if (currentAccountsBalance) {
+                currentAccountsBalance.textContent = `Balance: £${globalBalances["Giuliano's Account"].toLocaleString('en-GB', {minimumFractionDigits: 2})}`;
+            }
+        }
+
+        function swapAccounts() {
+            // Track the swap event with Amplitude
+            window.amplitude.track('From To Accounts Switched', {
+                screenName: 'Move Money',
+                fromAccount: moveMoneyState.fromAccount.name,
+                toAccount: moveMoneyState.toAccount.name
+            });
+
+            console.log('Amplitude event tracked: From To Accounts Switched', {
+                screenName: 'Move Money',
+                fromAccount: moveMoneyState.fromAccount.name,
+                toAccount: moveMoneyState.toAccount.name
+            });
+
+            // Swap the accounts
+            const temp = moveMoneyState.fromAccount;
+            moveMoneyState.fromAccount = moveMoneyState.toAccount;
+            moveMoneyState.toAccount = temp;
+
+            // Update the display
+            updateMoveMoneyDisplay();
+            updateBalanceCalculations();
+
+            // Highlight swap button briefly
+            const swapButton = document.getElementById('swap-accounts');
+            swapButton.classList.add('highlighted');
+            setTimeout(() => {
+                swapButton.classList.remove('highlighted');
+            }, 300);
+        }
+
+        function updateMoveMoneyDisplay() {
+            // Update From account
+            const fromAccount = document.getElementById('from-account');
+            const fromIcon = fromAccount.querySelector('.account-icon-modal');
+            const fromName = fromAccount.querySelector('.account-name');
+            const fromBalance = document.getElementById('from-balance');
+            
+            fromIcon.className = `account-icon-modal ${moveMoneyState.fromAccount.icon}`;
+            fromName.textContent = moveMoneyState.fromAccount.name;
+            fromBalance.textContent = `£${moveMoneyState.fromAccount.balance.toLocaleString('en-GB', {minimumFractionDigits: 2})}`;
+
+            // Update To account
+            const toAccount = document.getElementById('to-account');
+            const toIcon = toAccount.querySelector('.account-icon-modal');
+            const toName = toAccount.querySelector('.account-name');
+            const toBalance = document.getElementById('to-balance');
+            
+            toIcon.className = `account-icon-modal ${moveMoneyState.toAccount.icon}`;
+            toName.textContent = moveMoneyState.toAccount.name;
+            toBalance.textContent = `£${moveMoneyState.toAccount.balance.toLocaleString('en-GB', {minimumFractionDigits: 2})}`;
+        }
+
+        function updateBalanceCalculations() {
+            const amount = moveMoneyState.amount;
+            
+            if (amount > 0) {
+                // Calculate new balances
+                const fromRemaining = moveMoneyState.fromAccount.balance - amount;
+                const toNewBalance = moveMoneyState.toAccount.balance + amount;
+                
+                // Update balance descriptions
+                document.getElementById('from-description').textContent = 'remaining';
+                document.getElementById('to-description').textContent = 'new balance';
+                
+                // Update displayed balances
+                document.getElementById('from-balance').textContent = `£${fromRemaining.toLocaleString('en-GB', {minimumFractionDigits: 2})}`;
+                document.getElementById('to-balance').textContent = `£${toNewBalance.toLocaleString('en-GB', {minimumFractionDigits: 2})}`;
+            } else {
+                // Show original balances
+                document.getElementById('from-description').textContent = '';
+                document.getElementById('to-description').textContent = '';
+                document.getElementById('from-balance').textContent = `£${moveMoneyState.fromAccount.balance.toLocaleString('en-GB', {minimumFractionDigits: 2})}`;
+                document.getElementById('to-balance').textContent = `£${moveMoneyState.toAccount.balance.toLocaleString('en-GB', {minimumFractionDigits: 2})}`;
+            }
+        }
+
+        function showAmountInput() {
+            const amountText = document.getElementById('amount-text');
+            const amountInput = document.getElementById('amount-input');
+            
+            // Hide text, show input
+            amountText.classList.add('hidden');
+            amountInput.classList.add('active');
+            amountInput.focus();
+        }
+
+        function hideAmountInput() {
+            const amountText = document.getElementById('amount-text');
+            const amountInput = document.getElementById('amount-input');
+            const amount = moveMoneyState.amount;
+            
+            // Show text, hide input
+            amountInput.classList.remove('active');
+            amountText.classList.remove('hidden');
+            
+            // Update display text
+            amountText.textContent = amount > 0 ? `£${amount.toFixed(2)}` : '£0.00';
+        }
+
+        function handleAmountInput() {
+            const input = document.getElementById('amount-input');
+            let inputValue = input.value;
+            
+            // Remove any non-numeric characters except decimal point
+            inputValue = inputValue.replace(/[^0-9.]/g, '');
+            
+            // Ensure only one decimal point
+            const parts = inputValue.split('.');
+            if (parts.length > 2) {
+                inputValue = parts[0] + '.' + parts.slice(1).join('');
+            }
+            
+            // Limit to 2 decimal places
+            if (parts[1] && parts[1].length > 2) {
+                inputValue = parseFloat(inputValue).toFixed(2);
+            }
+            
+            // Update the input value (clean format)
+            input.value = inputValue;
+            
+            const amount = parseFloat(inputValue) || 0;
+            moveMoneyState.amount = amount;
+
+            // Show/hide circle
+            const circle = document.getElementById('amount-circle');
+            if (amount > 0) {
+                circle.classList.add('visible');
+            } else {
+                circle.classList.remove('visible');
+            }
+
+            // Enable/disable Next button
+            const nextButton = document.getElementById('next-button');
+            nextButton.disabled = amount <= 0 || amount > moveMoneyState.fromAccount.balance;
+
+            // Update balance calculations
+            updateBalanceCalculations();
+        }
+
+        function initializeMoveMoneyModal() {
+            // Modal close functionality
+            const modalClose = document.querySelector('.modal-close');
+            modalClose.addEventListener('click', closeMoveMoneyModal);
+            
+            // Click outside modal to close
+            const modalOverlay = document.getElementById('move-money-modal');
+            modalOverlay.addEventListener('click', function(e) {
+                if (e.target === modalOverlay) {
+                    closeMoveMoneyModal();
+                }
+            });
+
+            // Swap accounts functionality
+            const swapButton = document.getElementById('swap-accounts');
+            swapButton.addEventListener('click', swapAccounts);
+
+            // Amount input functionality
+            const amountInput = document.getElementById('amount-input');
+            amountInput.addEventListener('input', handleAmountInput);
+            amountInput.addEventListener('keyup', handleAmountInput);
+
+            // Click on amount display to show input
+            const amountDisplay = document.querySelector('.amount-display');
+            amountDisplay.addEventListener('click', function() {
+                showAmountInput();
+            });
+
+            // Handle input focus/blur
+            amountInput.addEventListener('blur', function() {
+                hideAmountInput();
+            });
+
+            // Handle Enter key
+            amountInput.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter') {
+                    this.blur(); // This will trigger hideAmountInput
+                }
+            });
+
+            // Next button functionality (go to check details)
+            const nextButton = document.getElementById('next-button');
+            nextButton.addEventListener('click', function() {
+                goToCheckDetails();
+            });
+
+            // Back button functionality
+            const modalBack = document.querySelector('.modal-back');
+            modalBack.addEventListener('click', goBackToPaymentDetails);
+
+            // Move money button functionality (complete transfer)
+            const moveMoneyButton = document.getElementById('move-money-button');
+            moveMoneyButton.addEventListener('click', function() {
+                completeTransfer();
+            });
+
+            // Done button functionality (return to payments)
+            const doneButton = document.getElementById('done-button');
+            doneButton.addEventListener('click', function() {
+                returnToPayments();
+            });
+
+            // Additional options
+            const optionRows = document.querySelectorAll('.option-row');
+            optionRows.forEach(row => {
+                row.addEventListener('click', function() {
+                    const optionText = this.querySelector('.option-text').textContent;
+                    alert(`${optionText} - Feature not implemented yet`);
+                });
+            });
+        }
+
+        // Send Money Modal State
+        let sendMoneyState = {
+            selectedPayee: null,
+            fromAccount: {
+                name: "Giuliano's Account",
+                balance: 0.00,
+                icon: 'giuliano-account'
+            },
+            toPayee: {
+                name: 'Giuliano Giannini',
+                bank: 'REVOLUT LTD',
+                sortCode: '04-00-75',
+                accountNumber: '78386004'
+            },
+            amount: 0,
+            reference: 'Chase'
+        };
+
+        function openSendMoneyModal() {
+            const modal = document.getElementById('send-money-modal');
+            modal.classList.add('active');
+            resetSendMoneyForm();
+            
+            // Update status bar time
+            document.querySelectorAll('.status-left span').forEach(span => {
+                if (span.textContent.includes(':')) {
+                    span.textContent = '12:58';
+                }
+            });
+
+            // Track Transaction Started event
+            window.amplitude.track('Transaction Started', {
+                transactionType: 'send',
+                screenName: 'Send Money - Choose Payee'
+            });
+
+            // Track virtual page view for Send Money step 1
+            window.amplitude.track('[Amplitude] Page Viewed', {
+                page_location: window.location.href + '#send-money-choose-payee',
+                page_title: 'Send Money - Choose Payee',
+                virtual_page: 'send-money-choose-payee',
+                page_type: 'virtual'
+            });
+
+            console.log('Amplitude events tracked: Transaction Started (send) + Page Viewed');
+        }
+
+        function closeSendMoneyModal() {
+            const modal = document.getElementById('send-money-modal');
+            modal.classList.remove('active');
+            
+            // Reset status bar time to original
+            document.querySelectorAll('.status-left span').forEach(span => {
+                if (span.textContent.includes(':')) {
+                    span.textContent = '09:56';
+                }
+            });
+        }
+
+        function resetSendMoneyForm() {
+            // Reset state
+            sendMoneyState.amount = 0;
+            sendMoneyState.fromAccount.balance = globalBalances["Giuliano's Account"];
+            sendMoneyState.selectedPayee = null;
+
+            // Reset Add New Payee state
+            addNewPayeeState.fraudAlert1Acknowledged = false;
+            addNewPayeeState.paymentPurpose = null;
+            addNewPayeeState.fraudAlert2Acknowledged = false;
+            addNewPayeeState.payeeDetails = {
+                name: '',
+                sortCode: '',
+                accountNumber: '',
+                isBusiness: false
+            };
+
+            // Reset to step 1
+            showSendModalStep('choose-payee-step');
+
+            // Reset UI elements
+            const amountInput = document.getElementById('send-amount-input');
+            const amountText = document.getElementById('send-amount-text');
+            
+            if (amountInput && amountText) {
+                amountInput.value = '';
+                amountInput.classList.remove('active');
+                amountText.classList.remove('hidden');
+                amountText.textContent = '£0.00';
+                document.getElementById('send-amount-circle').classList.remove('visible');
+            }
+
+            // Reset fraud checkboxes
+            const fraudCheckbox1 = document.getElementById('fraud-checkbox-1');
+            if (fraudCheckbox1) {
+                fraudCheckbox1.classList.remove('checked');
+                document.getElementById('fraud-next-1').disabled = true;
+            }
+
+            // Reset purpose selection
+            document.querySelectorAll('.purpose-option').forEach(opt => {
+                opt.classList.remove('selected');
+            });
+
+            // Reset form inputs
+            const formInputs = ['payee-name-input', 'sort-code-input', 'account-number-input'];
+            formInputs.forEach(inputId => {
+                const input = document.getElementById(inputId);
+                if (input) input.value = '';
+            });
+
+            const businessCheckbox = document.getElementById('business-checkbox');
+            if (businessCheckbox) {
+                businessCheckbox.classList.remove('checked');
+            }
+
+            // Reset passcode
+            enteredPasscode = '';
+            for (let i = 1; i <= 6; i++) {
+                const dot = document.getElementById(`dot-${i}`);
+                if (dot) dot.classList.remove('filled');
+            }
+        }
+
+        function showSendModalStep(stepId) {
+            // Hide all Send Money steps
+            document.querySelectorAll('#send-money-modal .modal-step').forEach(step => {
+                step.classList.remove('active');
+            });
+
+            // Show selected step
+            document.getElementById(stepId).classList.add('active');
+        }
+
+        // Initial payee selection from Choose Payee screen (tracks "Payee Chosen")
+        function selectPayeeInitial(payeeType) {
+            if (payeeType === 'revolut') {
+                sendMoneyState.selectedPayee = 'revolut';
+                sendMoneyState.toPayee = {
+                    name: 'Giuliano Giannini',
+                    bank: 'REVOLUT LTD',
+                    sortCode: '04-00-75',
+                    accountNumber: '78386004'
+                };
+            } else if (payeeType === 'hsbc') {
+                sendMoneyState.selectedPayee = 'hsbc';
+                sendMoneyState.toPayee = {
+                    name: 'Giuliano Giannini',
+                    bank: 'HSBC UK BANK PLC',
+                    sortCode: '40-00-01',
+                    accountNumber: '12345678'
+                };
+            }
+
+            // Track Payee Chosen event (only for initial selection)
+            window.amplitude.track('Payee Chosen', {
+                transactionType: 'send',
+                payeeName: sendMoneyState.toPayee.name,
+                payeeBank: sendMoneyState.toPayee.bank,
+                payeeType: payeeType,
+                screenName: 'Send Money - Payee Selection'
+            });
+
+            console.log('Amplitude event tracked: Payee Chosen', {
+                payeeName: sendMoneyState.toPayee.name,
+                payeeBank: sendMoneyState.toPayee.bank,
+                payeeType: payeeType
+            });
+
+            // Update payment details screen
+            updateSendPaymentDetails();
+            
+            // Go to payment details
+            showSendModalStep('send-payment-details-step');
+
+            // Update status bar time
+            document.querySelectorAll('.status-left span').forEach(span => {
+                if (span.textContent.includes(':')) {
+                    span.textContent = '12:59';
+                }
+            });
+
+            // Track virtual page view for Send Money step 2
+            window.amplitude.track('[Amplitude] Page Viewed', {
+                page_location: window.location.href + '#send-money-enter-details',
+                page_title: 'Send Money - Enter Payment Details',
+                virtual_page: 'send-money-enter-details',
+                page_type: 'virtual'
+            });
+        }
+
+        // Payee selection from modal (no "Payee Chosen" tracking, used by To Account Changed)
+        function selectPayee(payeeType) {
+            if (payeeType === 'revolut') {
+                sendMoneyState.selectedPayee = 'revolut';
+                sendMoneyState.toPayee = {
+                    name: 'Giuliano Giannini',
+                    bank: 'REVOLUT LTD',
+                    sortCode: '04-00-75',
+                    accountNumber: '78386004'
+                };
+            } else if (payeeType === 'hsbc') {
+                sendMoneyState.selectedPayee = 'hsbc';
+                sendMoneyState.toPayee = {
+                    name: 'Giuliano Giannini',
+                    bank: 'HSBC UK BANK PLC',
+                    sortCode: '40-00-01',
+                    accountNumber: '12345678'
+                };
+            }
+
+            // Update payment details screen (no tracking here)
+            updateSendPaymentDetails();
+        }
+
+        function updateSendPaymentDetails() {
+            // Update From account info
+            const fromIcon = document.querySelector('#send-from-account .account-icon-modal');
+            const fromName = document.querySelector('#send-from-account .account-name');
+            
+            fromIcon.className = `account-icon-modal ${sendMoneyState.fromAccount.icon}`;
+            fromName.textContent = sendMoneyState.fromAccount.name;
+            
+            // Update To account info
+            document.getElementById('send-to-name').textContent = sendMoneyState.toPayee.name;
+            document.getElementById('send-to-bank').textContent = `${sendMoneyState.toPayee.sortCode} ${sendMoneyState.toPayee.accountNumber}`;
+            
+            // Update To account avatar for new payees
+            const toAvatar = document.querySelector('#send-to-account .existing-payee-avatar');
+            if (sendMoneyState.selectedPayee === 'new-payee') {
+                // Generate initials from name
+                const initials = sendMoneyState.toPayee.name
+                    .split(' ')
+                    .map(word => word.charAt(0))
+                    .join('')
+                    .toUpperCase()
+                    .substring(0, 2);
+                toAvatar.textContent = initials;
+            } else {
+                toAvatar.textContent = 'GG';
+            }
+            
+            // Update From account balance
+            document.getElementById('send-from-balance').textContent = `£${sendMoneyState.fromAccount.balance.toLocaleString('en-GB', {minimumFractionDigits: 2})}`;
+            
+            // Recalculate if amount is set
+            if (sendMoneyState.amount > 0) {
+                handleSendAmountInput();
+            }
+        }
+
+        function goToSendCheckDetails() {
+            // Update check details screen
+            updateSendCheckDetailsDisplay();
+            showSendModalStep('send-check-details-step');
+            
+            // Track Amount Added event
+            window.amplitude.track('Amount Added', {
+                transactionType: 'send',
+                amount: sendMoneyState.amount,
+                fromAccount: sendMoneyState.fromAccount.name,
+                toPayee: sendMoneyState.toPayee.name,
+                toBank: sendMoneyState.toPayee.bank,
+                screenName: 'Send Money - Check Details'
+            });
+
+            // Track virtual page view for Send Money step 3
+            window.amplitude.track('[Amplitude] Page Viewed', {
+                page_location: window.location.href + '#send-money-check-details',
+                page_title: 'Send Money - Check the Details',
+                virtual_page: 'send-money-check-details',
+                page_type: 'virtual'
+            });
+
+            console.log('Amplitude events tracked: Amount Added (send) + Page Viewed (Check Details)');
+        }
+
+        function updateSendCheckDetailsDisplay() {
+            // Update summary
+            document.getElementById('send-summary-from-name').textContent = sendMoneyState.fromAccount.name;
+            document.getElementById('send-summary-to-name').textContent = sendMoneyState.toPayee.name;
+            document.getElementById('send-summary-amount').textContent = `£${sendMoneyState.amount.toFixed(2)}`;
+            
+            // Update bank details
+            document.getElementById('send-bank-name').textContent = sendMoneyState.toPayee.bank;
+            document.getElementById('send-sort-code').textContent = sendMoneyState.toPayee.sortCode;
+            document.getElementById('send-account-number').textContent = sendMoneyState.toPayee.accountNumber;
+            document.getElementById('send-reference').textContent = sendMoneyState.reference;
+
+            // Update To account avatar for new payees in summary
+            const toSummaryAvatar = document.getElementById('send-summary-to-avatar');
+            if (sendMoneyState.selectedPayee === 'new-payee') {
+                // Generate initials from name
+                const initials = sendMoneyState.toPayee.name
+                    .split(' ')
+                    .map(word => word.charAt(0))
+                    .join('')
+                    .toUpperCase()
+                    .substring(0, 2);
+                toSummaryAvatar.textContent = initials;
+            } else {
+                toSummaryAvatar.textContent = 'GG';
+            }
+        }
+
+        function completeSendTransfer() {
+            const amount = sendMoneyState.amount;
+            const fromAccount = sendMoneyState.fromAccount.name;
+
+            if (amount > 0 && amount <= globalBalances[fromAccount]) {
+                // Actually deduct the money (external transfer)
+                globalBalances[fromAccount] -= amount;
+
+                // Update the main app account displays
+                updateMainAppBalances();
+
+                // Update success message
+                const successMessage = document.getElementById('send-success-message');
+                successMessage.textContent = `You've sent £${amount.toFixed(2)} to ${sendMoneyState.toPayee.name}`;
+
+                // Show success screen
+                showSendModalStep('send-success-step');
+
+                // Track Transaction Completed event
+                window.amplitude.track('Transaction Completed', {
+                    transactionType: 'send',
+                    amount: amount,
+                    fromAccount: fromAccount,
+                    toPayee: sendMoneyState.toPayee.name,
+                    toBank: sendMoneyState.toPayee.bank,
+                    screenName: 'Send Money - Success'
+                });
+
+                // Track virtual page view for Send Money step 4 (success)
+                window.amplitude.track('[Amplitude] Page Viewed', {
+                    page_location: window.location.href + '#send-money-success',
+                    page_title: 'Send Money - Success',
+                    virtual_page: 'send-money-success',
+                    page_type: 'virtual'
+                });
+
+                console.log('Amplitude events tracked: Transaction Completed (send) + Page Viewed (Success)');
+            }
+        }
+
+        function handleSendAmountInput() {
+            const input = document.getElementById('send-amount-input');
+            let inputValue = input.value;
+            
+            // Same validation as move money
+            inputValue = inputValue.replace(/[^0-9.]/g, '');
+            const parts = inputValue.split('.');
+            if (parts.length > 2) {
+                inputValue = parts[0] + '.' + parts.slice(1).join('');
+            }
+            if (parts[1] && parts[1].length > 2) {
+                inputValue = parseFloat(inputValue).toFixed(2);
+            }
+            
+            input.value = inputValue;
+            const amount = parseFloat(inputValue) || 0;
+            sendMoneyState.amount = amount;
+
+            // Show/hide circle
+            const circle = document.getElementById('send-amount-circle');
+            if (amount > 0) {
+                circle.classList.add('visible');
+            } else {
+                circle.classList.remove('visible');
+            }
+
+            // Enable/disable Next button
+            const nextButton = document.getElementById('send-next-button');
+            if (nextButton) {
+                nextButton.disabled = amount <= 0 || amount > sendMoneyState.fromAccount.balance;
+            }
+
+            // Update from account balance description
+            if (amount > 0) {
+                const remaining = sendMoneyState.fromAccount.balance - amount;
+                document.getElementById('send-from-description').textContent = 'remaining';
+                document.getElementById('send-from-balance').textContent = `£${remaining.toLocaleString('en-GB', {minimumFractionDigits: 2})}`;
+            } else {
+                document.getElementById('send-from-description').textContent = '';
+                document.getElementById('send-from-balance').textContent = `£${sendMoneyState.fromAccount.balance.toLocaleString('en-GB', {minimumFractionDigits: 2})}`;
+            }
+        }
+
+        function showSendAmountInput() {
+            const amountText = document.getElementById('send-amount-text');
+            const amountInput = document.getElementById('send-amount-input');
+            
+            amountText.classList.add('hidden');
+            amountInput.classList.add('active');
+            amountInput.focus();
+        }
+
+        function hideSendAmountInput() {
+            const amountText = document.getElementById('send-amount-text');
+            const amountInput = document.getElementById('send-amount-input');
+            const amount = sendMoneyState.amount;
+            
+            amountInput.classList.remove('active');
+            amountText.classList.remove('hidden');
+            amountText.textContent = amount > 0 ? `£${amount.toFixed(2)}` : '£0.00';
+        }
+
+        function initializeSendMoneyModal() {
+            // Modal close functionality
+            const sendModalCloses = document.querySelectorAll('.send-modal-close');
+            sendModalCloses.forEach(closeBtn => {
+                closeBtn.addEventListener('click', closeSendMoneyModal);
+            });
+            
+            // Click outside modal to close
+            const sendModalOverlay = document.getElementById('send-money-modal');
+            sendModalOverlay.addEventListener('click', function(e) {
+                if (e.target === sendModalOverlay) {
+                    closeSendMoneyModal();
+                }
+            });
+
+            // Payee selection (initial selection from Choose Payee screen)
+            const existingPayees = document.querySelectorAll('#choose-payee-step .existing-payee');
+            existingPayees.forEach(payee => {
+                payee.addEventListener('click', function() {
+                    const payeeType = this.getAttribute('data-payee');
+                    selectPayeeInitial(payeeType);
+                });
+            });
+
+            // Someone new option
+            const someoneNewOption = document.querySelector('[data-payee="new"]');
+            if (someoneNewOption) {
+                someoneNewOption.addEventListener('click', function() {
+                    // Track Add New Payee Started event
+                    window.amplitude.track('Add New Payee Started', {
+                        transactionType: 'send',
+                        screenName: 'Send Money - Add New Payee',
+                        source: 'choose_payee_screen'
+                    });
+
+                    console.log('Amplitude event tracked: Add New Payee Started');
+                    
+                    // Go to first fraud alert
+                    showSendModalStep('fraud-alert-1-step');
+                    
+                    // Update status bar time
+                    document.querySelectorAll('.status-left span').forEach(span => {
+                        if (span.textContent.includes(':')) {
+                            span.textContent = '13:55';
+                        }
+                    });
+
+                    // Track virtual page view for Add New Payee step 1
+                    window.amplitude.track('[Amplitude] Page Viewed', {
+                        page_location: window.location.href + '#add-new-payee-fraud-alert-1',
+                        page_title: 'Add New Payee - Fraud Alert 1',
+                        virtual_page: 'add-new-payee-fraud-alert-1',
+                        page_type: 'virtual'
+                    });
+                });
+            }
+
+            // Send Amount input functionality
+            const sendAmountInput = document.getElementById('send-amount-input');
+            if (sendAmountInput) {
+                sendAmountInput.addEventListener('input', handleSendAmountInput);
+                sendAmountInput.addEventListener('keyup', handleSendAmountInput);
+
+                // Click on amount display to show input
+                const sendAmountDisplay = document.querySelector('#send-payment-details-step .amount-display');
+                if (sendAmountDisplay) {
+                    sendAmountDisplay.addEventListener('click', function() {
+                        showSendAmountInput();
+                    });
+                }
+
+                // Handle input focus/blur
+                sendAmountInput.addEventListener('blur', function() {
+                    hideSendAmountInput();
+                });
+
+                sendAmountInput.addEventListener('keydown', function(e) {
+                    if (e.key === 'Enter') {
+                        this.blur();
+                    }
+                });
+            }
+
+            // Send Next button functionality
+            const sendNextButton = document.getElementById('send-next-button');
+            if (sendNextButton) {
+                sendNextButton.addEventListener('click', function() {
+                    goToSendCheckDetails();
+                });
+            }
+
+            // Send Back button functionality
+            const sendModalBacks = document.querySelectorAll('.send-modal-back');
+            sendModalBacks.forEach(backBtn => {
+                backBtn.addEventListener('click', function() {
+                    showSendModalStep('send-payment-details-step');
+                    
+                    // Update status bar time back
+                    document.querySelectorAll('.status-left span').forEach(span => {
+                        if (span.textContent.includes(':')) {
+                            span.textContent = '12:59';
+                        }
+                    });
+                });
+            });
+
+            // Send Money button functionality (complete transfer)
+            const sendMoneyButton = document.getElementById('send-money-button');
+            if (sendMoneyButton) {
+                sendMoneyButton.addEventListener('click', function() {
+                    completeSendTransfer();
+                });
+            }
+
+            // Send Done button functionality (return to payments)
+            const sendDoneButton = document.getElementById('send-done-button');
+            if (sendDoneButton) {
+                sendDoneButton.addEventListener('click', function() {
+                    closeSendMoneyModal();
+                    navigateToPage('payments');
+                });
+            }
+
+            // From Account Selection functionality
+            const sendFromAccount = document.getElementById('send-from-account');
+            if (sendFromAccount) {
+                sendFromAccount.addEventListener('click', function() {
+                    openSendFromAccountModal();
+                });
+            }
+
+            // To Account Selection functionality  
+            const sendToAccount = document.getElementById('send-to-account');
+            if (sendToAccount) {
+                sendToAccount.addEventListener('click', function() {
+                    openSendToPayeeModal();
+                });
+            }
+
+            // From Account Modal functionality
+            const sendFromModalCloses = document.querySelectorAll('.send-from-modal-close');
+            sendFromModalCloses.forEach(closeBtn => {
+                closeBtn.addEventListener('click', closeSendFromAccountModal);
+            });
+
+            const accountOptions = document.querySelectorAll('.account-option');
+            accountOptions.forEach(option => {
+                option.addEventListener('click', function() {
+                    const accountType = this.getAttribute('data-account');
+                    selectFromAccount(accountType);
+                });
+            });
+
+            // To Payee Modal functionality
+            const sendToModalCloses = document.querySelectorAll('.send-to-modal-close');
+            sendToModalCloses.forEach(closeBtn => {
+                closeBtn.addEventListener('click', closeSendToPayeeModal);
+            });
+
+            const payeeOptionsSelect = document.querySelectorAll('.payee-option-select');
+            payeeOptionsSelect.forEach(option => {
+                option.addEventListener('click', function() {
+                    const payeeType = this.getAttribute('data-payee');
+                    selectToPayeeFromModal(payeeType);
+                });
+            });
+
+            // Add New Payee Flow Functionality
+            initializeAddNewPayeeFlow();
+        }
+
+        // Add New Payee Flow State
+        let addNewPayeeState = {
+            fraudAlert1Acknowledged: false,
+            paymentPurpose: null,
+            fraudAlert2Acknowledged: false,
+            payeeDetails: {
+                name: '',
+                sortCode: '',
+                accountNumber: '',
+                isBusiness: false
+            }
+        };
+
+        // Passcode state
+        let enteredPasscode = '';
+
+        function initializeAddNewPayeeFlow() {
+            // Fraud Alert 1 functionality
+            const fraudCheckbox1 = document.getElementById('fraud-checkbox-1');
+            const fraudNext1 = document.getElementById('fraud-next-1');
+            
+            if (fraudCheckbox1) {
+                fraudCheckbox1.addEventListener('click', function() {
+                    this.classList.toggle('checked');
+                    addNewPayeeState.fraudAlert1Acknowledged = this.classList.contains('checked');
+                    
+                    if (fraudNext1) {
+                        fraudNext1.disabled = !addNewPayeeState.fraudAlert1Acknowledged;
+                    }
+                });
+
+                // Also make the text clickable
+                const fraudCheckboxText = document.querySelector('.fraud-checkbox-text');
+                if (fraudCheckboxText) {
+                    fraudCheckboxText.addEventListener('click', function() {
+                        fraudCheckbox1.click();
+                    });
+                }
+            }
+
+            if (fraudNext1) {
+                fraudNext1.addEventListener('click', function() {
+                    if (addNewPayeeState.fraudAlert1Acknowledged) {
+                        // Track Fraud Alert Acknowledged event
+                        window.amplitude.track('Fraud Alert Acknowledged', {
+                            transactionType: 'send',
+                            fraudAlertStep: 1,
+                            fraudAlertMessage: 'Scam awareness and truthful information confirmation',
+                            screenName: 'Add New Payee - Fraud Alert 1'
+                        });
+
+                        console.log('Amplitude event tracked: Fraud Alert Acknowledged (Step 1)');
+
+                        showSendModalStep('payment-purpose-step');
+
+                        // Track virtual page view for Add New Payee step 2
+                        window.amplitude.track('[Amplitude] Page Viewed', {
+                            page_location: window.location.href + '#add-new-payee-payment-purpose',
+                            page_title: 'Add New Payee - Payment Purpose',
+                            virtual_page: 'add-new-payee-payment-purpose',
+                            page_type: 'virtual'
+                        });
+                    }
+                });
+            }
+
+            // Payment Purpose Selection
+            const purposeOptions = document.querySelectorAll('.purpose-option');
+            purposeOptions.forEach(option => {
+                option.addEventListener('click', function() {
+                    // Remove selected class from all options
+                    purposeOptions.forEach(opt => opt.classList.remove('selected'));
+                    
+                    // Add selected class to clicked option
+                    this.classList.add('selected');
+                    
+                    const purpose = this.getAttribute('data-purpose');
+                    const purposeTitle = this.querySelector('.purpose-title').textContent;
+                    addNewPayeeState.paymentPurpose = purpose;
+
+                    // Track Payment Purpose Selected event
+                    window.amplitude.track('Payment Purpose Selected', {
+                        transactionType: 'send',
+                        paymentPurpose: purpose,
+                        paymentPurposeTitle: purposeTitle,
+                        screenName: 'Add New Payee - Purpose Selection'
+                    });
+
+                    console.log('Amplitude event tracked: Payment Purpose Selected', {
+                        purpose: purpose,
+                        title: purposeTitle
+                    });
+
+                    // Auto-advance to next fraud alert after short delay
+                    setTimeout(() => {
+                        showSendModalStep('fraud-alert-2-step');
+
+                        // Track virtual page view for Add New Payee step 3
+                        window.amplitude.track('[Amplitude] Page Viewed', {
+                            page_location: window.location.href + '#add-new-payee-fraud-alert-2',
+                            page_title: 'Add New Payee - Fraud Alert 2',
+                            virtual_page: 'add-new-payee-fraud-alert-2',
+                            page_type: 'virtual'
+                        });
+                    }, 500);
+                });
+            });
+
+            // Fraud Alert 2 functionality
+            const understandButton = document.getElementById('understand-button');
+            if (understandButton) {
+                understandButton.addEventListener('click', function() {
+                    addNewPayeeState.fraudAlert2Acknowledged = true;
+
+                    // Track second Fraud Alert Acknowledged event
+                    window.amplitude.track('Fraud Alert Acknowledged', {
+                        transactionType: 'send',
+                        fraudAlertStep: 2,
+                        fraudAlertMessage: 'Scam awareness acknowledgment',
+                        paymentPurpose: addNewPayeeState.paymentPurpose,
+                        screenName: 'Add New Payee - Fraud Alert 2'
+                    });
+
+                    console.log('Amplitude event tracked: Fraud Alert Acknowledged (Step 2)');
+
+                    showSendModalStep('add-payee-form-step');
+
+                    // Track virtual page view for Add New Payee step 4
+                    window.amplitude.track('[Amplitude] Page Viewed', {
+                        page_location: window.location.href + '#add-new-payee-form',
+                        page_title: 'Add New Payee - Form',
+                        virtual_page: 'add-new-payee-form',
+                        page_type: 'virtual'
+                    });
+                });
+            }
+
+            // Add Payee Form functionality
+            const payeeNameInput = document.getElementById('payee-name-input');
+            const sortCodeInput = document.getElementById('sort-code-input');
+            const accountNumberInput = document.getElementById('account-number-input');
+            const businessCheckbox = document.getElementById('business-checkbox');
+            const addPayeeNext = document.getElementById('add-payee-next');
+
+            // Form validation
+            function validateAddPayeeForm() {
+                const name = payeeNameInput?.value.trim() || '';
+                const sortCode = sortCodeInput?.value.trim() || '';
+                const accountNumber = accountNumberInput?.value.trim() || '';
+
+                const isValid = name.length > 0 && sortCode.length >= 6 && accountNumber.length >= 6;
+                
+                if (addPayeeNext) {
+                    addPayeeNext.disabled = !isValid;
+                }
+
+                return isValid;
+            }
+
+            // Form input listeners
+            [payeeNameInput, sortCodeInput, accountNumberInput].forEach(input => {
+                if (input) {
+                    input.addEventListener('input', validateAddPayeeForm);
+                    input.addEventListener('keyup', validateAddPayeeForm);
+                }
+            });
+
+            // Business checkbox
+            if (businessCheckbox) {
+                businessCheckbox.addEventListener('click', function() {
+                    this.classList.toggle('checked');
+                    addNewPayeeState.payeeDetails.isBusiness = this.classList.contains('checked');
+                });
+
+                // Also make the label clickable
+                const businessLabel = document.querySelector('.business-label');
+                if (businessLabel) {
+                    businessLabel.addEventListener('click', function() {
+                        businessCheckbox.click();
+                    });
+                }
+            }
+
+            // Check details button (go to verification)
+            if (addPayeeNext) {
+                addPayeeNext.addEventListener('click', function() {
+                    if (validateAddPayeeForm()) {
+                        addNewPayeeState.payeeDetails = {
+                            name: payeeNameInput.value.trim(),
+                            sortCode: sortCodeInput.value.trim(),
+                            accountNumber: accountNumberInput.value.trim(),
+                            isBusiness: businessCheckbox.classList.contains('checked')
+                        };
+
+                        showSendModalStep('details-verified-step');
+
+                        // Track virtual page view for verification step
+                        window.amplitude.track('[Amplitude] Page Viewed', {
+                            page_location: window.location.href + '#add-new-payee-verification',
+                            page_title: 'Add New Payee - Details Verified',
+                            virtual_page: 'add-new-payee-verification',
+                            page_type: 'virtual'
+                        });
+
+                        // Update status bar time
+                        document.querySelectorAll('.status-left span').forEach(span => {
+                            if (span.textContent.includes(':')) {
+                                span.textContent = '15:45';
+                            }
+                        });
+                    }
+                });
+            }
+
+            // Add Payee button (go to passcode)
+            const addPayeeButton = document.getElementById('add-payee-button');
+            if (addPayeeButton) {
+                addPayeeButton.addEventListener('click', function() {
+                    showSendModalStep('enter-passcode-step');
+
+                    // Track virtual page view for passcode step
+                    window.amplitude.track('[Amplitude] Page Viewed', {
+                        page_location: window.location.href + '#add-new-payee-passcode',
+                        page_title: 'Add New Payee - Enter Passcode',
+                        virtual_page: 'add-new-payee-passcode',
+                        page_type: 'virtual'
+                    });
+
+                    // Update status bar time
+                    document.querySelectorAll('.status-left span').forEach(span => {
+                        if (span.textContent.includes(':')) {
+                            span.textContent = '15:45';
+                        }
+                    });
+                });
+            }
+
+            // Passcode entry functionality
+            const correctPasscode = '123456'; // Demo passcode
+
+            const numberButtons = document.querySelectorAll('.number-button');
+            numberButtons.forEach(button => {
+                const number = button.getAttribute('data-number');
+                if (number) {
+                    button.addEventListener('click', function() {
+                        if (enteredPasscode.length < 6) {
+                            enteredPasscode += number;
+                            updatePasscodeDots();
+
+                            // Check if passcode is complete
+                            if (enteredPasscode.length === 6) {
+                                setTimeout(() => {
+                                    validatePasscode();
+                                }, 200);
+                            }
+                        }
+                    });
+                }
+            });
+
+            function updatePasscodeDots() {
+                for (let i = 1; i <= 6; i++) {
+                    const dot = document.getElementById(`dot-${i}`);
+                    if (i <= enteredPasscode.length) {
+                        dot.classList.add('filled');
+                    } else {
+                        dot.classList.remove('filled');
+                    }
+                }
+            }
+
+            function validatePasscode() {
+                if (enteredPasscode === correctPasscode) {
+                    // Track successful passcode entry
+                    window.amplitude.track('Passcode Verified', {
+                        transactionType: 'send',
+                        screenName: 'Add New Payee - Passcode Entry',
+                        success: true
+                    });
+
+                    console.log('Amplitude event tracked: Passcode Verified (Success)');
+
+                    // Complete payee addition and go to payment details
+                    completePayeeAddition();
+                } else {
+                    // Reset passcode for retry
+                    enteredPasscode = '';
+                    updatePasscodeDots();
+                    
+                    // Track failed passcode entry
+                    window.amplitude.track('Passcode Verified', {
+                        transactionType: 'send',
+                        screenName: 'Add New Payee - Passcode Entry',
+                        success: false
+                    });
+
+                    alert('Incorrect passcode. Please try again. (Demo: use 123456)');
+                }
+            }
+
+            function completePayeeAddition() {
+                // Add the new payee to the Send Money state
+                sendMoneyState.selectedPayee = 'new-payee';
+                sendMoneyState.toPayee = {
+                    name: addNewPayeeState.payeeDetails.name,
+                    bank: 'NEW BANK', // In real app, this would be looked up
+                    sortCode: addNewPayeeState.payeeDetails.sortCode,
+                    accountNumber: addNewPayeeState.payeeDetails.accountNumber
+                };
+
+                // Reset state for fresh start
+                sendMoneyState.amount = 0;
+                enteredPasscode = '';
+
+                // Go to payment details with new payee
+                showSendModalStep('send-payment-details-step');
+                updateSendPaymentDetails();
+
+                // Track virtual page view for payment details with new payee
+                window.amplitude.track('[Amplitude] Page Viewed', {
+                    page_location: window.location.href + '#send-money-enter-details-new-payee',
+                    page_title: 'Send Money - Enter Payment Details (New Payee)',
+                    virtual_page: 'send-money-enter-details-new-payee',
+                    page_type: 'virtual'
+                });
+
+                // Track successful payee addition
+                window.amplitude.track('New Payee Added Successfully', {
+                    transactionType: 'send',
+                    payeeName: addNewPayeeState.payeeDetails.name,
+                    paymentPurpose: addNewPayeeState.paymentPurpose,
+                    isBusiness: addNewPayeeState.payeeDetails.isBusiness,
+                    screenName: 'Add New Payee - Complete'
+                });
+
+                console.log('Amplitude event tracked: New Payee Added Successfully');
+
+                // Update status bar time back to payment details
+                document.querySelectorAll('.status-left span').forEach(span => {
+                    if (span.textContent.includes(':')) {
+                        span.textContent = '15:46';
+                    }
+                });
+            }
+
+            // Paste payee details button
+            const pasteButton = document.querySelector('.paste-button');
+            if (pasteButton) {
+                pasteButton.addEventListener('click', function() {
+                    alert('Paste payee details - Feature not implemented yet');
+                });
+            }
+
+            // Back button handlers for new steps
+            const purposeBack = document.querySelector('.purpose-modal-back');
+            if (purposeBack) {
+                purposeBack.addEventListener('click', function() {
+                    showSendModalStep('fraud-alert-1-step');
+
+                    // Track virtual page view for back navigation
+                    window.amplitude.track('[Amplitude] Page Viewed', {
+                        page_location: window.location.href + '#add-new-payee-fraud-alert-1',
+                        page_title: 'Add New Payee - Fraud Alert 1',
+                        virtual_page: 'add-new-payee-fraud-alert-1',
+                        page_type: 'virtual'
+                    });
+                });
+            }
+
+            const fraud2Back = document.querySelector('.fraud-2-back');
+            if (fraud2Back) {
+                fraud2Back.addEventListener('click', function() {
+                    showSendModalStep('payment-purpose-step');
+
+                    // Track virtual page view for back navigation
+                    window.amplitude.track('[Amplitude] Page Viewed', {
+                        page_location: window.location.href + '#add-new-payee-payment-purpose',
+                        page_title: 'Add New Payee - Payment Purpose',
+                        virtual_page: 'add-new-payee-payment-purpose',
+                        page_type: 'virtual'
+                    });
+                });
+            }
+
+            const addPayeeBack = document.querySelector('.add-payee-back');
+            if (addPayeeBack) {
+                addPayeeBack.addEventListener('click', function() {
+                    showSendModalStep('fraud-alert-2-step');
+
+                    // Track virtual page view for back navigation
+                    window.amplitude.track('[Amplitude] Page Viewed', {
+                        page_location: window.location.href + '#add-new-payee-fraud-alert-2',
+                        page_title: 'Add New Payee - Fraud Alert 2',
+                        virtual_page: 'add-new-payee-fraud-alert-2',
+                        page_type: 'virtual'
+                    });
+                });
+            }
+        }
+
+        // From Account Selection Modal Functions
+        function openSendFromAccountModal() {
+            // Update balances in modal
+            document.getElementById('giuliano-balance-display').textContent = `£${globalBalances["Giuliano's Account"].toLocaleString('en-GB', {minimumFractionDigits: 2})}`;
+            document.getElementById('chase-balance-display').textContent = `£${globalBalances['Chase Saver'].toLocaleString('en-GB', {minimumFractionDigits: 2})}`;
+            
+            // Update checkmarks
+            updateFromAccountSelection();
+            
+            const modal = document.getElementById('send-from-account-modal');
+            modal.classList.add('active');
+        }
+
+        function closeSendFromAccountModal() {
+            const modal = document.getElementById('send-from-account-modal');
+            modal.classList.remove('active');
+        }
+
+        function selectFromAccount(accountType) {
+            const previousFromAccount = sendMoneyState.fromAccount.name;
+            
+            if (accountType === 'giuliano') {
+                sendMoneyState.fromAccount = {
+                    name: "Giuliano's Account",
+                    balance: globalBalances["Giuliano's Account"],
+                    icon: 'giuliano-account'
+                };
+            } else if (accountType === 'chase-saver') {
+                sendMoneyState.fromAccount = {
+                    name: 'Chase Saver',
+                    balance: globalBalances['Chase Saver'],
+                    icon: 'chase-saver'
+                };
+            }
+
+            // Track From Account Changed event (triggers on any selection)
+            window.amplitude.track('From Account Changed', {
+                transactionType: 'send',
+                previousAccount: previousFromAccount,
+                selectedAccount: sendMoneyState.fromAccount.name,
+                selectedAccountBalance: sendMoneyState.fromAccount.balance,
+                accountActuallyChanged: previousFromAccount !== sendMoneyState.fromAccount.name,
+                screenName: 'Send Money - From Account Selection'
+            });
+
+            console.log('Amplitude event tracked: From Account Changed', {
+                previousAccount: previousFromAccount,
+                selectedAccount: sendMoneyState.fromAccount.name,
+                accountActuallyChanged: previousFromAccount !== sendMoneyState.fromAccount.name
+            });
+
+            // Update the main send money screen
+            updateSendPaymentDetails();
+            
+            // Reset amount if it exceeds new account balance
+            if (sendMoneyState.amount > sendMoneyState.fromAccount.balance) {
+                sendMoneyState.amount = 0;
+                const amountInput = document.getElementById('send-amount-input');
+                const amountText = document.getElementById('send-amount-text');
+                if (amountInput && amountText) {
+                    amountInput.value = '';
+                    amountText.textContent = '£0.00';
+                    document.getElementById('send-amount-circle').classList.remove('visible');
+                }
+            }
+
+            // Update next button state
+            const nextButton = document.getElementById('send-next-button');
+            if (nextButton) {
+                nextButton.disabled = sendMoneyState.amount <= 0 || sendMoneyState.amount > sendMoneyState.fromAccount.balance;
+            }
+
+            closeSendFromAccountModal();
+        }
+
+        function updateFromAccountSelection() {
+            // Hide all checkmarks
+            document.getElementById('giuliano-check').style.display = 'none';
+            document.getElementById('chase-check').style.display = 'none';
+            
+            // Show checkmark for selected account
+            if (sendMoneyState.fromAccount.name === "Giuliano's Account") {
+                document.getElementById('giuliano-check').style.display = 'block';
+            } else if (sendMoneyState.fromAccount.name === 'Chase Saver') {
+                document.getElementById('chase-check').style.display = 'block';
+            }
+        }
+
+        // To Payee Selection Modal Functions
+        function openSendToPayeeModal() {
+            // Update checkmarks
+            updateToPayeeSelection();
+            
+            const modal = document.getElementById('send-to-payee-modal');
+            modal.classList.add('active');
+        }
+
+        function closeSendToPayeeModal() {
+            const modal = document.getElementById('send-to-payee-modal');
+            modal.classList.remove('active');
+        }
+
+        function selectToPayeeFromModal(payeeType) {
+            const previousPayee = sendMoneyState.selectedPayee;
+            const previousPayeeName = sendMoneyState.toPayee ? sendMoneyState.toPayee.name : null;
+            const previousPayeeBank = sendMoneyState.toPayee ? sendMoneyState.toPayee.bank : null;
+            
+            // Update the selected payee (this will also track "Payee Chosen")
+            selectPayee(payeeType);
+            
+            // Track To Account Changed event (triggers on any selection)
+            window.amplitude.track('To Account Changed', {
+                transactionType: 'send',
+                previousPayee: previousPayeeName,
+                previousPayeeBank: previousPayeeBank,
+                selectedPayee: sendMoneyState.toPayee.name,
+                selectedPayeeBank: sendMoneyState.toPayee.bank,
+                payeeActuallyChanged: previousPayee !== payeeType && previousPayee !== null,
+                screenName: 'Send Money - To Account Selection'
+            });
+
+            console.log('Amplitude event tracked: To Account Changed', {
+                previousPayee: previousPayeeName,
+                selectedPayee: sendMoneyState.toPayee.name,
+                selectedPayeeBank: sendMoneyState.toPayee.bank,
+                payeeActuallyChanged: previousPayee !== payeeType && previousPayee !== null
+            });
+            
+            // Close the modal
+            closeSendToPayeeModal();
+        }
+
+        function updateToPayeeSelection() {
+            // Hide all checkmarks
+            document.getElementById('revolut-check').style.display = 'none';
+            document.getElementById('hsbc-check').style.display = 'none';
+            
+            // Show checkmark for selected payee
+            if (sendMoneyState.selectedPayee === 'revolut') {
+                document.getElementById('revolut-check').style.display = 'block';
+            } else if (sendMoneyState.selectedPayee === 'hsbc') {
+                document.getElementById('hsbc-check').style.display = 'block';
+            }
+        }
+
+        function updateSendPaymentDetails() {
+            // Update From account info
+            const fromIcon = document.querySelector('#send-from-account .account-icon-modal');
+            const fromName = document.querySelector('#send-from-account .account-name');
+            
+            fromIcon.className = `account-icon-modal ${sendMoneyState.fromAccount.icon}`;
+            fromName.textContent = sendMoneyState.fromAccount.name;
+            
+            // Update To account info
+            document.getElementById('send-to-name').textContent = sendMoneyState.toPayee.name;
+            document.getElementById('send-to-bank').textContent = `${sendMoneyState.toPayee.sortCode} ${sendMoneyState.toPayee.accountNumber}`;
+            
+            // Update From account balance
+            document.getElementById('send-from-balance').textContent = `£${sendMoneyState.fromAccount.balance.toLocaleString('en-GB', {minimumFractionDigits: 2})}`;
+            
+            // Recalculate if amount is set
+            if (sendMoneyState.amount > 0) {
+                handleSendAmountInput();
+            }
+        }
+    </script>
+</body>
+</html>
