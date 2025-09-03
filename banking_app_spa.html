@@ -7,10 +7,10 @@
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🏦</text></svg>">
     
     <!-- Amplitude SDK -->
-    <script src="https://cdn.amplitude.com/script/3292f52cac506214e7c55d45f6232d17.js"></script>
+    <script src="https://cdn.amplitude.com/script/0e1a577f277d178838c8972121bc30d2.js"></script>
     <script>
         window.amplitude.add(window.sessionReplay.plugin({sampleRate: 1}));
-        window.amplitude.init('3292f52cac506214e7c55d45f6232d17', {
+        window.amplitude.init('0e1a577f277d178838c8972121bc30d2', {
             "fetchRemoteConfig": true,
             "autocapture": {
                 "sessions": true,
@@ -2373,6 +2373,15 @@
             font-weight: 500;
         }
 
+        /* Tab Content Management */
+        .tab-content {
+            display: block;
+        }
+
+        .tab-content.hidden {
+            display: none;
+        }
+
         /* Icons */
         .icon-card::before { content: '💳'; }
         .icon-account::before { content: '🏦'; }
@@ -2407,7 +2416,7 @@
     <!-- Status Bar -->
     <div class="status-bar">
         <div class="status-left">
-            <span>09:56</span>
+            <span>15:01</span>
             <span>✈️</span>
         </div>
         <div class="status-right">
@@ -2425,17 +2434,17 @@
                 <div class="profile-icon">
                     <span>👤</span>
                 </div>
-                <div class="greeting">Good morning, Giuliano</div>
+                <div class="greeting">Good afternoon, Giuliano</div>
             </div>
 
-            <div class="tabs">
-                <a href="#" class="tab active" data-nav="Spend">Spend</a>
-                <a href="#" class="tab" data-nav="Save & Invest">Save & Invest</a>
-            </div>
+                    <div class="tabs">
+            <a href="#" class="tab active" data-tab="spend">Spend</a>
+            <a href="#" class="tab" data-tab="save-invest">Save & Invest</a>
+        </div>
         </div>
 
-        <!-- Main Content -->
-        <div class="main-content">
+        <!-- Spend Tab Content -->
+        <div class="main-content tab-content" id="spend-content">
             <!-- Debit Card Section -->
             <div class="debit-card">
                 <div class="debit-info">
@@ -2495,6 +2504,64 @@
                 <div class="activity-header">
                     <div class="activity-title">All activity</div>
                     <span class="activity-arrow icon-chevron"></span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Save & Invest Tab Content -->
+        <div class="main-content tab-content" id="save-invest-content" style="display: none;">
+            <!-- Savings Section -->
+            <div class="accounts-section">
+                <div class="accounts-header">
+                    <div>
+                        <div class="accounts-title">Savings</div>
+                        <div class="balance" id="savings-balance">Balance: £31,523.31</div>
+                    </div>
+                    <button class="add-button">Add +</button>
+                </div>
+
+                <div class="account-item">
+                    <div class="account-info">
+                        <div class="account-icon" style="background: linear-gradient(135deg, #1e40af 0%, #3730a3 100%); color: white;">🐷</div>
+                        <div class="account-details">
+                            <h3>Chase Saver</h3>
+                            <p>4.75% AER • Boosted</p>
+                        </div>
+                    </div>
+                    <div style="display: flex; align-items: center;">
+                        <span class="account-balance" id="chase-saver-balance">£31,523.31</span>
+                        <span class="more-options icon-more"></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Investments Section -->
+            <div class="credit-card">
+                <div class="accounts-header">
+                    <div>
+                        <div class="accounts-title">Investments</div>
+                        <div class="balance">Provided by Nutmeg</div>
+                    </div>
+                    <button class="add-button" style="background-color: #dbeafe; color: #1e3a8a;">Take a look →</button>
+                </div>
+            </div>
+
+            <!-- Nutmeg Promotion -->
+            <div class="credit-card">
+                <div class="credit-promo">
+                    <button class="close-promo">×</button>
+                    <div class="promo-content">
+                        <div style="font-weight: bold; font-size: 24px; color: #1f2937; margin-bottom: 8px;">Nutmeg.</div>
+                        <div style="font-size: 12px; color: #6b7280; margin-bottom: 12px;">a J.P.Morgan company</div>
+                        <div class="promo-description">Introducing Nutmeg, the digital wealth manager that's part of the Chase family. Together, we're making it easier to bank and invest all in one place. As with all investing, capital is at risk.</div>
+                        <button class="lets-go-button" style="background-color: #374151;">
+                            <span>Take a look</span>
+                            <span class="icon-arrow"></span>
+                        </button>
+                    </div>
+                    <div style="width: 80px; height: 80px; background: linear-gradient(45deg, #e5e7eb, #f3f4f6); border-radius: 8px; position: relative; margin-left: 16px; display: flex; align-items: center; justify-content: center;">
+                        <div style="width: 40px; height: 40px; background: #374151; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 16px;">📈</div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -3796,6 +3863,35 @@
             });
         }
 
+        // Tab content switching function
+        function switchTabContent(tabType) {
+            const spendContent = document.getElementById('spend-content');
+            const saveInvestContent = document.getElementById('save-invest-content');
+
+            if (tabType === 'spend') {
+                spendContent.style.display = 'block';
+                saveInvestContent.style.display = 'none';
+            } else if (tabType === 'save-invest') {
+                spendContent.style.display = 'none';
+                saveInvestContent.style.display = 'block';
+                
+                // Update balances with current values
+                updateSaveInvestBalances();
+            }
+        }
+
+        function updateSaveInvestBalances() {
+            // Update savings balance to reflect current Chase Saver balance
+            const savingsBalance = document.getElementById('savings-balance');
+            const chaseSaverBalance = document.getElementById('chase-saver-balance');
+            
+            if (savingsBalance && chaseSaverBalance) {
+                const currentBalance = globalBalances['Chase Saver'];
+                savingsBalance.textContent = `Balance: £${currentBalance.toLocaleString('en-GB', {minimumFractionDigits: 2})}`;
+                chaseSaverBalance.textContent = `£${currentBalance.toLocaleString('en-GB', {minimumFractionDigits: 2})}`;
+            }
+        }
+
         // SPA navigation function with virtual page view tracking
         function navigateToPage(pageName) {
             // Hide all pages
@@ -3882,17 +3978,23 @@
                 });
             });
 
-            // Tab functionality without tracking (visual only)
+            // Tab functionality with content switching
             const tabs = document.querySelectorAll('.tab');
             tabs.forEach(tab => {
                 tab.addEventListener('click', function(e) {
                     e.preventDefault();
+                    
+                    // Get tab type
+                    const tabType = this.getAttribute('data-tab');
                     
                     // Remove active class from all tabs
                     tabs.forEach(t => t.classList.remove('active'));
                     
                     // Add active class to clicked tab
                     this.classList.add('active');
+                    
+                    // Switch content
+                    switchTabContent(tabType);
                     
                     // No tracking for tabs as requested
                 });
@@ -3942,13 +4044,18 @@
                 });
             }
 
-            // Lets go button functionality
-            const letsGoButton = document.querySelector('.lets-go-button');
-            if (letsGoButton) {
-                letsGoButton.addEventListener('click', function() {
-                    alert('Chase credit card - Feature not implemented yet');
+            // Lets go button functionality (for credit card and Nutmeg)
+            const letsGoButtons = document.querySelectorAll('.lets-go-button');
+            letsGoButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const buttonText = this.textContent;
+                    if (buttonText.includes('Chase credit card') || buttonText.includes("Let's go")) {
+                        alert('Chase credit card - Feature not implemented yet');
+                    } else if (buttonText.includes('Take a look')) {
+                        alert('Nutmeg investments - Feature not implemented yet');
+                    }
                 });
-            }
+            });
 
             // Product card interactions (Discover page)
             const productCards = document.querySelectorAll('.product-card');
@@ -4083,7 +4190,7 @@
             // Reset status bar time
             document.querySelectorAll('.status-left span').forEach(span => {
                 if (span.textContent.includes(':')) {
-                    span.textContent = '09:56';
+                    span.textContent = '15:01';
                 }
             });
         }
@@ -4338,7 +4445,7 @@
             // Reset status bar time to original
             document.querySelectorAll('.status-left span').forEach(span => {
                 if (span.textContent.includes(':')) {
-                    span.textContent = '09:56';
+                    span.textContent = '15:01';
                 }
             });
             
@@ -4376,6 +4483,9 @@
             if (currentAccountsBalance) {
                 currentAccountsBalance.textContent = `Balance: £${globalBalances["Giuliano's Account"].toLocaleString('en-GB', {minimumFractionDigits: 2})}`;
             }
+
+            // Update Save & Invest tab balances if active
+            updateSaveInvestBalances();
         }
 
         function swapAccounts() {
@@ -4644,7 +4754,7 @@
             // Reset status bar time to original
             document.querySelectorAll('.status-left span').forEach(span => {
                 if (span.textContent.includes(':')) {
-                    span.textContent = '09:56';
+                    span.textContent = '15:01';
                 }
             });
         }
@@ -5778,7 +5888,7 @@
             // Reset status bar time
             document.querySelectorAll('.status-left span').forEach(span => {
                 if (span.textContent.includes(':')) {
-                    span.textContent = '09:56';
+                    span.textContent = '15:01';
                 }
             });
         }
@@ -5858,7 +5968,7 @@
             // Reset status bar time
             document.querySelectorAll('.status-left span').forEach(span => {
                 if (span.textContent.includes(':')) {
-                    span.textContent = '09:56';
+                    span.textContent = '15:01';
                 }
             });
 
