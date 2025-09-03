@@ -7,10 +7,10 @@
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🏦</text></svg>">
     
     <!-- Amplitude SDK -->
-    <script src="https://cdn.amplitude.com/script/0e1a577f277d178838c8972121bc30d2.js"></script>
+    <script src="https://cdn.amplitude.com/script/3292f52cac506214e7c55d45f6232d17.js"></script>
     <script>
         window.amplitude.add(window.sessionReplay.plugin({sampleRate: 1}));
-        window.amplitude.init('0e1a577f277d178838c8972121bc30d2', {
+        window.amplitude.init('3292f52cac506214e7c55d45f6232d17', {
             "fetchRemoteConfig": true,
             "autocapture": {
                 "sessions": true,
@@ -1318,6 +1318,17 @@
             cursor: pointer;
         }
 
+        .send-button {
+            position: absolute;
+            right: 20px;
+            background: none;
+            border: none;
+            font-size: 18px;
+            color: #1e3a8a;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
         .account-bank {
             font-size: 12px;
             color: #6b7280;
@@ -1715,6 +1726,574 @@
 
         .number-button:active {
             background-color: #e5e7eb;
+        }
+
+        /* Add Money Flow Styles */
+        .bottom-banner {
+            position: fixed;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            max-width: 375px;
+            background: white;
+            border-radius: 16px 16px 0 0;
+            box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.1);
+            z-index: 2000;
+            transform: translateX(-50%) translateY(100%);
+            transition: transform 0.3s ease-out;
+        }
+
+        .bottom-banner.visible {
+            transform: translateX(-50%) translateY(0);
+        }
+
+        .banner-header {
+            padding: 16px 20px 12px 20px;
+            border-bottom: 1px solid #f3f4f6;
+            position: relative;
+        }
+
+        .banner-handle {
+            width: 36px;
+            height: 4px;
+            background-color: #d1d5db;
+            border-radius: 2px;
+            margin: 0 auto 16px auto;
+        }
+
+        .banner-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #1f2937;
+            text-align: center;
+        }
+
+        .banner-close {
+            position: absolute;
+            top: 16px;
+            right: 20px;
+            background: none;
+            border: none;
+            font-size: 18px;
+            color: #6b7280;
+            cursor: pointer;
+        }
+
+        .banner-content {
+            padding: 20px;
+        }
+
+        .account-choice {
+            background: #f8fafc;
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: all 0.2s;
+        }
+
+        .account-choice:hover {
+            border-color: #1e3a8a;
+            background-color: #dbeafe;
+        }
+
+        .account-choice-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .account-choice-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+
+        .account-choice-icon.current {
+            background: linear-gradient(135deg, #0ea5e9 0%, #06b6d4 100%);
+        }
+
+        .account-choice-icon.savings {
+            background: linear-gradient(135deg, #1e40af 0%, #3730a3 100%);
+        }
+
+        .account-choice-details h3 {
+            font-size: 16px;
+            font-weight: 500;
+            color: #1f2937;
+            margin-bottom: 2px;
+        }
+
+        .account-choice-details p {
+            font-size: 14px;
+            color: #6b7280;
+        }
+
+        .account-choice-balance {
+            font-size: 16px;
+            font-weight: 600;
+            color: #1f2937;
+        }
+
+        /* Account Details Screen Styles */
+        .account-details-content {
+            padding: 40px 20px 20px 20px;
+        }
+
+        .account-icon-large {
+            width: 80px;
+            height: 80px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            color: white;
+            margin: 0 auto 20px auto;
+        }
+
+        .account-title {
+            font-size: 24px;
+            font-weight: 600;
+            color: #1f2937;
+            text-align: center;
+            margin-bottom: 16px;
+        }
+
+        .account-subtitle {
+            font-size: 16px;
+            color: #6b7280;
+            text-align: center;
+            line-height: 1.4;
+            margin-bottom: 20px;
+        }
+
+        .account-warning {
+            font-size: 14px;
+            color: #6b7280;
+            text-align: center;
+            line-height: 1.4;
+            margin-bottom: 40px;
+        }
+
+        .details-section {
+            background: white;
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .detail-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 0;
+            border-bottom: 1px solid #f3f4f6;
+        }
+
+        .detail-row:last-child {
+            border-bottom: none;
+        }
+
+        .detail-label {
+            font-size: 16px;
+            color: #6b7280;
+        }
+
+        .detail-value {
+            font-size: 16px;
+            font-weight: 500;
+            color: #1f2937;
+        }
+
+        .copy-button {
+            background-color: #dbeafe;
+            color: #1e3a8a;
+            border: none;
+            border-radius: 16px;
+            padding: 6px 12px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+        }
+
+        .share-details-button {
+            background-color: #1e3a8a;
+            color: white;
+            border: none;
+            border-radius: 28px;
+            padding: 18px 32px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            min-height: 56px;
+        }
+
+        /* Share confirmation styles */
+        .share-warning {
+            background: #fef3c7;
+            border: 1px solid #fde68a;
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .warning-icon-small {
+            color: #f59e0b;
+            font-size: 18px;
+            flex-shrink: 0;
+        }
+
+        .warning-text {
+            font-size: 14px;
+            color: #92400e;
+            line-height: 1.4;
+        }
+
+        .continue-share-button {
+            background-color: #1e3a8a;
+            color: white;
+            border: none;
+            border-radius: 28px;
+            padding: 18px 32px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            min-height: 56px;
+        }
+
+        /* App sharing styles */
+        .sharing-apps {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding: 20px;
+            gap: 16px;
+        }
+
+        .app-option {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            padding: 12px;
+            border-radius: 12px;
+            transition: background-color 0.2s;
+        }
+
+        .app-option:hover {
+            background-color: #f3f4f6;
+        }
+
+        .app-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: white;
+        }
+
+        .app-icon.slack {
+            background-color: #4a154b;
+        }
+
+        .app-icon.whatsapp {
+            background-color: #25d366;
+        }
+
+        .app-icon.email {
+            background-color: #3b82f6;
+        }
+
+        .app-icon.messages {
+            background-color: #00c851;
+        }
+
+        .app-name {
+            font-size: 12px;
+            color: #1f2937;
+            font-weight: 500;
+        }
+
+        /* Success banner */
+        .success-banner {
+            background: #d1fae5;
+            border: 1px solid #86efac;
+            border-radius: 8px;
+            padding: 12px 16px;
+            margin: 16px 20px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            display: none;
+        }
+
+        .success-banner.visible {
+            display: flex;
+        }
+
+        .success-icon-small {
+            color: #16a34a;
+            font-size: 16px;
+        }
+
+        .success-text {
+            font-size: 14px;
+            color: #166534;
+            font-weight: 500;
+        }
+
+        /* Schedule Payment Flow Styles */
+        .schedule-content {
+            padding: 20px;
+        }
+
+        .schedule-header {
+            padding: 40px 20px 20px 20px;
+        }
+
+        .schedule-title {
+            font-size: 24px;
+            font-weight: 600;
+            color: #1f2937;
+            text-align: left;
+            margin-bottom: 16px;
+        }
+
+        .schedule-subtitle {
+            font-size: 16px;
+            color: #6b7280;
+            line-height: 1.4;
+            margin-bottom: 30px;
+        }
+
+        .schedule-section {
+            margin-bottom: 30px;
+        }
+
+        .schedule-section-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #1f2937;
+            margin-bottom: 16px;
+        }
+
+        .schedule-option {
+            background: white;
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            border: 2px solid transparent;
+        }
+
+        .schedule-option:hover {
+            background-color: #f8fafc;
+            border-color: #1e3a8a;
+        }
+
+        .schedule-option-info {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .schedule-option-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            color: white;
+            background: linear-gradient(135deg, #60a5fa 0%, #3b82f6 100%);
+        }
+
+        .schedule-option-details {
+            flex: 1;
+        }
+
+        .schedule-option-title {
+            font-size: 18px;
+            font-weight: 500;
+            color: #1f2937;
+            margin-bottom: 4px;
+        }
+
+        .schedule-option-description {
+            font-size: 14px;
+            color: #6b7280;
+            line-height: 1.4;
+        }
+
+        .schedule-arrow {
+            color: #6b7280;
+            font-size: 18px;
+        }
+
+        /* Schedule configuration styles */
+        .schedule-config-row {
+            background: white;
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+        }
+
+        .schedule-config-info {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .schedule-config-icon {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            color: #1e3a8a;
+        }
+
+        .schedule-config-label {
+            font-size: 16px;
+            color: #1f2937;
+            font-weight: 500;
+        }
+
+        .schedule-config-value {
+            font-size: 16px;
+            color: #1e3a8a;
+            font-weight: 500;
+        }
+
+        /* Calendar Banner Styles */
+        .calendar-banner {
+            position: fixed;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%) translateY(100%);
+            width: 100%;
+            max-width: 375px;
+            background: white;
+            border-radius: 16px 16px 0 0;
+            box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.1);
+            z-index: 2000;
+            transition: transform 0.3s ease-out;
+        }
+
+        .calendar-banner.visible {
+            transform: translateX(-50%) translateY(0);
+        }
+
+        .calendar-content {
+            padding: 20px;
+        }
+
+        .calendar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .calendar-month-nav {
+            background: none;
+            border: none;
+            font-size: 18px;
+            color: #1e3a8a;
+            cursor: pointer;
+        }
+
+        .calendar-month-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #1f2937;
+        }
+
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+
+        .calendar-day-header {
+            text-align: center;
+            font-size: 12px;
+            color: #6b7280;
+            font-weight: 500;
+            padding: 8px;
+        }
+
+        .calendar-day {
+            aspect-ratio: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            color: #1f2937;
+            cursor: pointer;
+            border-radius: 50%;
+            transition: all 0.2s;
+        }
+
+        .calendar-day:hover {
+            background-color: #f3f4f6;
+        }
+
+        .calendar-day.selected {
+            background-color: #1e3a8a;
+            color: white;
+        }
+
+        .calendar-day.disabled {
+            color: #d1d5db;
+            cursor: not-allowed;
+        }
+
+        .calendar-day.today {
+            font-weight: 600;
+        }
+
+        .calendar-set-button {
+            background-color: #1e3a8a;
+            color: white;
+            border: none;
+            border-radius: 28px;
+            padding: 18px 32px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            min-height: 56px;
         }
 
         /* Account/Payee Selection Modal Styles */
@@ -2226,6 +2805,10 @@
                     <div class="success-message" id="success-message">
                         You've moved £1.00 from Chase Saver to Giuliano's Account
                     </div>
+                    
+                    <div class="transfer-notice" id="success-date-notice" style="display: none; margin-top: 20px;">
+                        It'll go out on 4 Sep 2025
+                    </div>
                 </div>
 
                 <!-- Modal Footer -->
@@ -2233,6 +2816,231 @@
                     <button class="done-button" id="done-button">Done</button>
                 </div>
             </div>
+        </div>
+    </div>
+
+    <!-- Scheduled Payments Main Page -->
+    <div id="schedule-payment-page" class="page">
+        <!-- Header -->
+        <div class="modal-header">
+            <button class="modal-back scheduled-payments-back">←</button>
+            <h2 class="modal-title">Scheduled payments</h2>
+        </div>
+
+        <!-- Main Content -->
+        <div class="schedule-content" style="padding-top: 40px;">
+            <!-- Direct Debits Section -->
+            <div class="schedule-section">
+                <h2 class="schedule-section-title">Direct Debits</h2>
+                
+                <div style="background: white; border-radius: 16px; padding: 20px; margin-bottom: 30px; border: 2px dashed #d1d5db;">
+                    <div style="display: flex; align-items: flex-start; gap: 16px;">
+                        <div style="flex: 1;">
+                            <h3 style="font-size: 16px; font-weight: 500; color: #1f2937; margin-bottom: 12px;">Want to pay a company regularly by Direct Debit?</h3>
+                            <p style="font-size: 14px; color: #6b7280; line-height: 1.4;">You'll have to contact the company directly. Ask them to set it up for you, and give them your account details.</p>
+                        </div>
+                        <div style="width: 48px; height: 48px; background: linear-gradient(135deg, #60a5fa 0%, #3b82f6 100%); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 20px; color: white; flex-shrink: 0;">💳</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Payments You've Set Up Section -->
+            <div class="schedule-section">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+                    <h2 class="schedule-section-title">Payments you've set up</h2>
+                    <button class="add-button" id="new-scheduled-payment-button">New +</button>
+                </div>
+                
+                <div style="background: white; border-radius: 16px; padding: 20px; border: 2px dashed #d1d5db;">
+                    <div style="display: flex; align-items: flex-start; gap: 16px;">
+                        <div style="flex: 1;">
+                            <p style="font-size: 14px; color: #6b7280; line-height: 1.4;">Once you schedule regular or one-off payments, you'll be able to see them here.</p>
+                        </div>
+                        <div style="width: 48px; height: 48px; background: linear-gradient(135deg, #60a5fa 0%, #3b82f6 100%); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 20px; color: white; flex-shrink: 0;">📅</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Set Up New Scheduled Payment Page -->
+    <div id="new-scheduled-payment-page" class="page">
+        <!-- Header -->
+        <div class="modal-header">
+            <button class="modal-back new-scheduled-payment-back">←</button>
+            <h2 class="modal-title">Set up a new scheduled payment</h2>
+        </div>
+
+        <div class="schedule-header" style="padding-top: 20px;">
+            <p class="schedule-subtitle">You can set up regular or one-off payments to payees or your own Chase accounts.</p>
+        </div>
+
+        <!-- Main Content -->
+        <div class="schedule-content">
+            <!-- Send Money Section -->
+            <div class="schedule-section">
+                <h2 class="schedule-section-title">Send money</h2>
+                
+                <div class="schedule-option" data-schedule="send-person">
+                    <div class="schedule-option-info">
+                        <div class="schedule-option-icon">👤</div>
+                        <div class="schedule-option-details">
+                            <div class="schedule-option-title">To a person or business</div>
+                        </div>
+                    </div>
+                    <div class="schedule-arrow">›</div>
+                </div>
+            </div>
+
+            <!-- Move Money Section -->
+            <div class="schedule-section">
+                <h2 class="schedule-section-title">Move money</h2>
+                
+                <div class="schedule-option" data-schedule="move-chase">
+                    <div class="schedule-option-info">
+                        <div class="schedule-option-icon" style="background: linear-gradient(135deg, #1e40af 0%, #3730a3 100%);">⇄</div>
+                        <div class="schedule-option-details">
+                            <div class="schedule-option-title">To your Chase account</div>
+                        </div>
+                    </div>
+                    <div class="schedule-arrow">›</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Schedule Configuration Page -->
+    <div id="schedule-config-page" class="page">
+        <!-- Header -->
+        <div class="modal-header">
+            <button class="modal-back schedule-back">←</button>
+            <h2 class="modal-title">Schedule this payment</h2>
+            <button style="background: none; border: none; color: #1e3a8a; font-size: 16px; cursor: pointer;">Reset</button>
+        </div>
+
+        <!-- Main Content -->
+        <div class="schedule-content" style="padding-top: 40px;">
+            <div class="schedule-config-row" id="schedule-when-row">
+                <div class="schedule-config-info">
+                    <div class="schedule-config-icon">📅</div>
+                    <div class="schedule-config-label">When</div>
+                </div>
+                <div class="schedule-config-value" id="schedule-when-value">Now</div>
+            </div>
+
+            <div class="schedule-config-row" id="schedule-repeat-row">
+                <div class="schedule-config-info">
+                    <div class="schedule-config-icon">🔄</div>
+                    <div class="schedule-config-label">Repeat</div>
+                </div>
+                <div class="schedule-config-value" id="schedule-repeat-value">Never</div>
+            </div>
+        </div>
+
+        <!-- Next Button positioned above navigation -->
+        <div style="position: fixed; bottom: 80px; left: 50%; transform: translateX(-50%); width: calc(100% - 40px); max-width: 335px; background: white; padding: 16px 20px; z-index: 100;">
+            <button class="next-button" id="schedule-next-button" style="background-color: #1e3a8a; color: white; border: none; border-radius: 28px; padding: 18px 32px; font-size: 18px; font-weight: 600; cursor: pointer; width: 100%; min-height: 56px;">Next</button>
+        </div>
+    </div>
+
+    <!-- Schedule Move Money Account Banner -->
+    <div id="schedule-move-banner" class="bottom-banner">
+        <div class="banner-header">
+            <div class="banner-handle"></div>
+            <h2 class="banner-title">Move money to:</h2>
+            <button class="banner-close" id="schedule-move-banner-close">×</button>
+        </div>
+        <div class="banner-content">
+            <div class="account-choice" data-schedule-account="giuliano">
+                <div class="account-choice-info">
+                    <div class="account-choice-icon current">👁️</div>
+                    <div class="account-choice-details">
+                        <h3>Giuliano's Account</h3>
+                    </div>
+                </div>
+                <div class="account-choice-balance" id="schedule-giuliano-balance">£0.00</div>
+            </div>
+
+            <div class="account-choice" data-schedule-account="chase-saver">
+                <div class="account-choice-info">
+                    <div class="account-choice-icon savings">🐷</div>
+                    <div class="account-choice-details">
+                        <h3>Chase Saver</h3>
+                        <p>4.75% AER • Boosted</p>
+                    </div>
+                </div>
+                <div class="account-choice-balance" id="schedule-chase-balance">£31,523.31</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Calendar Date Picker Banner -->
+    <div id="calendar-banner" class="calendar-banner">
+        <div class="banner-header">
+            <div class="banner-handle"></div>
+            <h2 class="banner-title">When</h2>
+            <button class="banner-close" id="calendar-close">×</button>
+        </div>
+        <div class="calendar-content">
+            <div style="text-align: center; font-size: 16px; color: #6b7280; margin-bottom: 20px;" id="selected-date-display">3 Sep 2025</div>
+            
+            <div class="calendar-header">
+                <button class="calendar-month-nav" id="prev-month">‹</button>
+                <div class="calendar-month-title" id="calendar-month">September 2025</div>
+                <button class="calendar-month-nav" id="next-month">›</button>
+            </div>
+
+            <div class="calendar-grid">
+                <div class="calendar-day-header">Mon</div>
+                <div class="calendar-day-header">Tue</div>
+                <div class="calendar-day-header">Wed</div>
+                <div class="calendar-day-header">Thu</div>
+                <div class="calendar-day-header">Fri</div>
+                <div class="calendar-day-header">Sat</div>
+                <div class="calendar-day-header">Sun</div>
+
+                <div class="calendar-day">01</div>
+                <div class="calendar-day">02</div>
+                <div class="calendar-day selected" data-date="3">03</div>
+                <div class="calendar-day" data-date="4">04</div>
+                <div class="calendar-day" data-date="5">05</div>
+                <div class="calendar-day" data-date="6">06</div>
+                <div class="calendar-day" data-date="7">07</div>
+
+                <div class="calendar-day" data-date="8">08</div>
+                <div class="calendar-day" data-date="9">09</div>
+                <div class="calendar-day" data-date="10">10</div>
+                <div class="calendar-day" data-date="11">11</div>
+                <div class="calendar-day" data-date="12">12</div>
+                <div class="calendar-day" data-date="13">13</div>
+                <div class="calendar-day" data-date="14">14</div>
+
+                <div class="calendar-day" data-date="15">15</div>
+                <div class="calendar-day" data-date="16">16</div>
+                <div class="calendar-day" data-date="17">17</div>
+                <div class="calendar-day" data-date="18">18</div>
+                <div class="calendar-day" data-date="19">19</div>
+                <div class="calendar-day" data-date="20">20</div>
+                <div class="calendar-day" data-date="21">21</div>
+
+                <div class="calendar-day" data-date="22">22</div>
+                <div class="calendar-day" data-date="23">23</div>
+                <div class="calendar-day" data-date="24">24</div>
+                <div class="calendar-day" data-date="25">25</div>
+                <div class="calendar-day" data-date="26">26</div>
+                <div class="calendar-day" data-date="27">27</div>
+                <div class="calendar-day" data-date="28">28</div>
+
+                <div class="calendar-day" data-date="29">29</div>
+                <div class="calendar-day" data-date="30">30</div>
+                <div class="calendar-day"></div>
+                <div class="calendar-day"></div>
+                <div class="calendar-day"></div>
+                <div class="calendar-day"></div>
+                <div class="calendar-day"></div>
+            </div>
+
+            <button class="calendar-set-button" id="calendar-set-button">Set</button>
         </div>
     </div>
 
@@ -2768,6 +3576,188 @@
         </div>
     </div>
 
+    <!-- Add Money Account Selection Banner -->
+    <div id="add-money-banner" class="bottom-banner">
+        <div class="banner-header">
+            <div class="banner-handle"></div>
+            <h2 class="banner-title">Add money to:</h2>
+            <button class="banner-close" id="add-money-banner-close">×</button>
+        </div>
+        <div class="banner-content">
+            <div class="account-choice" data-account="giuliano">
+                <div class="account-choice-info">
+                    <div class="account-choice-icon current">👁️</div>
+                    <div class="account-choice-details">
+                        <h3>Giuliano's Account</h3>
+                    </div>
+                </div>
+                <div class="account-choice-balance" id="add-giuliano-balance">£0.00</div>
+            </div>
+
+            <div class="account-choice" data-account="chase-saver">
+                <div class="account-choice-info">
+                    <div class="account-choice-icon savings">🐷</div>
+                    <div class="account-choice-details">
+                        <h3>Chase Saver</h3>
+                        <p>4.75% AER • Boosted</p>
+                    </div>
+                </div>
+                <div class="account-choice-balance" id="add-chase-balance">£31,523.31</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Money Account Details Modal -->
+    <div id="add-money-details-modal" class="modal-overlay">
+        <div class="move-money-modal">
+            <div class="modal-step active">
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <button class="modal-close add-money-close">×</button>
+                </div>
+
+                <!-- Success Banner (initially hidden) -->
+                <div class="success-banner" id="share-success-banner">
+                    <div class="success-icon-small">✓</div>
+                    <div class="success-text">Sent</div>
+                </div>
+
+                <!-- Account Details Content -->
+                <div class="account-details-content">
+                    <div class="account-icon-large current" id="selected-account-icon">👁️</div>
+                    <h2 class="account-title" id="selected-account-title">Giuliano's Account account details</h2>
+                    <p class="account-subtitle">Use these details to transfer money from another bank or pay in your salary. We can't accept CHAPS or Swift payments.</p>
+                    <p class="account-warning">Never share account details with someone you don't trust.</p>
+
+                    <div class="details-section">
+                        <div class="detail-row">
+                            <span class="detail-label">Name</span>
+                            <div style="display: flex; align-items: center; gap: 12px;">
+                                <span class="detail-value">Giuliano Giannini</span>
+                                <button class="copy-button" data-detail="name">Copy</button>
+                            </div>
+                        </div>
+
+                        <div class="detail-row">
+                            <span class="detail-label">Sort code</span>
+                            <div style="display: flex; align-items: center; gap: 12px;">
+                                <span class="detail-value" id="add-sort-code">12-34-56</span>
+                                <button class="copy-button" data-detail="sort code">Copy</button>
+                            </div>
+                        </div>
+
+                        <div class="detail-row">
+                            <span class="detail-label">Account number</span>
+                            <div style="display: flex; align-items: center; gap: 12px;">
+                                <span class="detail-value" id="add-account-number">12345678</span>
+                                <button class="copy-button" data-detail="account number">Copy</button>
+                            </div>
+                        </div>
+
+                        <div class="detail-row">
+                            <span class="detail-label">Bank address</span>
+                            <div style="display: flex; align-items: center; gap: 12px;">
+                                <span class="detail-value">Chase, 25 Bank Street, London E14 5JP</span>
+                                <button class="copy-button" data-detail="bank address">Copy</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Modal Footer -->
+                <div class="modal-footer">
+                    <button class="share-details-button" id="share-details-button">Share account details</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Share Confirmation Banner -->
+    <div id="share-confirmation-banner" class="bottom-banner">
+        <div class="banner-header">
+            <div class="banner-handle"></div>
+            <h2 class="banner-title">Are you sure you want to share?</h2>
+            <button class="banner-close" id="share-confirmation-close">×</button>
+        </div>
+        <div class="banner-content">
+            <p style="font-size: 16px; color: #1f2937; margin-bottom: 16px; text-align: center;">Fraudsters may use your account details to steal your money or your identity.</p>
+            
+            <div class="share-warning">
+                <div class="warning-icon-small">⚠️</div>
+                <div class="warning-text">Only share your details with people or companies you trust.</div>
+            </div>
+
+            <button class="continue-share-button" id="continue-share-button">Continue and share</button>
+        </div>
+    </div>
+
+    <!-- App Sharing Banner -->
+    <div id="app-sharing-banner" class="bottom-banner">
+        <div class="banner-header">
+            <div class="banner-handle"></div>
+            <button class="banner-close" id="app-sharing-close">×</button>
+        </div>
+        <div class="sharing-apps">
+            <div class="app-option" data-app="slack">
+                <div class="app-icon slack">Sl</div>
+                <div class="app-name">Slack</div>
+            </div>
+            <div class="app-option" data-app="whatsapp">
+                <div class="app-icon whatsapp">💬</div>
+                <div class="app-name">WhatsApp</div>
+            </div>
+            <div class="app-option" data-app="email">
+                <div class="app-icon email">✉️</div>
+                <div class="app-name">Mail</div>
+            </div>
+            <div class="app-option" data-app="messages">
+                <div class="app-icon messages">💬</div>
+                <div class="app-name">Messages</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slack Sharing Modal -->
+    <div id="slack-sharing-modal" class="modal-overlay">
+        <div class="move-money-modal">
+            <div class="modal-step active">
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <button class="modal-close slack-sharing-close">×</button>
+                    <h2 class="modal-title">Share to Slack</h2>
+                    <button class="send-button" id="slack-send-button">▶</button>
+                </div>
+
+                <!-- Slack Content -->
+                <div style="padding: 20px;">
+                    <div style="background: #f8fafc; border-radius: 12px; padding: 16px; margin-bottom: 20px;">
+                        <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 16px;">
+                            <div style="width: 32px; height: 32px; background: #1e3a8a; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold;">A</div>
+                            <span style="font-weight: 600; color: #1f2937;">Amplitude</span>
+                            <span style="color: #1e3a8a; font-size: 14px;">›</span>
+                        </div>
+                    </div>
+
+                    <div style="background: #f8fafc; border-radius: 12px; padding: 16px; margin-bottom: 20px;">
+                        <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 16px;">
+                            <img src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'><circle cx='16' cy='16' r='16' fill='%23e5e7eb'/><text x='16' y='20' text-anchor='middle' font-family='Arial' font-size='12' fill='%23374151'>GG</text></svg>" style="width: 32px; height: 32px; border-radius: 50%;">
+                            <div>
+                                <div style="font-weight: 600; color: #1f2937;">Giuliano Giannini</div>
+                                <div style="color: #6b7280; font-size: 14px;">Sr. Customer Success Architect I</div>
+                            </div>
+                        </div>
+
+                        <div style="color: #1f2937; font-size: 16px; line-height: 1.4;" id="slack-message-content">
+                            Here are my account details: Giuliano Giannini<br>
+                            Sort code: 12-34-56<br>
+                            Account number: 12345678
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Bottom Navigation -->
     <div class="bottom-nav">
         <div class="nav-item active" data-nav="Home">
@@ -2813,8 +3803,17 @@
                 page.classList.remove('active');
             });
 
-            // Show selected page
-            const targetPage = document.getElementById(`${pageName.toLowerCase()}-page`);
+            // Show selected page (handle special cases)
+            let targetPageId;
+            if (pageName.toLowerCase() === 'schedule-config') {
+                targetPageId = 'schedule-config-page';
+            } else if (pageName.toLowerCase() === 'new-scheduled-payment') {
+                targetPageId = 'new-scheduled-payment-page';
+            } else {
+                targetPageId = `${pageName.toLowerCase()}-page`;
+            }
+            
+            const targetPage = document.getElementById(targetPageId);
             if (targetPage) {
                 targetPage.classList.add('active');
                 currentPage = pageName.toLowerCase();
@@ -2877,6 +3876,8 @@
                         navigateToPage('discover');
                     } else if (buttonName === 'Support') {
                         navigateToPage('support');
+                    } else if (buttonName === 'Schedule Payment') {
+                        navigateToPage('schedule-payment');
                     }
                 });
             });
@@ -2907,12 +3908,19 @@
                         openMoveMoneyModal();
                     } else if (title === 'Send money') {
                         openSendMoneyModal();
+                    } else if (title === 'Add money') {
+                        openAddMoneyBanner();
+                    } else if (title === 'Schedule a payment') {
+                        // Track Schedule Payment Clicked event
+                        window.amplitude.track('Schedule Payment Clicked', {
+                            screenName: 'Payments',
+                            source: 'payments_screen'
+                        });
+
+                        console.log('Amplitude event tracked: Schedule Payment Clicked');
+
+                        openSchedulePaymentScreen();
                     } else {
-                        // When implementing other transaction types, use consistent tracking:
-                        // 
-                        // Add money: transactionType: 'add' 
-                        // Schedule payment: transactionType: 'scheduled'
-                        //
                         alert(`${title} - Feature not implemented yet`);
                     }
                 });
@@ -3005,6 +4013,12 @@
 
             // Send Money Modal Functionality
             initializeSendMoneyModal();
+
+            // Add Money Flow Functionality
+            initializeAddMoneyFlow();
+
+            // Schedule Payment Flow Functionality
+            initializeSchedulePaymentFlow();
         });
 
         // Global Account Balances (persistent across the app)
@@ -3025,7 +4039,10 @@
                 balance: 0.00,
                 icon: 'giuliano-account'
             },
-            amount: 0
+            amount: 0,
+            isFromSchedule: false,
+            isScheduledForFuture: false,
+            scheduledDate: null
         };
 
         function openMoveMoneyModal() {
@@ -3123,28 +4140,39 @@
                 }
             });
 
+            // Update button text based on whether it's scheduled or immediate
+            const moveMoneyButton = document.getElementById('move-money-button');
+            if (moveMoneyButton) {
+                if (moveMoneyState.isScheduledForFuture) {
+                    moveMoneyButton.textContent = 'Schedule payment';
+                } else {
+                    moveMoneyButton.textContent = 'Move money';
+                }
+            }
+
             // Track Amount Added event
             window.amplitude.track('Amount Added', {
-                transactionType: 'move',
+                transactionType: moveMoneyState.isScheduledForFuture ? 'scheduled' : 'move',
                 amount: moveMoneyState.amount,
                 fromAccount: moveMoneyState.fromAccount.name,
                 toAccount: moveMoneyState.toAccount.name,
-                screenName: 'Move Money - Check Details'
+                isScheduled: moveMoneyState.isScheduledForFuture,
+                scheduledDate: moveMoneyState.scheduledDate,
+                screenName: moveMoneyState.isScheduledForFuture ? 'Schedule Payment - Check Details' : 'Move Money - Check Details'
             });
 
             // Track virtual page view for Move Money step 2
             window.amplitude.track('[Amplitude] Page Viewed', {
                 page_location: window.location.href + '#move-money-check-details',
-                page_title: 'Move Money - Check the Details',
+                page_title: moveMoneyState.isScheduledForFuture ? 'Schedule Payment - Check the Details' : 'Move Money - Check the Details',
                 virtual_page: 'move-money-check-details',
                 page_type: 'virtual'
             });
 
-            console.log('Amplitude events tracked: Amount Added (move) + Page Viewed (Check Details)', {
-                transactionType: 'move',
+            console.log('Amplitude events tracked: Amount Added + Page Viewed (Check Details)', {
+                transactionType: moveMoneyState.isScheduledForFuture ? 'scheduled' : 'move',
                 amount: moveMoneyState.amount,
-                fromAccount: moveMoneyState.fromAccount.name,
-                toAccount: moveMoneyState.toAccount.name
+                isScheduled: moveMoneyState.isScheduledForFuture
             });
         }
 
@@ -3183,43 +4211,100 @@
             const toAccount = moveMoneyState.toAccount.name;
 
             if (amount > 0 && amount <= globalBalances[fromAccount]) {
-                // Actually transfer the money
-                globalBalances[fromAccount] -= amount;
-                globalBalances[toAccount] += amount;
+                if (moveMoneyState.isScheduledForFuture) {
+                    // Schedule the payment instead of immediate transfer
+                    const scheduledPayment = {
+                        id: Date.now(),
+                        amount: amount,
+                        fromAccount: fromAccount,
+                        toAccount: toAccount,
+                        scheduledDate: moveMoneyState.scheduledDate,
+                        dateString: schedulePaymentState.when,
+                        repeat: schedulePaymentState.repeat,
+                        status: 'scheduled'
+                    };
+                    
+                    scheduledPayments.push(scheduledPayment);
 
-                // Update the main app account displays
-                updateMainAppBalances();
+                    // Update success message for scheduled payment
+                    const successMessage = document.getElementById('success-message');
+                    successMessage.textContent = `You've scheduled £${amount.toFixed(2)} from ${fromAccount} to ${toAccount}`;
 
-                // Update success message
-                const successMessage = document.getElementById('success-message');
-                successMessage.textContent = `You've moved £${amount.toFixed(2)} from ${fromAccount} to ${toAccount}`;
+                    // Add/update date info to success screen
+                    const dateNotice = document.getElementById('success-date-notice');
+                    if (dateNotice) {
+                        dateNotice.textContent = `It'll go out on ${schedulePaymentState.when}`;
+                        dateNotice.style.display = 'block';
+                    }
+
+                    // Track Transaction Completed event for scheduled payment
+                    window.amplitude.track('Transaction Completed', {
+                        transactionType: 'scheduled',
+                        amount: amount,
+                        fromAccount: fromAccount,
+                        toAccount: toAccount,
+                        scheduledDate: moveMoneyState.scheduledDate,
+                        scheduledDateString: schedulePaymentState.when,
+                        screenName: 'Schedule Payment - Success'
+                    });
+
+                    // Track virtual page view for scheduled payment success
+                    window.amplitude.track('[Amplitude] Page Viewed', {
+                        page_location: window.location.href + '#schedule-payment-success',
+                        page_title: 'Schedule Payment - Success',
+                        virtual_page: 'schedule-payment-success',
+                        page_type: 'virtual'
+                    });
+
+                    console.log('Amplitude events tracked: Transaction Completed (scheduled) + Page Viewed (Success)', {
+                        scheduledDate: schedulePaymentState.when,
+                        amount: amount
+                    });
+
+                } else {
+                    // Immediate transfer (existing logic)
+                    globalBalances[fromAccount] -= amount;
+                    globalBalances[toAccount] += amount;
+
+                    // Update the main app account displays
+                    updateMainAppBalances();
+
+                    // Update success message
+                    const successMessage = document.getElementById('success-message');
+                    successMessage.textContent = `You've moved £${amount.toFixed(2)} from ${fromAccount} to ${toAccount}`;
+
+                    // Hide date info for immediate transfers
+                    const dateNotice = document.getElementById('success-date-notice');
+                    if (dateNotice) {
+                        dateNotice.style.display = 'none';
+                    }
+
+                    // Track Transaction Completed event
+                    window.amplitude.track('Transaction Completed', {
+                        transactionType: 'move',
+                        amount: amount,
+                        fromAccount: fromAccount,
+                        toAccount: toAccount,
+                        screenName: 'Move Money - Success'
+                    });
+
+                    // Track virtual page view for Move Money success
+                    window.amplitude.track('[Amplitude] Page Viewed', {
+                        page_location: window.location.href + '#move-money-success',
+                        page_title: 'Move Money - Success',
+                        virtual_page: 'move-money-success',
+                        page_type: 'virtual'
+                    });
+
+                    console.log('Amplitude events tracked: Transaction Completed (move) + Page Viewed (Success)', {
+                        amount: amount,
+                        fromAccount: fromAccount,
+                        toAccount: toAccount
+                    });
+                }
 
                 // Show success screen
                 showModalStep('success-step');
-
-                // Track Transaction Completed event with transaction type
-                window.amplitude.track('Transaction Completed', {
-                    transactionType: 'move',
-                    amount: amount,
-                    fromAccount: fromAccount,
-                    toAccount: toAccount,
-                    screenName: 'Move Money - Success'
-                });
-
-                // Track virtual page view for Move Money step 3 (success)
-                window.amplitude.track('[Amplitude] Page Viewed', {
-                    page_location: window.location.href + '#move-money-success',
-                    page_title: 'Move Money - Success',
-                    virtual_page: 'move-money-success',
-                    page_type: 'virtual'
-                });
-
-                console.log('Amplitude events tracked: Transaction Completed (move) + Page Viewed (Success)', {
-                    transactionType: 'move',
-                    amount: amount,
-                    fromAccount: fromAccount,
-                    toAccount: toAccount
-                });
             }
         }
 
@@ -3245,6 +4330,9 @@
         }
 
         function returnToPayments() {
+            // Check if this was a scheduled payment completion
+            const wasScheduledPayment = moveMoneyState.isFromSchedule && moveMoneyState.isScheduledForFuture;
+            
             closeMoveMoneyModal();
             
             // Reset status bar time to original
@@ -3254,7 +4342,26 @@
                 }
             });
             
-            navigateToPage('payments');
+            if (wasScheduledPayment) {
+                // Go back to scheduled payments page and show the new scheduled payment
+                navigateToPage('schedule-payment');
+                updateScheduledPaymentsList();
+            } else {
+                navigateToPage('payments');
+            }
+
+            // Reset scheduling context
+            moveMoneyState.isFromSchedule = false;
+            moveMoneyState.isScheduledForFuture = false;
+            moveMoneyState.scheduledDate = null;
+        }
+
+        function updateScheduledPaymentsList() {
+            // This would update the scheduled payments main page to show upcoming payments
+            // For now, just show a console log indicating the payment was scheduled
+            console.log('Scheduled payments list updated:', scheduledPayments);
+            
+            // In a real app, this would refresh the "Upcoming" section of the scheduled payments page
         }
 
         function updateMainAppBalances() {
@@ -4623,6 +5730,798 @@
             // Recalculate if amount is set
             if (sendMoneyState.amount > 0) {
                 handleSendAmountInput();
+            }
+        }
+
+        // Add Money Flow State and Functions
+        let addMoneyState = {
+            selectedAccount: null,
+            selectedAccountData: null
+        };
+
+        function openAddMoneyBanner() {
+            // Track Add Money Clicked event
+            window.amplitude.track('Add Money Clicked', {
+                screenName: 'Payments',
+                source: 'payments_screen'
+            });
+
+            // Update banner with current balances
+            document.getElementById('add-giuliano-balance').textContent = `£${globalBalances["Giuliano's Account"].toLocaleString('en-GB', {minimumFractionDigits: 2})}`;
+            document.getElementById('add-chase-balance').textContent = `£${globalBalances['Chase Saver'].toLocaleString('en-GB', {minimumFractionDigits: 2})}`;
+
+            // Show banner
+            const banner = document.getElementById('add-money-banner');
+            banner.classList.add('visible');
+
+            // Track Banner Viewed event
+            window.amplitude.track('Banner Viewed', {
+                bannerName: 'account_selection',
+                screenName: 'Add Money - Account Selection',
+                source: 'add_money_clicked'
+            });
+
+            console.log('Amplitude events tracked: Add Money Clicked + Banner Viewed');
+
+            // Update status bar time
+            document.querySelectorAll('.status-left span').forEach(span => {
+                if (span.textContent.includes(':')) {
+                    span.textContent = '08:55';
+                }
+            });
+        }
+
+        function closeAddMoneyBanner() {
+            const banner = document.getElementById('add-money-banner');
+            banner.classList.remove('visible');
+
+            // Reset status bar time
+            document.querySelectorAll('.status-left span').forEach(span => {
+                if (span.textContent.includes(':')) {
+                    span.textContent = '09:56';
+                }
+            });
+        }
+
+        function selectAddMoneyAccount(accountType) {
+            if (accountType === 'giuliano') {
+                addMoneyState.selectedAccount = 'giuliano';
+                addMoneyState.selectedAccountData = {
+                    name: "Giuliano's Account",
+                    balance: globalBalances["Giuliano's Account"],
+                    icon: 'current',
+                    sortCode: '12-34-56',
+                    accountNumber: '12345678'
+                };
+            } else if (accountType === 'chase-saver') {
+                addMoneyState.selectedAccount = 'chase-saver';
+                addMoneyState.selectedAccountData = {
+                    name: 'Chase Saver',
+                    balance: globalBalances['Chase Saver'],
+                    icon: 'savings',
+                    sortCode: '12-34-56',
+                    accountNumber: '87654321'
+                };
+            }
+
+            // Close banner and open details modal
+            closeAddMoneyBanner();
+            openAccountDetailsModal();
+        }
+
+        function openAccountDetailsModal() {
+            // Update account details display
+            const accountIcon = document.getElementById('selected-account-icon');
+            const accountTitle = document.getElementById('selected-account-title');
+            const sortCode = document.getElementById('add-sort-code');
+            const accountNumber = document.getElementById('add-account-number');
+
+            accountIcon.className = `account-icon-large ${addMoneyState.selectedAccountData.icon}`;
+            if (addMoneyState.selectedAccountData.icon === 'current') {
+                accountIcon.style.background = 'linear-gradient(135deg, #0ea5e9 0%, #06b6d4 100%)';
+                accountIcon.textContent = '👁️';
+            } else {
+                accountIcon.style.background = 'linear-gradient(135deg, #1e40af 0%, #3730a3 100%)';
+                accountIcon.textContent = '🐷';
+            }
+
+            accountTitle.textContent = `${addMoneyState.selectedAccountData.name} account details`;
+            sortCode.textContent = addMoneyState.selectedAccountData.sortCode;
+            accountNumber.textContent = addMoneyState.selectedAccountData.accountNumber;
+
+            // Show modal
+            const modal = document.getElementById('add-money-details-modal');
+            modal.classList.add('active');
+
+            // Track Page Viewed event
+            window.amplitude.track('[Amplitude] Page Viewed', {
+                page_location: window.location.href + '#add-money-account-details',
+                page_title: `Add Money - ${addMoneyState.selectedAccountData.name} Details`,
+                virtual_page: 'add-money-account-details',
+                page_type: 'virtual'
+            });
+
+            console.log('Amplitude event tracked: Page Viewed (Account Details)');
+
+            // Update status bar time
+            document.querySelectorAll('.status-left span').forEach(span => {
+                if (span.textContent.includes(':')) {
+                    span.textContent = '08:57';
+                }
+            });
+        }
+
+        function closeAccountDetailsModal() {
+            const modal = document.getElementById('add-money-details-modal');
+            modal.classList.remove('active');
+
+            // Reset status bar time
+            document.querySelectorAll('.status-left span').forEach(span => {
+                if (span.textContent.includes(':')) {
+                    span.textContent = '09:56';
+                }
+            });
+
+            // Hide success banner
+            document.getElementById('share-success-banner').classList.remove('visible');
+        }
+
+        function copyAccountDetail(detailType) {
+            // Track Account Details Copied event
+            window.amplitude.track('Account Details Copied', {
+                details_type: detailType,
+                accountName: addMoneyState.selectedAccountData.name,
+                screenName: 'Add Money - Account Details'
+            });
+
+            console.log('Amplitude event tracked: Account Details Copied', {
+                detailType: detailType
+            });
+
+            // Show copy feedback
+            alert(`${detailType.charAt(0).toUpperCase() + detailType.slice(1)} copied to clipboard!`);
+        }
+
+        function openShareConfirmationBanner() {
+            // Track Share Account Details Clicked event
+            window.amplitude.track('Share Account Details Clicked', {
+                accountName: addMoneyState.selectedAccountData.name,
+                screenName: 'Add Money - Account Details'
+            });
+
+            console.log('Amplitude event tracked: Share Account Details Clicked');
+
+            // Show share confirmation banner
+            const banner = document.getElementById('share-confirmation-banner');
+            banner.classList.add('visible');
+
+            // Track Banner Viewed event
+            window.amplitude.track('Banner Viewed', {
+                bannerName: 'share_confirmation',
+                screenName: 'Add Money - Share Confirmation',
+                source: 'share_account_details_clicked'
+            });
+
+            // Update status bar time
+            document.querySelectorAll('.status-left span').forEach(span => {
+                if (span.textContent.includes(':')) {
+                    span.textContent = '08:59';
+                }
+            });
+        }
+
+        function closeShareConfirmationBanner() {
+            const banner = document.getElementById('share-confirmation-banner');
+            banner.classList.remove('visible');
+
+            // Reset status bar time
+            document.querySelectorAll('.status-left span').forEach(span => {
+                if (span.textContent.includes(':')) {
+                    span.textContent = '08:57';
+                }
+            });
+        }
+
+        function continueAndShare() {
+            // Close confirmation banner and open app sharing banner
+            closeShareConfirmationBanner();
+            
+            setTimeout(() => {
+                const banner = document.getElementById('app-sharing-banner');
+                banner.classList.add('visible');
+
+                // Track Banner Viewed event
+                window.amplitude.track('Banner Viewed', {
+                    bannerName: 'app_sharing',
+                    screenName: 'Add Money - App Sharing',
+                    source: 'continue_and_share'
+                });
+
+                console.log('Amplitude event tracked: Banner Viewed (App Sharing)');
+            }, 300);
+        }
+
+        function closeAppSharingBanner() {
+            const banner = document.getElementById('app-sharing-banner');
+            banner.classList.remove('visible');
+        }
+
+        function selectSharingApp(appName) {
+            closeAppSharingBanner();
+
+            if (appName === 'slack') {
+                // Update Slack message with current account details
+                updateSlackMessage();
+                
+                setTimeout(() => {
+                    const modal = document.getElementById('slack-sharing-modal');
+                    modal.classList.add('active');
+
+                    // Track Page Viewed event
+                    window.amplitude.track('[Amplitude] Page Viewed', {
+                        page_location: window.location.href + '#add-money-slack-sharing',
+                        page_title: 'Add Money - Slack Sharing',
+                        virtual_page: 'add-money-slack-sharing',
+                        page_type: 'virtual'
+                    });
+
+                    // Update status bar time
+                    document.querySelectorAll('.status-left span').forEach(span => {
+                        if (span.textContent.includes(':')) {
+                            span.textContent = '09:20';
+                        }
+                    });
+                }, 300);
+            } else {
+                alert(`${appName.charAt(0).toUpperCase() + appName.slice(1)} sharing - Feature not implemented yet`);
+            }
+        }
+
+        function updateSlackMessage() {
+            const messageContent = document.getElementById('slack-message-content');
+            messageContent.innerHTML = `Here are my account details: Giuliano Giannini<br>
+                Sort code: ${addMoneyState.selectedAccountData.sortCode}<br>
+                Account number: ${addMoneyState.selectedAccountData.accountNumber}`;
+        }
+
+        function closeSlackSharingModal() {
+            const modal = document.getElementById('slack-sharing-modal');
+            modal.classList.remove('active');
+
+            // Return to account details screen
+            setTimeout(() => {
+                // Track Page Viewed event (back to account details)
+                window.amplitude.track('[Amplitude] Page Viewed', {
+                    page_location: window.location.href + '#add-money-account-details-return',
+                    page_title: `Add Money - ${addMoneyState.selectedAccountData.name} Details`,
+                    virtual_page: 'add-money-account-details-return',
+                    page_type: 'virtual'
+                });
+
+                // Reset status bar time
+                document.querySelectorAll('.status-left span').forEach(span => {
+                    if (span.textContent.includes(':')) {
+                        span.textContent = '08:57';
+                    }
+                });
+            }, 300);
+        }
+
+        function shareToSlack() {
+            // Track Account Details Shared event
+            window.amplitude.track('Account Details Shared', {
+                chosen_channel: 'slack',
+                accountName: addMoneyState.selectedAccountData.name,
+                screenName: 'Add Money - Slack Sharing'
+            });
+
+            console.log('Amplitude event tracked: Account Details Shared (Slack)');
+
+            // Close modal and show success
+            closeSlackSharingModal();
+            
+            setTimeout(() => {
+                // Show success banner
+                const successBanner = document.getElementById('share-success-banner');
+                successBanner.classList.add('visible');
+
+                // Hide it after 3 seconds
+                setTimeout(() => {
+                    successBanner.classList.remove('visible');
+                }, 3000);
+            }, 500);
+        }
+
+        function initializeAddMoneyFlow() {
+            // Add Money Banner functionality
+            const addMoneyBannerClose = document.getElementById('add-money-banner-close');
+            if (addMoneyBannerClose) {
+                addMoneyBannerClose.addEventListener('click', closeAddMoneyBanner);
+            }
+
+            // Account choice selection
+            const accountChoices = document.querySelectorAll('.account-choice');
+            accountChoices.forEach(choice => {
+                choice.addEventListener('click', function() {
+                    const accountType = this.getAttribute('data-account');
+                    selectAddMoneyAccount(accountType);
+                });
+            });
+
+            // Account Details Modal functionality
+            const addMoneyClose = document.querySelector('.add-money-close');
+            if (addMoneyClose) {
+                addMoneyClose.addEventListener('click', closeAccountDetailsModal);
+            }
+
+            // Copy buttons functionality
+            const copyButtons = document.querySelectorAll('.copy-button');
+            copyButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const detailType = this.getAttribute('data-detail');
+                    copyAccountDetail(detailType);
+                });
+            });
+
+            // Share Account Details button
+            const shareDetailsButton = document.getElementById('share-details-button');
+            if (shareDetailsButton) {
+                shareDetailsButton.addEventListener('click', openShareConfirmationBanner);
+            }
+
+            // Share Confirmation Banner functionality
+            const shareConfirmationClose = document.getElementById('share-confirmation-close');
+            if (shareConfirmationClose) {
+                shareConfirmationClose.addEventListener('click', closeShareConfirmationBanner);
+            }
+
+            const continueShareButton = document.getElementById('continue-share-button');
+            if (continueShareButton) {
+                continueShareButton.addEventListener('click', continueAndShare);
+            }
+
+            // App Sharing Banner functionality
+            const appSharingClose = document.getElementById('app-sharing-close');
+            if (appSharingClose) {
+                appSharingClose.addEventListener('click', closeAppSharingBanner);
+            }
+
+            const appOptions = document.querySelectorAll('.app-option');
+            appOptions.forEach(option => {
+                option.addEventListener('click', function() {
+                    const appName = this.getAttribute('data-app');
+                    selectSharingApp(appName);
+                });
+            });
+
+            // Slack Sharing Modal functionality
+            const slackSharingClose = document.querySelector('.slack-sharing-close');
+            if (slackSharingClose) {
+                slackSharingClose.addEventListener('click', closeSlackSharingModal);
+            }
+
+            const slackSendButton = document.getElementById('slack-send-button');
+            if (slackSendButton) {
+                slackSendButton.addEventListener('click', shareToSlack);
+            }
+
+            // Click outside banners to close
+            [document.getElementById('add-money-banner'), document.getElementById('share-confirmation-banner'), document.getElementById('app-sharing-banner')].forEach(banner => {
+                if (banner) {
+                    banner.addEventListener('click', function(e) {
+                        if (e.target === banner) {
+                            banner.classList.remove('visible');
+                        }
+                    });
+                }
+            });
+        }
+
+        // Schedule Payment Flow State and Functions
+        let schedulePaymentState = {
+            scheduleType: null, // 'send-person' or 'move-chase'
+            selectedAccount: null,
+            when: 'Now',
+            whenDate: null, // Store actual date when not "Now"
+            repeat: 'Never',
+            selectedDay: 3,
+            selectedMonth: 8, // September (0-indexed)
+            selectedYear: 2025
+        };
+
+        // Simulated scheduled payments list
+        let scheduledPayments = [];
+
+        function openSchedulePaymentScreen() {
+            // Navigate to scheduled payments main page (IMG_8969)
+            navigateToPage('schedule-payment');
+
+            // Update status bar time
+            document.querySelectorAll('.status-left span').forEach(span => {
+                if (span.textContent.includes(':')) {
+                    span.textContent = '10:28';
+                }
+            });
+        }
+
+        function openNewScheduledPaymentScreen() {
+            // Track Add Scheduled Payment Started event
+            window.amplitude.track('Add Scheduled Payment Started', {
+                transactionType: 'scheduled',
+                scheduledPaymentType: 'new payment',
+                screenName: 'Scheduled Payments - New Payment'
+            });
+
+            console.log('Amplitude event tracked: Add Scheduled Payment Started');
+
+            // Navigate to new scheduled payment setup page (IMG_8970)
+            // Note: navigateToPage() already tracks the Page Viewed event
+            navigateToPage('new-scheduled-payment');
+        }
+
+        function handleDirectDebitClick() {
+            // Track Direct Debit Setup Started event
+            window.amplitude.track('Direct Debit Setup Started', {
+                transactionType: 'scheduled',
+                scheduledPaymentType: 'direct debit',
+                screenName: 'Scheduled Payments - Direct Debit'
+            });
+
+            console.log('Amplitude event tracked: Direct Debit Setup Started');
+
+            alert('Direct Debit setup - Feature not implemented yet. Contact your service provider directly.');
+        }
+
+        function selectScheduleOption(optionType) {
+            schedulePaymentState.scheduleType = optionType;
+
+            if (optionType === 'send-person') {
+                alert('Send money to person/business - Feature not implemented yet');
+
+            } else if (optionType === 'move-chase') {
+                console.log('Move money to Chase account selected');
+
+                // Show account selection banner (no Transaction Started yet)
+                openScheduleMoveAccountBanner();
+            }
+        }
+
+        function openScheduleMoveAccountBanner() {
+            // Update banner with current balances
+            document.getElementById('schedule-giuliano-balance').textContent = `£${globalBalances["Giuliano's Account"].toLocaleString('en-GB', {minimumFractionDigits: 2})}`;
+            document.getElementById('schedule-chase-balance').textContent = `£${globalBalances['Chase Saver'].toLocaleString('en-GB', {minimumFractionDigits: 2})}`;
+
+            // Show banner
+            const banner = document.getElementById('schedule-move-banner');
+            banner.classList.add('visible');
+
+            // Track Banner Viewed event
+            window.amplitude.track('Banner Viewed', {
+                bannerName: 'schedule_move_account_selection',
+                screenName: 'Schedule Payment - Move Money Account Selection',
+                source: 'move_to_chase_clicked'
+            });
+
+            console.log('Amplitude event tracked: Banner Viewed (Schedule Move Account Selection)');
+        }
+
+        function closeScheduleMoveAccountBanner() {
+            const banner = document.getElementById('schedule-move-banner');
+            banner.classList.remove('visible');
+        }
+
+        function selectScheduleMoveAccount(accountType) {
+            schedulePaymentState.selectedAccount = accountType;
+
+            // Close banner and go to schedule configuration
+            closeScheduleMoveAccountBanner();
+            
+            setTimeout(() => {
+                // Navigate to schedule config page
+                // Note: navigateToPage() already tracks the Page Viewed event automatically
+                navigateToPage('schedule-config');
+
+                console.log('Navigated to Schedule Config (auto Page Viewed tracked)');
+            }, 300);
+        }
+
+        function proceedToMoveMoneyFromSchedule() {
+            // Check if this is immediate or scheduled
+            const isImmediate = schedulePaymentState.when === 'Now';
+            
+            if (isImmediate) {
+                // Track Transaction Started event for immediate transfer
+                window.amplitude.track('Transaction Started', {
+                    transactionType: 'move', // Immediate = regular move
+                    scheduleWhen: schedulePaymentState.when,
+                    scheduleRepeat: schedulePaymentState.repeat,
+                    targetAccount: schedulePaymentState.selectedAccount,
+                    screenName: 'Schedule Payment - Immediate Transfer'
+                });
+
+                // Override the move money context to indicate it came from scheduling
+                moveMoneyState.isFromSchedule = true;
+                moveMoneyState.isScheduledForFuture = false;
+                
+                // Open Move Money modal manually
+                const modal = document.getElementById('move-money-modal');
+                modal.classList.add('active');
+                resetMoveMoneyForm();
+                
+                // Update status bar time
+                document.querySelectorAll('.status-left span').forEach(span => {
+                    if (span.textContent.includes(':')) {
+                        span.textContent = '11:47';
+                    }
+                });
+
+                // Track Page Viewed event
+                window.amplitude.track('[Amplitude] Page Viewed', {
+                    page_location: window.location.href + '#move-money-enter-details-immediate',
+                    page_title: 'Move Money - Enter Payment Details (Immediate)',
+                    virtual_page: 'move-money-enter-details-immediate',
+                    page_type: 'virtual'
+                });
+                
+                console.log('Amplitude events tracked: Transaction Started (immediate)');
+            
+            } else {
+                // Track Transaction Started event for scheduled payment
+                window.amplitude.track('Transaction Started', {
+                    transactionType: 'scheduled',
+                    scheduleWhen: schedulePaymentState.when,
+                    scheduleRepeat: schedulePaymentState.repeat,
+                    targetAccount: schedulePaymentState.selectedAccount,
+                    screenName: 'Schedule Payment - Future Date'
+                });
+
+                // Override the move money context for scheduled payment
+                moveMoneyState.isFromSchedule = true;
+                moveMoneyState.isScheduledForFuture = true;
+                moveMoneyState.scheduledDate = schedulePaymentState.when;
+                
+                // Open Move Money modal manually
+                const modal = document.getElementById('move-money-modal');
+                modal.classList.add('active');
+                resetMoveMoneyForm();
+                
+                // Update status bar time
+                document.querySelectorAll('.status-left span').forEach(span => {
+                    if (span.textContent.includes(':')) {
+                        span.textContent = '11:47';
+                    }
+                });
+
+                // Track Page Viewed event
+                window.amplitude.track('[Amplitude] Page Viewed', {
+                    page_location: window.location.href + '#move-money-enter-details-scheduled',
+                    page_title: 'Move Money - Enter Payment Details (Scheduled)',
+                    virtual_page: 'move-money-enter-details-scheduled',
+                    page_type: 'virtual'
+                });
+                
+                console.log('Amplitude events tracked: Transaction Started (scheduled for future)');
+            }
+        }
+
+        function openCalendarBanner() {
+            const banner = document.getElementById('calendar-banner');
+            banner.classList.add('visible');
+
+            // Track Banner Viewed event
+            window.amplitude.track('Banner Viewed', {
+                bannerName: 'calendar_date_picker',
+                screenName: 'Schedule Payment - Date Selection',
+                source: 'when_clicked'
+            });
+
+            // Update status bar time
+            document.querySelectorAll('.status-left span').forEach(span => {
+                if (span.textContent.includes(':')) {
+                    span.textContent = '14:11';
+                }
+            });
+        }
+
+        function closeCalendarBanner() {
+            const banner = document.getElementById('calendar-banner');
+            banner.classList.remove('visible');
+
+            // Reset status bar time
+            document.querySelectorAll('.status-left span').forEach(span => {
+                if (span.textContent.includes(':')) {
+                    span.textContent = '10:28';
+                }
+            });
+        }
+
+        function selectCalendarDate(day) {
+            // Remove selected class from all days
+            document.querySelectorAll('.calendar-day').forEach(dayEl => {
+                dayEl.classList.remove('selected');
+            });
+
+            // Add selected class to clicked day
+            const dayElement = document.querySelector(`[data-date="${day}"]`);
+            if (dayElement) {
+                dayElement.classList.add('selected');
+                schedulePaymentState.selectedDay = day;
+
+                // Update display
+                const selectedDateDisplay = document.getElementById('selected-date-display');
+                selectedDateDisplay.textContent = `${day} Sep 2025`;
+            }
+        }
+
+        function setSelectedDate() {
+            const previousWhen = schedulePaymentState.when;
+            schedulePaymentState.when = `${schedulePaymentState.selectedDay} Sep 2025`;
+            schedulePaymentState.whenDate = new Date(2025, 8, schedulePaymentState.selectedDay); // Sep = month 8
+
+            // Track Payment Schedule Changed event
+            window.amplitude.track('Payment Schedule Changed', {
+                transactionType: 'scheduled',
+                scheduleType: 'when',
+                previousValue: previousWhen,
+                newValue: schedulePaymentState.when,
+                screenName: 'Schedule Payment - Date Selection'
+            });
+
+            // Update the schedule config display
+            document.getElementById('schedule-when-value').textContent = schedulePaymentState.when;
+
+            // Close calendar and update status
+            closeCalendarBanner();
+            
+            setTimeout(() => {
+                // Update status bar time back to schedule config
+                document.querySelectorAll('.status-left span').forEach(span => {
+                    if (span.textContent.includes(':')) {
+                        span.textContent = '14:12';
+                    }
+                });
+            }, 300);
+
+            console.log('Amplitude event tracked: Payment Schedule Changed (date selected)', {
+                newDate: schedulePaymentState.when
+            });
+        }
+
+        function initializeSchedulePaymentFlow() {
+            // Scheduled Payments Main Page functionality
+            const scheduledPaymentsBack = document.querySelector('.scheduled-payments-back');
+            if (scheduledPaymentsBack) {
+                scheduledPaymentsBack.addEventListener('click', function() {
+                    navigateToPage('payments');
+                });
+            }
+
+            // Direct Debit section click (entire section is clickable)
+            const directDebitSection = document.querySelector('#schedule-payment-page .schedule-section:first-child > div');
+            if (directDebitSection) {
+                directDebitSection.addEventListener('click', handleDirectDebitClick);
+                directDebitSection.style.cursor = 'pointer';
+            }
+
+            // New Scheduled Payment button
+            const newScheduledPaymentButton = document.getElementById('new-scheduled-payment-button');
+            if (newScheduledPaymentButton) {
+                newScheduledPaymentButton.addEventListener('click', openNewScheduledPaymentScreen);
+            }
+
+            // New Scheduled Payment back button
+            const newScheduledPaymentBack = document.querySelector('.new-scheduled-payment-back');
+            if (newScheduledPaymentBack) {
+                newScheduledPaymentBack.addEventListener('click', function() {
+                    navigateToPage('schedule-payment');
+                });
+            }
+
+            // Schedule option selection (on the "Set up new" page)
+            const scheduleOptions = document.querySelectorAll('.schedule-option');
+            scheduleOptions.forEach(option => {
+                option.addEventListener('click', function() {
+                    const optionType = this.getAttribute('data-schedule');
+                    selectScheduleOption(optionType);
+                });
+            });
+
+            // Schedule Move Money Account Banner functionality
+            const scheduleMoveBannerClose = document.getElementById('schedule-move-banner-close');
+            if (scheduleMoveBannerClose) {
+                scheduleMoveBannerClose.addEventListener('click', closeScheduleMoveAccountBanner);
+            }
+
+            // Account choice selection for schedule
+            const scheduleAccountChoices = document.querySelectorAll('[data-schedule-account]');
+            scheduleAccountChoices.forEach(choice => {
+                choice.addEventListener('click', function() {
+                    const accountType = this.getAttribute('data-schedule-account');
+                    selectScheduleMoveAccount(accountType);
+                });
+            });
+
+            // Schedule configuration functionality
+            const scheduleBack = document.querySelector('.schedule-back');
+            if (scheduleBack) {
+                scheduleBack.addEventListener('click', function() {
+                    navigateToPage('new-scheduled-payment');
+                });
+            }
+
+            // When/Repeat configuration (placeholder for now)
+            const scheduleWhenRow = document.getElementById('schedule-when-row');
+            const scheduleRepeatRow = document.getElementById('schedule-repeat-row');
+            
+            if (scheduleWhenRow) {
+                scheduleWhenRow.addEventListener('click', function() {
+                    openCalendarBanner();
+                });
+            }
+
+            if (scheduleRepeatRow) {
+                scheduleRepeatRow.addEventListener('click', function() {
+                    // Track Payment Schedule Changed event
+                    window.amplitude.track('Payment Schedule Changed', {
+                        transactionType: 'scheduled',
+                        scheduleType: 'repeat',
+                        previousValue: schedulePaymentState.repeat,
+                        newValue: 'Never', // For demo, keeping as Never
+                        screenName: 'Schedule Payment - Repeat Selection'
+                    });
+
+                    alert('Repeat selection - Frequency options not implemented yet. Staying with "Never" for instant transfer.');
+                });
+            }
+
+            // Schedule Next button (the missing functionality!)
+            const scheduleNextButton = document.getElementById('schedule-next-button');
+            if (scheduleNextButton) {
+                scheduleNextButton.addEventListener('click', function() {
+                    proceedToMoveMoneyFromSchedule();
+                });
+            }
+
+            // Click outside schedule banner to close
+            const scheduleBanner = document.getElementById('schedule-move-banner');
+            if (scheduleBanner) {
+                scheduleBanner.addEventListener('click', function(e) {
+                    if (e.target === scheduleBanner) {
+                        closeScheduleMoveAccountBanner();
+                    }
+                });
+            }
+
+            // Calendar functionality
+            const calendarClose = document.getElementById('calendar-close');
+            if (calendarClose) {
+                calendarClose.addEventListener('click', closeCalendarBanner);
+            }
+
+            const calendarSetButton = document.getElementById('calendar-set-button');
+            if (calendarSetButton) {
+                calendarSetButton.addEventListener('click', setSelectedDate);
+            }
+
+            // Calendar date selection
+            const calendarDays = document.querySelectorAll('.calendar-day[data-date]');
+            calendarDays.forEach(day => {
+                day.addEventListener('click', function() {
+                    const dayNumber = this.getAttribute('data-date');
+                    if (dayNumber) {
+                        selectCalendarDate(parseInt(dayNumber));
+                    }
+                });
+            });
+
+            // Click outside calendar banner to close
+            const calendarBanner = document.getElementById('calendar-banner');
+            if (calendarBanner) {
+                calendarBanner.addEventListener('click', function(e) {
+                    if (e.target === calendarBanner) {
+                        closeCalendarBanner();
+                    }
+                });
             }
         }
     </script>
