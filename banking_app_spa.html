@@ -2061,6 +2061,179 @@
             font-weight: 500;
         }
 
+        /* Savings Account Page Styles */
+        .savings-header {
+            padding: 40px 20px 20px 20px;
+        }
+
+        .savings-account-icon {
+            width: 80px;
+            height: 80px;
+            border-radius: 20px;
+            background: linear-gradient(135deg, #1e40af 0%, #3730a3 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            color: white;
+            margin: 0 auto 20px auto;
+        }
+
+        .savings-account-title {
+            font-size: 24px;
+            font-weight: 600;
+            color: #1f2937;
+            text-align: center;
+            margin-bottom: 8px;
+        }
+
+        .savings-account-number {
+            font-size: 16px;
+            color: #1e3a8a;
+            text-align: center;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .savings-balance-large {
+            font-size: 48px;
+            font-weight: 300;
+            color: #1f2937;
+            text-align: center;
+            margin: 40px 0;
+        }
+
+        .savings-detail-section {
+            background: white;
+            border-radius: 16px;
+            padding: 20px;
+            margin: 0 20px 20px 20px;
+        }
+
+        .savings-detail-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 0;
+            border-bottom: 1px solid #f3f4f6;
+        }
+
+        .savings-detail-row:last-child {
+            border-bottom: none;
+        }
+
+        .savings-detail-label {
+            font-size: 16px;
+            color: #1f2937;
+            font-weight: 400;
+        }
+
+        .savings-detail-value {
+            font-size: 16px;
+            color: #1f2937;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .goal-progress {
+            width: 100%;
+            height: 8px;
+            background: #e5e7eb;
+            border-radius: 4px;
+            margin: 16px 0;
+            overflow: hidden;
+        }
+
+        .goal-progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #1e40af 0%, #3b82f6 100%);
+            width: 58%;
+            border-radius: 4px;
+        }
+
+        .goal-text {
+            font-size: 14px;
+            color: #6b7280;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .savings-actions {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            padding: 0 20px 20px 20px;
+        }
+
+        .savings-action-button {
+            background: #dbeafe;
+            color: #1e3a8a;
+            border: none;
+            border-radius: 20px;
+            padding: 16px 20px;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        .savings-stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            padding: 0 20px 20px 20px;
+        }
+
+        .savings-stat-card {
+            background: white;
+            border-radius: 16px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .stat-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #60a5fa 0%, #3b82f6 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: white;
+            margin: 0 auto 12px auto;
+        }
+
+        .stat-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #1f2937;
+            margin-bottom: 8px;
+        }
+
+        .stat-subtitle {
+            font-size: 12px;
+            color: #6b7280;
+            margin-bottom: 12px;
+        }
+
+        .stat-value {
+            font-size: 24px;
+            font-weight: 600;
+            color: #16a34a;
+        }
+
+        .stat-period {
+            font-size: 12px;
+            color: #6b7280;
+            margin-top: 4px;
+        }
+
         /* Schedule Payment Flow Styles */
         .schedule-content {
             padding: 20px;
@@ -2416,7 +2589,7 @@
     <!-- Status Bar -->
     <div class="status-bar">
         <div class="status-left">
-            <span>15:01</span>
+            <span>10:14</span>
             <span>✈️</span>
         </div>
         <div class="status-right">
@@ -2434,7 +2607,7 @@
                 <div class="profile-icon">
                     <span>👤</span>
                 </div>
-                <div class="greeting">Good afternoon, Giuliano</div>
+                <div class="greeting">Good morning, Giuliano</div>
             </div>
 
                     <div class="tabs">
@@ -2515,7 +2688,7 @@
                 <div class="accounts-header">
                     <div>
                         <div class="accounts-title">Savings</div>
-                        <div class="balance" id="savings-balance">Balance: £31,523.31</div>
+                        <div class="balance" id="savings-balance">Balance: £1,000,000.00</div>
                     </div>
                     <button class="add-button">Add +</button>
                 </div>
@@ -2529,8 +2702,8 @@
                         </div>
                     </div>
                     <div style="display: flex; align-items: center;">
-                        <span class="account-balance" id="chase-saver-balance">£31,523.31</span>
-                        <span class="more-options icon-more"></span>
+                        <span class="account-balance" id="chase-saver-balance">£1,000,000.00</span>
+                        <span class="more-options icon-more" id="chase-saver-menu" style="cursor: pointer;"></span>
                     </div>
                 </div>
             </div>
@@ -2886,6 +3059,108 @@
         </div>
     </div>
 
+    <!-- Savings Account Details Page -->
+    <div id="savings-page" class="page">
+        <!-- Header -->
+        <div class="modal-header">
+            <button class="modal-back savings-back">←</button>
+            <h2 class="modal-title">Savings</h2>
+            <span class="more-options icon-more" id="savings-page-menu" style="cursor: pointer; position: absolute; right: 20px;"></span>
+        </div>
+
+        <!-- Main Content -->
+        <div class="savings-header">
+            <div class="savings-account-icon">🐷</div>
+            <h2 class="savings-account-title">Chase Saver</h2>
+            <div class="savings-account-number">
+                <span>60-84-07 • 72438567</span>
+                <span style="color: #1e3a8a;">↗</span>
+            </div>
+            <div class="savings-balance-large" id="savings-page-balance">£1,000,000.00</div>
+        </div>
+
+        <!-- Interest Rate Section -->
+        <div class="savings-detail-section">
+            <div class="savings-detail-row">
+                <span class="savings-detail-label">Interest rate</span>
+                <div class="savings-detail-value">
+                    <span>4.75% AER • Boosted</span>
+                    <span style="color: #1e3a8a;">›</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Goal Section -->
+        <div class="savings-detail-section">
+            <div class="savings-detail-row" style="border: none;">
+                <span class="savings-detail-label">Goal</span>
+                <div class="savings-detail-value">
+                    <span style="color: #1e3a8a;">Edit</span>
+                </div>
+            </div>
+            <div class="goal-progress">
+                <div class="goal-progress-fill" style="width: 95%;"></div>
+            </div>
+            <div class="goal-text">You're only £50,000.00 away from your £1,050,000.00 goal</div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="savings-actions">
+            <button class="savings-action-button" id="pay-in-button">Pay in</button>
+            <button class="savings-action-button" id="hide-account-button">Hide account</button>
+        </div>
+
+        <!-- Statistics -->
+        <div class="savings-stats">
+            <div class="savings-stat-card">
+                <div class="stat-icon">%</div>
+                <div class="stat-title">Interest earned</div>
+                <div class="stat-subtitle">Paid this month</div>
+                <div class="stat-value">+ £4,750.00</div>
+            </div>
+
+            <div class="savings-stat-card">
+                <div class="stat-icon">📊</div>
+                <div class="stat-title">Your balance</div>
+                <div class="stat-subtitle">Aug - Sep 25</div>
+                <div style="height: 40px; background: linear-gradient(45deg, #dbeafe 0%, #bfdbfe 50%, #3b82f6 100%); border-radius: 4px; margin-top: 8px; position: relative;">
+                    <div style="position: absolute; bottom: 4px; right: 4px; font-size: 12px; color: #1f2937; font-weight: 500;">£1M</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Pay In From Banner -->
+    <div id="pay-in-banner" class="bottom-banner">
+        <div class="banner-header">
+            <div class="banner-handle"></div>
+            <h2 class="banner-title">Pay in from</h2>
+            <button class="banner-close" id="pay-in-banner-close">×</button>
+        </div>
+        <div class="banner-content">
+            <div class="schedule-option pay-in-option" data-pay-in="another-bank">
+                <div class="schedule-option-info">
+                    <div class="schedule-option-icon" style="background: linear-gradient(135deg, #60a5fa 0%, #3b82f6 100%);">🏛️</div>
+                    <div class="schedule-option-details">
+                        <div class="schedule-option-title">Another bank account</div>
+                    </div>
+                </div>
+                <div class="schedule-arrow">›</div>
+            </div>
+
+            <div class="schedule-option pay-in-option" data-pay-in="giuliano-account">
+                <div class="schedule-option-info">
+                    <div class="account-icon-modal giuliano-account">👁️</div>
+                    <div class="schedule-option-details">
+                        <div class="schedule-option-title">Giuliano's Account</div>
+                        <div style="font-size: 14px; color: #6b7280;" id="pay-in-giuliano-balance">£0.00</div>
+                    </div>
+                </div>
+                <div class="schedule-arrow">›</div>
+            </div>
+        </div>
+    </div>
+
     <!-- Scheduled Payments Main Page -->
     <div id="schedule-payment-page" class="page">
         <!-- Header -->
@@ -3036,7 +3311,7 @@
                         <p>4.75% AER • Boosted</p>
                     </div>
                 </div>
-                <div class="account-choice-balance" id="schedule-chase-balance">£31,523.31</div>
+                <div class="account-choice-balance" id="schedule-chase-balance">£1,000,000.00</div>
             </div>
         </div>
     </div>
@@ -3643,6 +3918,58 @@
         </div>
     </div>
 
+    <!-- Account Actions Banner -->
+    <div id="account-actions-banner" class="bottom-banner">
+        <div class="banner-header">
+            <div class="banner-handle"></div>
+            <h2 class="banner-title">Chase Saver</h2>
+            <button class="banner-close" id="account-actions-close">×</button>
+        </div>
+        <div class="banner-content">
+            <div style="text-align: center; color: #6b7280; margin-bottom: 20px;">60-84-07 • 72438567</div>
+            
+            <div class="schedule-option account-action" data-action="get-details">
+                <div class="schedule-option-info">
+                    <div class="schedule-option-icon" style="background: linear-gradient(135deg, #60a5fa 0%, #3b82f6 100%);">ℹ️</div>
+                    <div class="schedule-option-details">
+                        <div class="schedule-option-title">Get account details</div>
+                    </div>
+                </div>
+                <div class="schedule-arrow">›</div>
+            </div>
+
+            <div class="schedule-option account-action" data-action="go-to-account">
+                <div class="schedule-option-info">
+                    <div class="schedule-option-icon" style="background: linear-gradient(135deg, #60a5fa 0%, #3b82f6 100%);">📄</div>
+                    <div class="schedule-option-details">
+                        <div class="schedule-option-title">Go to account</div>
+                    </div>
+                </div>
+                <div class="schedule-arrow">›</div>
+            </div>
+
+            <div class="schedule-option account-action" data-action="pay-in">
+                <div class="schedule-option-info">
+                    <div class="schedule-option-icon" style="background: linear-gradient(135deg, #60a5fa 0%, #3b82f6 100%);">💰</div>
+                    <div class="schedule-option-details">
+                        <div class="schedule-option-title">Pay in</div>
+                    </div>
+                </div>
+                <div class="schedule-arrow">›</div>
+            </div>
+
+            <div class="schedule-option account-action" data-action="hide-account">
+                <div class="schedule-option-info">
+                    <div class="schedule-option-icon" style="background: linear-gradient(135deg, #6b7280 0%, #4b5563 100%);">👁️‍🗨️</div>
+                    <div class="schedule-option-details">
+                        <div class="schedule-option-title">Hide account</div>
+                    </div>
+                </div>
+                <div class="schedule-arrow">›</div>
+            </div>
+        </div>
+    </div>
+
     <!-- Add Money Account Selection Banner -->
     <div id="add-money-banner" class="bottom-banner">
         <div class="banner-header">
@@ -3669,7 +3996,7 @@
                         <p>4.75% AER • Boosted</p>
                     </div>
                 </div>
-                <div class="account-choice-balance" id="add-chase-balance">£31,523.31</div>
+                <div class="account-choice-balance" id="add-chase-balance">£1,000,000.00</div>
             </div>
         </div>
     </div>
@@ -4126,9 +4453,15 @@
 
             // Schedule Payment Flow Functionality
             initializeSchedulePaymentFlow();
+
+            // Account Actions Menu Functionality
+            initializeAccountActionsMenu();
+
+            // Savings Page Functionality
+            initializeSavingsPage();
         });
 
-        // Global Account Balances (persistent across the app)
+        // Global Account Balances (persistent across the app) 
         let globalBalances = {
             'Chase Saver': 1000000.00,
             "Giuliano's Account": 0.00
@@ -4149,7 +4482,8 @@
             amount: 0,
             isFromSchedule: false,
             isScheduledForFuture: false,
-            scheduledDate: null
+            scheduledDate: null,
+            isFromPayIn: false
         };
 
         function openMoveMoneyModal() {
@@ -4190,24 +4524,28 @@
             // Reset status bar time
             document.querySelectorAll('.status-left span').forEach(span => {
                 if (span.textContent.includes(':')) {
-                    span.textContent = '15:01';
+                    span.textContent = '10:14';
                 }
             });
         }
 
         function resetMoveMoneyForm() {
-            // Reset state with current global balances
+            // Reset state with current global balances (unless coming from Pay In)
             moveMoneyState.amount = 0;
-            moveMoneyState.fromAccount = {
-                name: 'Chase Saver',
-                balance: globalBalances['Chase Saver'],
-                icon: 'chase-saver'
-            };
-            moveMoneyState.toAccount = {
-                name: "Giuliano's Account",
-                balance: globalBalances["Giuliano's Account"],
-                icon: 'giuliano-account'
-            };
+            
+            if (!moveMoneyState.isFromPayIn) {
+                moveMoneyState.fromAccount = {
+                    name: 'Chase Saver',
+                    balance: globalBalances['Chase Saver'],
+                    icon: 'chase-saver'
+                };
+                moveMoneyState.toAccount = {
+                    name: "Giuliano's Account",
+                    balance: globalBalances["Giuliano's Account"],
+                    icon: 'giuliano-account'
+                };
+            }
+            // If isFromPayIn is true, accounts are already set in selectPayInOption
 
             // Reset to step 1
             showModalStep('payment-details-step');
@@ -4445,7 +4783,7 @@
             // Reset status bar time to original
             document.querySelectorAll('.status-left span').forEach(span => {
                 if (span.textContent.includes(':')) {
-                    span.textContent = '15:01';
+                    span.textContent = '10:14';
                 }
             });
             
@@ -4457,10 +4795,11 @@
                 navigateToPage('payments');
             }
 
-            // Reset scheduling context
+            // Reset scheduling and pay in context
             moveMoneyState.isFromSchedule = false;
             moveMoneyState.isScheduledForFuture = false;
             moveMoneyState.scheduledDate = null;
+            moveMoneyState.isFromPayIn = false;
         }
 
         function updateScheduledPaymentsList() {
@@ -4754,7 +5093,7 @@
             // Reset status bar time to original
             document.querySelectorAll('.status-left span').forEach(span => {
                 if (span.textContent.includes(':')) {
-                    span.textContent = '15:01';
+                    span.textContent = '10:14';
                 }
             });
         }
@@ -5888,7 +6227,7 @@
             // Reset status bar time
             document.querySelectorAll('.status-left span').forEach(span => {
                 if (span.textContent.includes(':')) {
-                    span.textContent = '15:01';
+                    span.textContent = '10:14';
                 }
             });
         }
@@ -5968,7 +6307,7 @@
             // Reset status bar time
             document.querySelectorAll('.status-left span').forEach(span => {
                 if (span.textContent.includes(':')) {
-                    span.textContent = '15:01';
+                    span.textContent = '10:14';
                 }
             });
 
@@ -6630,6 +6969,347 @@
                 calendarBanner.addEventListener('click', function(e) {
                     if (e.target === calendarBanner) {
                         closeCalendarBanner();
+                    }
+                });
+            }
+        }
+
+        // Account Actions Menu Functions
+        function openAccountActionsMenu() {
+            // Track Banner Viewed event for account actions
+            window.amplitude.track('Banner Viewed', {
+                bannerName: 'account_actions',
+                accountName: 'Chase Saver',
+                screenName: 'Save & Invest - Account Actions',
+                source: 'three_dots_menu'
+            });
+
+            console.log('Amplitude event tracked: Banner Viewed (Account Actions)');
+
+            // Show the account actions banner
+            const banner = document.getElementById('account-actions-banner');
+            banner.classList.add('visible');
+
+            // Update status bar time
+            document.querySelectorAll('.status-left span').forEach(span => {
+                if (span.textContent.includes(':')) {
+                    span.textContent = '10:14';
+                }
+            });
+        }
+
+        function closeAccountActionsMenu() {
+            const banner = document.getElementById('account-actions-banner');
+            banner.classList.remove('visible');
+
+            // Reset status bar time
+            document.querySelectorAll('.status-left span').forEach(span => {
+                if (span.textContent.includes(':')) {
+                    span.textContent = '10:14';
+                }
+            });
+        }
+
+        function handleAccountAction(actionType) {
+            if (actionType === 'get-details') {
+                // Track account action click
+                window.amplitude.track('Account Action Selected', {
+                    accountName: 'Chase Saver',
+                    actionType: 'get_account_details',
+                    screenName: 'Save & Invest - Account Actions'
+                });
+
+                console.log('Amplitude event tracked: Account Action Selected (Get Details)');
+
+                // Close the actions banner
+                closeAccountActionsMenu();
+
+                // Set up Add Money state for Chase Saver
+                setTimeout(() => {
+                    addMoneyState.selectedAccount = 'chase-saver';
+                    addMoneyState.selectedAccountData = {
+                        name: 'Chase Saver',
+                        balance: globalBalances['Chase Saver'],
+                        icon: 'savings',
+                        sortCode: '60-84-07',
+                        accountNumber: '72438567'
+                    };
+
+                    // Open the existing account details modal
+                    openAccountDetailsModal();
+                }, 300);
+
+            } else if (actionType === 'go-to-account') {
+                window.amplitude.track('Account Action Selected', {
+                    accountName: 'Chase Saver',
+                    actionType: 'go_to_account',
+                    screenName: 'Save & Invest - Account Actions'
+                });
+
+                console.log('Amplitude event tracked: Account Action Selected (Go to Account)');
+
+                // Close the actions banner and navigate to savings page
+                closeAccountActionsMenu();
+                
+                setTimeout(() => {
+                    navigateToPage('savings');
+                    
+                    // Update balance on savings page
+                    const savingsPageBalance = document.getElementById('savings-page-balance');
+                    if (savingsPageBalance) {
+                        savingsPageBalance.textContent = `£${globalBalances['Chase Saver'].toLocaleString('en-GB', {minimumFractionDigits: 2})}`;
+                    }
+
+                    // Update status bar time
+                    document.querySelectorAll('.status-left span').forEach(span => {
+                        if (span.textContent.includes(':')) {
+                            span.textContent = '11:01';
+                        }
+                    });
+                }, 300);
+
+            } else if (actionType === 'pay-in') {
+                window.amplitude.track('Account Action Selected', {
+                    accountName: 'Chase Saver',
+                    actionType: 'pay_in',
+                    screenName: 'Save & Invest - Account Actions'
+                });
+
+                alert('Pay in - Feature not implemented yet');
+                closeAccountActionsMenu();
+
+            } else if (actionType === 'hide-account') {
+                window.amplitude.track('Account Action Selected', {
+                    accountName: 'Chase Saver',
+                    actionType: 'hide_account',
+                    screenName: 'Save & Invest - Account Actions'
+                });
+
+                alert('Hide account - Feature not implemented yet');
+                closeAccountActionsMenu();
+            }
+        }
+
+        function initializeAccountActionsMenu() {
+            // Chase Saver 3-dot menu click
+            const chaseSaverMenu = document.getElementById('chase-saver-menu');
+            if (chaseSaverMenu) {
+                chaseSaverMenu.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    openAccountActionsMenu();
+                });
+            }
+
+            // Account actions banner close
+            const accountActionsClose = document.getElementById('account-actions-close');
+            if (accountActionsClose) {
+                accountActionsClose.addEventListener('click', closeAccountActionsMenu);
+            }
+
+            // Account action selection
+            const accountActions = document.querySelectorAll('.account-action');
+            accountActions.forEach(action => {
+                action.addEventListener('click', function() {
+                    const actionType = this.getAttribute('data-action');
+                    handleAccountAction(actionType);
+                });
+            });
+
+            // Click outside banner to close
+            const accountActionsBanner = document.getElementById('account-actions-banner');
+            if (accountActionsBanner) {
+                accountActionsBanner.addEventListener('click', function(e) {
+                    if (e.target === accountActionsBanner) {
+                        closeAccountActionsMenu();
+                    }
+                });
+            }
+        }
+
+        // Savings Page Functions
+        function openPayInBanner() {
+            // Track Pay In Clicked event
+            window.amplitude.track('Pay In Clicked', {
+                accountName: 'Chase Saver',
+                screenName: 'Savings Account',
+                source: 'pay_in_button'
+            });
+
+            console.log('Amplitude event tracked: Pay In Clicked');
+
+            // Update Giuliano's Account balance in banner
+            const payInGiulianoBalance = document.getElementById('pay-in-giuliano-balance');
+            if (payInGiulianoBalance) {
+                payInGiulianoBalance.textContent = `£${globalBalances["Giuliano's Account"].toLocaleString('en-GB', {minimumFractionDigits: 2})}`;
+            }
+
+            // Show pay in banner
+            const banner = document.getElementById('pay-in-banner');
+            banner.classList.add('visible');
+
+            // Track Banner Viewed event
+            window.amplitude.track('Banner Viewed', {
+                bannerName: 'pay_in_from',
+                screenName: 'Savings - Pay In From',
+                source: 'pay_in_clicked'
+            });
+
+            console.log('Amplitude event tracked: Banner Viewed (Pay In From)');
+
+            // Update status bar time
+            document.querySelectorAll('.status-left span').forEach(span => {
+                if (span.textContent.includes(':')) {
+                    span.textContent = '11:16';
+                }
+            });
+        }
+
+        function closePayInBanner() {
+            const banner = document.getElementById('pay-in-banner');
+            banner.classList.remove('visible');
+
+            // Reset status bar time
+            document.querySelectorAll('.status-left span').forEach(span => {
+                if (span.textContent.includes(':')) {
+                    span.textContent = '11:01';
+                }
+            });
+        }
+
+        function selectPayInOption(optionType) {
+            if (optionType === 'another-bank') {
+                // Track pay in option selected
+                window.amplitude.track('Pay In Source Selected', {
+                    accountName: 'Chase Saver',
+                    payInSource: 'another_bank',
+                    screenName: 'Savings - Pay In From'
+                });
+
+                console.log('Amplitude event tracked: Pay In Source Selected (Another Bank)');
+
+                // Close banner and open Chase Saver account details (for sharing)
+                closePayInBanner();
+                
+                setTimeout(() => {
+                    addMoneyState.selectedAccount = 'chase-saver';
+                    addMoneyState.selectedAccountData = {
+                        name: 'Chase Saver',
+                        balance: globalBalances['Chase Saver'],
+                        icon: 'savings',
+                        sortCode: '60-84-07',
+                        accountNumber: '72438567'
+                    };
+
+                    // Open the existing account details modal
+                    openAccountDetailsModal();
+                }, 300);
+
+            } else if (optionType === 'giuliano-account') {
+                // Track pay in option selected
+                window.amplitude.track('Pay In Source Selected', {
+                    accountName: 'Chase Saver',
+                    payInSource: 'giuliano_account',
+                    screenName: 'Savings - Pay In From'
+                });
+
+                console.log('Amplitude event tracked: Pay In Source Selected (Giuliano Account)');
+
+                // Close banner and open Move Money flow (reverse direction: Giuliano → Chase Saver)
+                closePayInBanner();
+                
+                setTimeout(() => {
+                    // Set up Move Money state for pay in (Giuliano's Account → Chase Saver)
+                    moveMoneyState.fromAccount = {
+                        name: "Giuliano's Account",
+                        balance: globalBalances["Giuliano's Account"],
+                        icon: 'giuliano-account'
+                    };
+                    moveMoneyState.toAccount = {
+                        name: 'Chase Saver',
+                        balance: globalBalances['Chase Saver'],
+                        icon: 'chase-saver'
+                    };
+                    moveMoneyState.amount = 0;
+                    moveMoneyState.isFromPayIn = true;
+
+                    // Open Move Money modal
+                    const modal = document.getElementById('move-money-modal');
+                    modal.classList.add('active');
+                    resetMoveMoneyForm();
+                    updateMoveMoneyDisplay();
+
+                    // Update status bar time
+                    document.querySelectorAll('.status-left span').forEach(span => {
+                        if (span.textContent.includes(':')) {
+                            span.textContent = '11:47';
+                        }
+                    });
+
+                    // Track virtual page view
+                    window.amplitude.track('[Amplitude] Page Viewed', {
+                        page_location: window.location.href + '#move-money-pay-in',
+                        page_title: 'Move Money - Pay In to Chase Saver',
+                        virtual_page: 'move-money-pay-in',
+                        page_type: 'virtual'
+                    });
+                }, 300);
+            }
+        }
+
+        function initializeSavingsPage() {
+            // Savings page back button
+            const savingsBack = document.querySelector('.savings-back');
+            if (savingsBack) {
+                savingsBack.addEventListener('click', function() {
+                    navigateToPage('home');
+                    // Switch to Save & Invest tab
+                    switchTabContent('save-invest');
+                    document.querySelector('[data-tab="save-invest"]').classList.add('active');
+                    document.querySelector('[data-tab="spend"]').classList.remove('active');
+                });
+            }
+
+            // Pay in button functionality
+            const payInButton = document.getElementById('pay-in-button');
+            if (payInButton) {
+                payInButton.addEventListener('click', openPayInBanner);
+            }
+
+            // Hide account button functionality
+            const hideAccountButton = document.getElementById('hide-account-button');
+            if (hideAccountButton) {
+                hideAccountButton.addEventListener('click', function() {
+                    window.amplitude.track('Hide Account Clicked', {
+                        accountName: 'Chase Saver',
+                        screenName: 'Savings Account'
+                    });
+
+                    alert('Hide account - Feature not implemented yet');
+                });
+            }
+
+            // Pay In From Banner functionality
+            const payInBannerClose = document.getElementById('pay-in-banner-close');
+            if (payInBannerClose) {
+                payInBannerClose.addEventListener('click', closePayInBanner);
+            }
+
+            // Pay in option selection
+            const payInOptions = document.querySelectorAll('.pay-in-option');
+            payInOptions.forEach(option => {
+                option.addEventListener('click', function() {
+                    const optionType = this.getAttribute('data-pay-in');
+                    selectPayInOption(optionType);
+                });
+            });
+
+            // Click outside pay in banner to close
+            const payInBanner = document.getElementById('pay-in-banner');
+            if (payInBanner) {
+                payInBanner.addEventListener('click', function(e) {
+                    if (e.target === payInBanner) {
+                        closePayInBanner();
                     }
                 });
             }
