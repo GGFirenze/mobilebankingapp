@@ -138,7 +138,9 @@
 
         /* Main content */
         .main-content {
-            padding: 0 20px;
+            padding: 0 20px 140px 20px; /* Increased bottom padding for navigation space */
+            overflow-y: auto;
+            max-height: calc(100vh - 120px); /* Account for header and bottom nav */
         }
 
         /* Home page styles */
@@ -2234,6 +2236,428 @@
             margin-top: 4px;
         }
 
+        /* Insights Section Styles */
+        .insights-section {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            padding: 0 20px 20px 20px;
+        }
+
+        .insight-widget {
+            background: white;
+            border-radius: 16px;
+            padding: 20px;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+
+        .insight-widget:hover {
+            transform: translateY(-2px);
+        }
+
+        .insight-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+
+        .insight-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #1f2937;
+        }
+
+        .insight-arrow {
+            font-size: 18px;
+            color: #6b7280;
+        }
+
+        /* Spotlight Widget Styles */
+        .spotlight-widget .insight-content {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .spent-amount {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .spent-label {
+            font-size: 14px;
+            color: #6b7280;
+        }
+
+        .spent-value {
+            font-size: 32px;
+            font-weight: 300;
+            color: #1f2937;
+        }
+
+        .spending-comparison {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .comparison-icon {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: #f3f4f6;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            color: #6b7280;
+        }
+
+        .comparison-text {
+            font-size: 14px;
+            color: #6b7280;
+        }
+
+        .spending-chart {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-top: 8px;
+        }
+
+        .chart-period {
+            font-size: 12px;
+            color: #6b7280;
+        }
+
+        .chart-bar-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            position: relative;
+        }
+
+        .chart-bar {
+            height: 8px;
+            border-radius: 4px;
+            min-width: 2px;
+        }
+
+        .chart-amount {
+            font-size: 12px;
+            color: #1f2937;
+            font-weight: 500;
+        }
+
+        /* Rewards Widget Styles */
+        .rewards-widget .insight-content {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .rewards-illustration {
+            flex-shrink: 0;
+        }
+
+        .rewards-image {
+            font-size: 48px;
+        }
+
+        .rewards-info {
+            flex: 1;
+        }
+
+        .rewards-balance-label {
+            font-size: 14px;
+            color: #6b7280;
+            margin-bottom: 4px;
+        }
+
+        .rewards-balance {
+            font-size: 24px;
+            font-weight: 600;
+            color: #1f2937;
+            margin-bottom: 4px;
+        }
+
+        .rewards-pending {
+            font-size: 12px;
+            color: #6b7280;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .rewards-cta {
+            background: #dbeafe;
+            border-radius: 12px;
+            padding: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 16px;
+            cursor: pointer;
+        }
+
+        .rewards-cta-icon {
+            color: #1e40af;
+            font-size: 16px;
+        }
+
+        .rewards-cta-text {
+            flex: 1;
+            font-size: 12px;
+            color: #1e40af;
+            font-weight: 500;
+        }
+
+        .rewards-cta-arrow {
+            color: #1e40af;
+            font-size: 14px;
+        }
+
+        /* Spotlight Page Styles */
+        .spotlight-main-content, .spotlight-details-content {
+            padding: 20px 20px 120px 20px; /* Added larger bottom padding for navigation */
+            background: #f9fafb;
+            min-height: calc(100vh - 60px);
+            overflow-y: auto;
+            max-height: calc(100vh - 60px);
+        }
+
+        .spotlight-amount-section {
+            text-align: center;
+            margin: 40px 0;
+        }
+
+        .spotlight-amount {
+            font-size: 48px;
+            font-weight: 300;
+            color: #1f2937;
+            margin-bottom: 8px;
+        }
+
+        .spotlight-amount-label {
+            font-size: 16px;
+            color: #6b7280;
+        }
+
+        .spotlight-chart-section {
+            background: white;
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .chart-container {
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            gap: 40px;
+            height: 240px;
+        }
+
+        .chart-month {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .month-label {
+            font-size: 14px;
+            color: #6b7280;
+            font-weight: 500;
+        }
+
+        .chart-bar-large {
+            width: 60px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            height: 200px;
+        }
+
+        .bar-segment {
+            width: 100%;
+            border-radius: 4px;
+        }
+
+        .month-amount {
+            font-size: 14px;
+            color: #1f2937;
+            font-weight: 500;
+        }
+
+        .spotlight-promo {
+            background: #dbeafe;
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 20px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .spotlight-promo .promo-close {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background: none;
+            border: none;
+            font-size: 18px;
+            color: #6b7280;
+            cursor: pointer;
+        }
+
+        .spotlight-promo .promo-content {
+            flex: 1;
+        }
+
+        .spotlight-promo .promo-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #1e40af;
+            margin-bottom: 8px;
+        }
+
+        .spotlight-promo .promo-description {
+            font-size: 14px;
+            color: #1e40af;
+            line-height: 1.4;
+            margin-bottom: 16px;
+        }
+
+        .spotlight-check-button {
+            background: #1e40af;
+            color: white;
+            border: none;
+            border-radius: 20px;
+            padding: 8px 16px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .promo-chart {
+            font-size: 32px;
+        }
+
+        .spotlight-summary {
+            background: white;
+            border-radius: 16px;
+            padding: 20px;
+        }
+
+        .summary-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .summary-title {
+            font-size: 16px;
+            color: #1f2937;
+            font-weight: 500;
+        }
+
+        .summary-amount {
+            font-size: 16px;
+            color: #1f2937;
+            font-weight: 600;
+        }
+
+        /* Spotlight Details Page Styles */
+        .spotlight-section {
+            background: white;
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid #f3f4f6;
+        }
+
+        .section-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #1f2937;
+        }
+
+        .section-amount {
+            font-size: 16px;
+            font-weight: 600;
+            color: #1f2937;
+        }
+
+        .spotlight-category {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 16px 0;
+            cursor: pointer;
+            border-bottom: 1px solid #f3f4f6;
+        }
+
+        .spotlight-category:last-child {
+            border-bottom: none;
+        }
+
+        .category-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            background: #f3f4f6;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            flex-shrink: 0;
+        }
+
+        .category-details {
+            flex: 1;
+        }
+
+        .category-name {
+            font-size: 16px;
+            color: #1f2937;
+            font-weight: 500;
+            margin-bottom: 2px;
+        }
+
+        .category-description {
+            font-size: 14px;
+            color: #6b7280;
+        }
+
+        .category-amount {
+            font-size: 16px;
+            font-weight: 500;
+            color: #1f2937;
+            margin-right: 8px;
+        }
+
+        .category-arrow {
+            color: #6b7280;
+            font-size: 18px;
+        }
+
         /* Schedule Payment Flow Styles */
         .schedule-content {
             padding: 20px;
@@ -2679,6 +3103,62 @@
                     <span class="activity-arrow icon-chevron"></span>
                 </div>
             </div>
+
+            <!-- Spotlight and Rewards Section -->
+            <div class="insights-section">
+                <!-- Spotlight Widget -->
+                <div class="insight-widget spotlight-widget" id="spotlight-widget">
+                    <div class="insight-header">
+                        <div class="insight-title">Spotlight on September</div>
+                        <span class="insight-arrow">›</span>
+                    </div>
+                    <div class="insight-content">
+                        <div class="spent-amount">
+                            <div class="spent-label">Spent so far this month</div>
+                            <div class="spent-value">£2,611</div>
+                        </div>
+                        <div class="spending-comparison">
+                            <div class="comparison-icon">↗</div>
+                            <span class="comparison-text">£2,611 more than this time last month</span>
+                        </div>
+                        <div class="spending-chart">
+                            <div class="chart-period">1 Sep - 10 Sep</div>
+                            <div class="chart-bar-container">
+                                <div class="chart-bar" style="width: 100%; background: linear-gradient(90deg, #fbbf24 0%, #f59e0b 100%);"></div>
+                                <span class="chart-amount">£2,611</span>
+                            </div>
+                            <div class="chart-period">1 Aug - 10 Aug</div>
+                            <div class="chart-bar-container">
+                                <div class="chart-bar" style="width: 0.08%; background: #e5e7eb;"></div>
+                                <span class="chart-amount">£0</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Rewards Widget -->
+                <div class="insight-widget rewards-widget" id="rewards-widget">
+                    <div class="insight-header">
+                        <div class="insight-title">Rewards</div>
+                        <span class="insight-arrow">›</span>
+                    </div>
+                    <div class="insight-content">
+                        <div class="rewards-illustration">
+                            <div class="rewards-image">🛍️</div>
+                        </div>
+                        <div class="rewards-info">
+                            <div class="rewards-balance-label">Your balance</div>
+                            <div class="rewards-balance">£0.00</div>
+                            <div class="rewards-pending">⏱ £0.00 pending</div>
+                        </div>
+                        <div class="rewards-cta">
+                            <div class="rewards-cta-icon">ℹ️</div>
+                            <div class="rewards-cta-text">Earn rewards to see your balance grow</div>
+                            <span class="rewards-cta-arrow">›</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <!-- Save & Invest Tab Content -->
@@ -3073,7 +3553,7 @@
             <div class="savings-account-icon">🐷</div>
             <h2 class="savings-account-title">Chase Saver</h2>
             <div class="savings-account-number">
-                <span>60-84-07 • 72438567</span>
+                <span>12-34-56 • 12345678</span>
                 <span style="color: #1e3a8a;">↗</span>
             </div>
             <div class="savings-balance-large" id="savings-page-balance">£1,000,000.00</div>
@@ -3157,6 +3637,241 @@
                     </div>
                 </div>
                 <div class="schedule-arrow">›</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Spotlight Main Page -->
+    <div id="spotlight-page" class="page">
+        <!-- Header -->
+        <div class="modal-header">
+            <button class="modal-back spotlight-back">←</button>
+            <h2 class="modal-title">September <span style="font-size: 14px;">▼</span></h2>
+            <span></span>
+        </div>
+
+        <!-- Main Content -->
+        <div class="spotlight-main-content">
+            <!-- Amount Display -->
+            <div class="spotlight-amount-section">
+                <div class="spotlight-amount">- £2,611.39</div>
+                <div class="spotlight-amount-label">Money out</div>
+            </div>
+
+            <!-- Chart Section -->
+            <div class="spotlight-chart-section">
+                <div class="chart-container">
+                    <div class="chart-month">
+                        <div class="month-label">AUG</div>
+                        <div class="chart-bar-large">
+                            <div class="bar-segment" style="height: 8px; background: #e5e7eb;"></div>
+                        </div>
+                        <div class="month-amount">£2</div>
+                    </div>
+                    <div class="chart-month">
+                        <div class="month-label">SEP</div>
+                        <div class="chart-bar-large">
+                            <div class="bar-segment" style="height: 200px; background: linear-gradient(180deg, #fbbf24 0%, #f59e0b 100%);"></div>
+                        </div>
+                        <div class="month-amount">£2,611</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Spotlight Promo Banner -->
+            <div class="spotlight-promo">
+                <button class="promo-close">×</button>
+                <div class="promo-content">
+                    <div class="promo-title">Spotlight on your money</div>
+                    <div class="promo-description">Track your spending, income and savings all in one place – so you're always in the know.</div>
+                    <button class="spotlight-check-button">
+                        <span>Check it out</span>
+                        <span>→</span>
+                    </button>
+                </div>
+                <div class="promo-chart">📊</div>
+            </div>
+
+            <!-- Detailed Breakdown Sections (Scrollable) -->
+            <!-- Money Out Section -->
+            <div class="spotlight-section">
+                <div class="section-header">
+                    <div class="section-title">Money out</div>
+                    <div class="section-amount">- £2,611.39</div>
+                </div>
+                
+                <div class="spotlight-category" data-category="spending">
+                    <div class="category-icon">🛍️</div>
+                    <div class="category-details">
+                        <div class="category-name">Spending</div>
+                        <div class="category-description">Expenses, Holidays + 22 m...</div>
+                    </div>
+                    <div class="category-amount">- £2,611.39</div>
+                    <div class="category-arrow">›</div>
+                </div>
+
+                <div class="spotlight-category" data-category="bills">
+                    <div class="category-icon">📱</div>
+                    <div class="category-details">
+                        <div class="category-name">Bills</div>
+                        <div class="category-description"></div>
+                    </div>
+                    <div class="category-amount">£0.00</div>
+                    <div class="category-arrow">›</div>
+                </div>
+            </div>
+
+            <!-- Money In Section -->
+            <div class="spotlight-section">
+                <div class="section-header">
+                    <div class="section-title">Money in</div>
+                    <div class="section-amount">+ £24.31</div>
+                </div>
+                
+                <div class="spotlight-category" data-category="income">
+                    <div class="category-icon">💰</div>
+                    <div class="category-details">
+                        <div class="category-name">Income</div>
+                        <div class="category-description">Giuliano Giannini</div>
+                    </div>
+                    <div class="category-amount">+ £1.00</div>
+                    <div class="category-arrow">›</div>
+                </div>
+
+                <div class="spotlight-category" data-category="interest">
+                    <div class="category-icon">%</div>
+                    <div class="category-details">
+                        <div class="category-name">Interest earned</div>
+                        <div class="category-description"></div>
+                    </div>
+                    <div class="category-amount">+ £23.31</div>
+                    <div class="category-arrow">›</div>
+                </div>
+
+                <div class="spotlight-category" data-category="refunds">
+                    <div class="category-icon">↩️</div>
+                    <div class="category-details">
+                        <div class="category-name">Refunds</div>
+                        <div class="category-description"></div>
+                    </div>
+                    <div class="category-amount">£0.00</div>
+                    <div class="category-arrow">›</div>
+                </div>
+            </div>
+
+            <!-- Savings Section -->
+            <div class="spotlight-section">
+                <div class="section-header">
+                    <div class="section-title">Savings</div>
+                    <div class="section-amount"></div>
+                </div>
+                
+                <div class="spotlight-category" data-category="chase-saver">
+                    <div class="category-icon">🐷</div>
+                    <div class="category-details">
+                        <div class="category-name">Savings</div>
+                        <div class="category-description">Chase saver</div>
+                    </div>
+                    <div class="category-amount">- £2,587.08</div>
+                    <div class="category-arrow">›</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Spotlight Details Page -->
+    <div id="spotlight-details-page" class="page">
+        <!-- Header -->
+        <div class="modal-header">
+            <button class="modal-back spotlight-details-back">←</button>
+            <h2 class="modal-title">September <span style="font-size: 14px;">▼</span></h2>
+            <span></span>
+        </div>
+
+        <!-- Main Content -->
+        <div class="spotlight-details-content">
+            <!-- Money Out Section -->
+            <div class="spotlight-section">
+                <div class="section-header">
+                    <div class="section-title">Money out</div>
+                    <div class="section-amount">- £2,611.39</div>
+                </div>
+                
+                <div class="spotlight-category" data-category="spending">
+                    <div class="category-icon">🛍️</div>
+                    <div class="category-details">
+                        <div class="category-name">Spending</div>
+                        <div class="category-description">Expenses, Holidays + 22 m...</div>
+                    </div>
+                    <div class="category-amount">- £2,611.39</div>
+                    <div class="category-arrow">›</div>
+                </div>
+
+                <div class="spotlight-category" data-category="bills">
+                    <div class="category-icon">📱</div>
+                    <div class="category-details">
+                        <div class="category-name">Bills</div>
+                        <div class="category-description"></div>
+                    </div>
+                    <div class="category-amount">£0.00</div>
+                    <div class="category-arrow">›</div>
+                </div>
+            </div>
+
+            <!-- Money In Section -->
+            <div class="spotlight-section">
+                <div class="section-header">
+                    <div class="section-title">Money in</div>
+                    <div class="section-amount">+ £24.31</div>
+                </div>
+                
+                <div class="spotlight-category" data-category="income">
+                    <div class="category-icon">💰</div>
+                    <div class="category-details">
+                        <div class="category-name">Income</div>
+                        <div class="category-description">Giuliano Giannini</div>
+                    </div>
+                    <div class="category-amount">+ £1.00</div>
+                    <div class="category-arrow">›</div>
+                </div>
+
+                <div class="spotlight-category" data-category="interest">
+                    <div class="category-icon">%</div>
+                    <div class="category-details">
+                        <div class="category-name">Interest earned</div>
+                        <div class="category-description"></div>
+                    </div>
+                    <div class="category-amount">+ £23.31</div>
+                    <div class="category-arrow">›</div>
+                </div>
+
+                <div class="spotlight-category" data-category="refunds">
+                    <div class="category-icon">↩️</div>
+                    <div class="category-details">
+                        <div class="category-name">Refunds</div>
+                        <div class="category-description"></div>
+                    </div>
+                    <div class="category-amount">£0.00</div>
+                    <div class="category-arrow">›</div>
+                </div>
+            </div>
+
+            <!-- Savings Section -->
+            <div class="spotlight-section">
+                <div class="section-header">
+                    <div class="section-title">Savings</div>
+                    <div class="section-amount"></div>
+                </div>
+                
+                <div class="spotlight-category" data-category="chase-saver">
+                    <div class="category-icon">🐷</div>
+                    <div class="category-details">
+                        <div class="category-name">Savings</div>
+                        <div class="category-description">Chase saver</div>
+                    </div>
+                    <div class="category-amount">- £2,587.08</div>
+                    <div class="category-arrow">›</div>
+                </div>
             </div>
         </div>
     </div>
@@ -3926,7 +4641,7 @@
             <button class="banner-close" id="account-actions-close">×</button>
         </div>
         <div class="banner-content">
-            <div style="text-align: center; color: #6b7280; margin-bottom: 20px;">60-84-07 • 72438567</div>
+            <div style="text-align: center; color: #6b7280; margin-bottom: 20px;">12-34-56 • 12345678</div>
             
             <div class="schedule-option account-action" data-action="get-details">
                 <div class="schedule-option-info">
@@ -4459,6 +5174,9 @@
 
             // Savings Page Functionality
             initializeSavingsPage();
+
+            // Spotlight Functionality
+            initializeSpotlight();
         });
 
         // Global Account Balances (persistent across the app) 
@@ -6239,9 +6957,12 @@
                     name: "Giuliano's Account",
                     balance: globalBalances["Giuliano's Account"],
                     icon: 'current',
-                    sortCode: '12-34-56',
-                    accountNumber: '12345678'
+                    sortCode: '45-67-89',
+                    accountNumber: '14230987'
                 };
+                
+                console.log('Add Money - Giuliano Account selected');
+                
             } else if (accountType === 'chase-saver') {
                 addMoneyState.selectedAccount = 'chase-saver';
                 addMoneyState.selectedAccountData = {
@@ -6249,8 +6970,10 @@
                     balance: globalBalances['Chase Saver'],
                     icon: 'savings',
                     sortCode: '12-34-56',
-                    accountNumber: '87654321'
+                    accountNumber: '12345678'
                 };
+                
+                console.log('Add Money - Chase Saver selected');
             }
 
             // Close banner and open details modal
@@ -7075,8 +7798,14 @@
                     screenName: 'Save & Invest - Account Actions'
                 });
 
-                alert('Pay in - Feature not implemented yet');
+                console.log('Amplitude event tracked: Account Action Selected (Pay In)');
+
+                // Close the actions banner and open pay in banner
                 closeAccountActionsMenu();
+                
+                setTimeout(() => {
+                    openPayInBanner();
+                }, 300);
 
             } else if (actionType === 'hide-account') {
                 window.amplitude.track('Account Action Selected', {
@@ -7084,6 +7813,8 @@
                     actionType: 'hide_account',
                     screenName: 'Save & Invest - Account Actions'
                 });
+
+                console.log('Amplitude event tracked: Account Action Selected (Hide Account)');
 
                 alert('Hide account - Feature not implemented yet');
                 closeAccountActionsMenu();
@@ -7197,8 +7928,8 @@
                         name: 'Chase Saver',
                         balance: globalBalances['Chase Saver'],
                         icon: 'savings',
-                        sortCode: '60-84-07',
-                        accountNumber: '72438567'
+                        sortCode: '12-34-56',
+                        accountNumber: '12345678'
                     };
 
                     // Open the existing account details modal
@@ -7282,8 +8013,11 @@
                 hideAccountButton.addEventListener('click', function() {
                     window.amplitude.track('Hide Account Clicked', {
                         accountName: 'Chase Saver',
-                        screenName: 'Savings Account'
+                        screenName: 'Savings Account',
+                        source: 'savings_page_button'
                     });
+
+                    console.log('Amplitude event tracked: Hide Account Clicked (from savings page)');
 
                     alert('Hide account - Feature not implemented yet');
                 });
@@ -7311,6 +8045,170 @@
                     if (e.target === payInBanner) {
                         closePayInBanner();
                     }
+                });
+            }
+        }
+
+        // Spotlight Functions
+        function openSpotlightMainPage() {
+            // Track Spotlight Clicked event
+            window.amplitude.track('Spotlight Clicked', {
+                screenName: 'Home - Spend Tab',
+                source: 'spotlight_widget'
+            });
+
+            console.log('Amplitude event tracked: Spotlight Clicked');
+
+            // Navigate to Spotlight main page
+            navigateToPage('spotlight');
+
+            // Update status bar time
+            document.querySelectorAll('.status-left span').forEach(span => {
+                if (span.textContent.includes(':')) {
+                    span.textContent = '18:37';
+                }
+            });
+        }
+
+        function openSpotlightDetailsPage() {
+            // Track Spotlight Details Clicked event
+            window.amplitude.track('Spotlight Details Clicked', {
+                screenName: 'Spotlight Main',
+                source: 'money_out_summary'
+            });
+
+            console.log('Amplitude event tracked: Spotlight Details Clicked');
+
+            // Navigate to Spotlight details page
+            navigateToPage('spotlight-details');
+        }
+
+        function handleSpotlightCategoryClick(category) {
+            // Determine which screen we're on
+            const currentScreenName = document.getElementById('spotlight-page').classList.contains('active') ? 'Spotlight Main' : 'Spotlight Details';
+            
+            // Track Spotlight Category Clicked event
+            window.amplitude.track('Spotlight Category Clicked', {
+                categoryName: category,
+                screenName: currentScreenName,
+                source: 'category_list'
+            });
+
+            console.log('Amplitude event tracked: Spotlight Category Clicked', {
+                category: category,
+                screen: currentScreenName
+            });
+
+            // For now, just show an alert - this could connect to detailed transaction views
+            const categoryNames = {
+                'spending': 'Spending Details',
+                'bills': 'Bills Details', 
+                'income': 'Income Details',
+                'interest': 'Interest Earned Details',
+                'refunds': 'Refunds Details',
+                'chase-saver': 'Savings Details'
+            };
+
+            alert(`${categoryNames[category]} - Feature to be implemented`);
+        }
+
+        function closeSpotlightPromo() {
+            const promoElement = document.querySelector('.spotlight-promo');
+            if (promoElement) {
+                promoElement.style.display = 'none';
+            }
+
+            // Track Spotlight Promo Closed event
+            window.amplitude.track('Spotlight Promo Closed', {
+                screenName: 'Spotlight Main',
+                source: 'close_button'
+            });
+        }
+
+        function handleSpotlightCheckOut() {
+            // Track Spotlight Check Out Clicked event
+            window.amplitude.track('Spotlight Check Out Clicked', {
+                screenName: 'Spotlight Main',
+                source: 'promo_banner'
+            });
+
+            console.log('Amplitude event tracked: Spotlight Check Out Clicked');
+
+            // Navigate to detailed breakdown
+            openSpotlightDetailsPage();
+        }
+
+        function initializeSpotlight() {
+            // Spotlight widget click handler
+            const spotlightWidget = document.getElementById('spotlight-widget');
+            if (spotlightWidget) {
+                spotlightWidget.addEventListener('click', openSpotlightMainPage);
+            }
+
+            // Spotlight back button handlers
+            const spotlightBack = document.querySelector('.spotlight-back');
+            if (spotlightBack) {
+                spotlightBack.addEventListener('click', function() {
+                    navigateToPage('home');
+                    // Reset status bar time
+                    document.querySelectorAll('.status-left span').forEach(span => {
+                        if (span.textContent.includes(':')) {
+                            span.textContent = '10:14';
+                        }
+                    });
+                });
+            }
+
+            const spotlightDetailsBack = document.querySelector('.spotlight-details-back');
+            if (spotlightDetailsBack) {
+                spotlightDetailsBack.addEventListener('click', function() {
+                    navigateToPage('spotlight');
+                });
+            }
+
+            // Money out section header click handler (for navigation to details page if needed)
+            const moneyOutHeader = document.querySelector('.spotlight-section .section-header');
+            if (moneyOutHeader) {
+                moneyOutHeader.addEventListener('click', function() {
+                    // Could navigate to more detailed money out view if needed
+                    console.log('Money out header clicked - could expand for more details');
+                });
+            }
+
+            // Category click handlers (for both main and details pages)
+            const categories = document.querySelectorAll('.spotlight-category');
+            categories.forEach(category => {
+                category.addEventListener('click', function() {
+                    const categoryType = this.getAttribute('data-category');
+                    handleSpotlightCategoryClick(categoryType);
+                });
+            });
+
+            // Spotlight promo handlers
+            const promoClose = document.querySelector('.spotlight-promo .promo-close');
+            if (promoClose) {
+                promoClose.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    closeSpotlightPromo();
+                });
+            }
+
+            const checkOutButton = document.querySelector('.spotlight-check-button');
+            if (checkOutButton) {
+                checkOutButton.addEventListener('click', handleSpotlightCheckOut);
+            }
+
+            // Rewards widget click handler (placeholder for now)
+            const rewardsWidget = document.getElementById('rewards-widget');
+            if (rewardsWidget) {
+                rewardsWidget.addEventListener('click', function() {
+                    window.amplitude.track('Rewards Clicked', {
+                        screenName: 'Home - Spend Tab',
+                        source: 'rewards_widget'
+                    });
+
+                    console.log('Amplitude event tracked: Rewards Clicked');
+                    alert('Rewards feature - To be implemented');
                 });
             }
         }
