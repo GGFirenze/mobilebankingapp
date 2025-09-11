@@ -2658,6 +2658,929 @@
             font-size: 18px;
         }
 
+        /* Spending Details Page Styles */
+        .spending-details-content {
+            padding: 20px 20px 120px 20px;
+            background: #f9fafb;
+            min-height: calc(100vh - 60px);
+            overflow-y: auto;
+            max-height: calc(100vh - 60px);
+        }
+
+        .spending-icon-section {
+            text-align: center;
+            margin: 20px 0 16px 0;
+        }
+
+        .spending-large-icon {
+            width: 80px;
+            height: 80px;
+            background: white;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            margin: 0 auto;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .spending-title-section {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .spending-title {
+            font-size: 24px;
+            font-weight: 600;
+            color: #1f2937;
+            margin-bottom: 8px;
+        }
+
+        .spending-amount {
+            font-size: 36px;
+            font-weight: 300;
+            color: #1f2937;
+        }
+
+        .spending-chart-section {
+            background: white;
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .spending-toggle-section {
+            margin-bottom: 20px;
+        }
+
+        .spending-toggle-button {
+            background: #e5e7eb;
+            border: none;
+            border-radius: 20px;
+            padding: 8px 16px;
+            font-size: 14px;
+            font-weight: 500;
+            color: #1f2937;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .spending-toggle-button.merchants {
+            background: #dbeafe;
+            color: #1e40af;
+        }
+
+        .spending-categories-view, .spending-merchants-view {
+            background: white;
+            border-radius: 16px;
+            padding: 20px;
+        }
+
+        .spending-category, .spending-merchant {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 16px 0;
+            cursor: pointer;
+            border-bottom: 1px solid #f3f4f6;
+        }
+
+        .spending-category:last-child, .spending-merchant:last-child {
+            border-bottom: none;
+        }
+
+        .spending-category .category-icon, .merchant-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            background: #f3f4f6;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            flex-shrink: 0;
+        }
+
+        .merchant-logo {
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+        }
+
+        .spending-category .category-details, .merchant-details {
+            flex: 1;
+        }
+
+        .spending-category .category-name, .merchant-name {
+            font-size: 16px;
+            color: #1f2937;
+            font-weight: 500;
+            margin-bottom: 2px;
+        }
+
+        .merchant-transactions {
+            font-size: 14px;
+            color: #6b7280;
+        }
+
+        .spending-category .category-amount, .merchant-amount {
+            font-size: 16px;
+            font-weight: 500;
+            color: #1f2937;
+            margin-right: 8px;
+        }
+
+        .spending-category .category-arrow, .merchant-arrow {
+            color: #6b7280;
+            font-size: 18px;
+        }
+
+        /* Filter Spend By Banner Styles */
+        .filter-option {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px 0;
+            cursor: pointer;
+            border-bottom: 1px solid #f3f4f6;
+        }
+
+        .filter-option:last-child {
+            border-bottom: none;
+        }
+
+        .filter-option-title {
+            font-size: 16px;
+            color: #1f2937;
+            font-weight: 500;
+        }
+
+        .filter-checkmark {
+            font-size: 18px;
+            color: #1e40af;
+            font-weight: bold;
+        }
+
+        /* Category Detail Page Styles */
+        .category-detail-content {
+            padding: 20px 20px 120px 20px;
+            background: #f9fafb;
+            min-height: calc(100vh - 60px);
+            overflow-y: auto;
+            max-height: calc(100vh - 60px);
+        }
+
+        .category-detail-icon-section {
+            text-align: center;
+            margin: 20px 0 16px 0;
+        }
+
+        .category-detail-large-icon {
+            width: 80px;
+            height: 80px;
+            background: white;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            margin: 0 auto;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .category-detail-title-section {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .category-detail-title {
+            font-size: 24px;
+            font-weight: 600;
+            color: #1f2937;
+            margin-bottom: 4px;
+        }
+
+        .category-detail-transactions {
+            font-size: 14px;
+            color: #6b7280;
+            margin-bottom: 8px;
+        }
+
+        .category-detail-amount {
+            font-size: 36px;
+            font-weight: 300;
+            color: #1f2937;
+        }
+
+        .category-detail-chart-section {
+            background: white;
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .transactions-list {
+            background: white;
+            border-radius: 16px;
+            padding: 20px;
+        }
+
+        .transaction-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 0;
+            cursor: pointer;
+            border-bottom: 1px solid #f3f4f6;
+        }
+
+        .transaction-item:last-child {
+            border-bottom: none;
+        }
+
+        .transaction-item-details {
+            flex: 1;
+        }
+
+        .transaction-date {
+            font-size: 12px;
+            color: #6b7280;
+            font-weight: 500;
+            margin-bottom: 4px;
+        }
+
+        .transaction-description {
+            font-size: 16px;
+            color: #1f2937;
+            font-weight: 500;
+            margin-bottom: 2px;
+        }
+
+        .transaction-time {
+            font-size: 14px;
+            color: #6b7280;
+        }
+
+        .transaction-amount {
+            font-size: 16px;
+            font-weight: 600;
+            color: #1f2937;
+        }
+
+        /* Transaction Detail Page Styles */
+        .transaction-timestamp {
+            text-align: center;
+            font-size: 14px;
+            color: #6b7280;
+            padding: 8px 0;
+            border-bottom: 1px solid #f3f4f6;
+        }
+
+        .transaction-detail-content {
+            padding: 20px 20px 160px 20px; /* Increased bottom padding for navigation clearance */
+            background: #f9fafb;
+            min-height: calc(100vh - 60px);
+            overflow-y: auto;
+            max-height: calc(100vh - 60px);
+        }
+
+        .transaction-detail-icon-section {
+            text-align: center;
+            margin: 30px 0 20px 0;
+        }
+
+        .transaction-detail-large-avatar {
+            width: 80px;
+            height: 80px;
+            background: #e5e7eb;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: bold;
+            color: #6b7280;
+            margin: 0 auto;
+        }
+
+        .transaction-detail-title-section {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .transaction-detail-recipient {
+            font-size: 20px;
+            font-weight: 600;
+            color: #1f2937;
+            margin-bottom: 8px;
+        }
+
+        .transaction-detail-amount {
+            font-size: 36px;
+            font-weight: 300;
+            color: #1f2937;
+            margin-bottom: 8px;
+        }
+
+        .transaction-detail-bank {
+            font-size: 16px;
+            color: #6b7280;
+        }
+
+        .transaction-section {
+            background: white;
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .transaction-section-header {
+            font-size: 12px;
+            color: #6b7280;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            margin-bottom: 16px;
+        }
+
+        .transaction-category-row, .transaction-note-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .transaction-category-info, .transaction-note-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex: 1;
+        }
+
+        .transaction-category-icon, .transaction-note-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            background: #f3f4f6;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            flex-shrink: 0;
+        }
+
+        .transaction-category-details, .transaction-note-details {
+            flex: 1;
+        }
+
+        .transaction-category-name, .transaction-note-title {
+            font-size: 16px;
+            color: #1f2937;
+            font-weight: 500;
+            margin-bottom: 2px;
+        }
+
+        .transaction-category-amount {
+            font-size: 14px;
+            color: #6b7280;
+            margin-bottom: 2px;
+        }
+
+        .transaction-category-count {
+            font-size: 14px;
+            color: #6b7280;
+        }
+
+        .change-category-button, .edit-note-button {
+            background: none;
+            border: none;
+            color: #1e40af;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            padding: 8px;
+        }
+
+        .transaction-detail-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid #f3f4f6;
+        }
+
+        .transaction-detail-row:last-child {
+            border-bottom: none;
+        }
+
+        .transaction-detail-label {
+            font-size: 16px;
+            color: #6b7280;
+        }
+
+        .transaction-detail-value {
+            font-size: 16px;
+            color: #1f2937;
+            font-weight: 500;
+        }
+
+        .transaction-help-section {
+            background: white;
+            border-radius: 16px;
+            padding: 20px;
+        }
+
+        .transaction-help-row {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            cursor: pointer;
+        }
+
+        .transaction-help-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #dbeafe;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            color: #1e40af;
+        }
+
+        .transaction-help-text {
+            font-size: 16px;
+            color: #1e40af;
+            font-weight: 500;
+        }
+
+        /* Category/Note Change Banner Styles */
+        .category-change-option {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 16px 0;
+            cursor: pointer;
+            border-bottom: 1px solid #f3f4f6;
+        }
+
+        .category-change-option:last-child {
+            border-bottom: none;
+        }
+
+        .category-change-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            background: #f3f4f6;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+        }
+
+        .category-change-name {
+            font-size: 16px;
+            color: #1f2937;
+            font-weight: 500;
+        }
+
+        .note-input-section {
+            margin-bottom: 20px;
+        }
+
+        .note-input {
+            width: 100%;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            padding: 12px 16px;
+            font-size: 16px;
+            outline: none;
+            margin-bottom: 8px;
+        }
+
+        .note-input:focus {
+            border-color: #1e40af;
+        }
+
+        .note-character-count {
+            text-align: right;
+            font-size: 12px;
+            color: #6b7280;
+        }
+
+        .note-save-button {
+            background: #1e40af;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 12px 24px;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        /* Change Category Full Screen Styles */
+        .change-category-content {
+            padding: 20px 0 120px 0;
+            background: #f9fafb;
+            min-height: calc(100vh - 60px);
+            overflow-y: auto;
+            max-height: calc(100vh - 60px);
+        }
+
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+            background: white;
+            border-radius: 16px;
+            padding: 24px;
+            margin: 0 20px;
+        }
+
+        .category-tile {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 24px 16px;
+            border-radius: 12px;
+            background: #f9fafb;
+            border: 2px solid #f3f4f6;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            min-height: 100px;
+        }
+
+        .category-tile:hover {
+            border-color: #1e40af;
+        }
+
+        .category-tile.selected {
+            border-color: #1e40af;
+            background: #f0f9ff;
+        }
+
+        .category-tile-icon {
+            font-size: 24px;
+            margin-bottom: 8px;
+        }
+
+        .category-tile-name {
+            font-size: 12px;
+            color: #1f2937;
+            font-weight: 500;
+            text-align: center;
+            line-height: 1.2;
+        }
+
+        .category-checkmark {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #16a34a;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: bold;
+            visibility: hidden;
+        }
+
+        .category-tile.selected .category-checkmark {
+            visibility: visible;
+        }
+
+        /* Category Success Page Styles */
+        .category-success-content {
+            padding: 20px;
+            background: #f9fafb;
+            min-height: calc(100vh - 60px);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .category-success-icon-section {
+            position: relative;
+            margin-bottom: 40px;
+        }
+
+        .category-success-checkmark {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: #16a34a;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            font-weight: bold;
+            z-index: 2;
+        }
+
+        .category-success-new-icon {
+            width: 80px;
+            height: 80px;
+            border-radius: 20px;
+            background: linear-gradient(135deg, #1e40af 0%, #3730a3 100%);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            margin: 0 auto;
+        }
+
+        .category-success-message-section {
+            margin-bottom: 60px;
+        }
+
+        .category-success-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #1f2937;
+            line-height: 1.4;
+        }
+
+        .category-success-footer {
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .category-success-done-button {
+            background: #1e40af;
+            color: white;
+            border: none;
+            border-radius: 24px;
+            padding: 16px 32px;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        /* Add/Edit Note Full Screen Styles */
+        .add-note-content {
+            padding: 40px 20px 120px 20px;
+            background: #f9fafb;
+            min-height: calc(100vh - 60px);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+        }
+
+        .note-full-input-section {
+            background: white;
+            border-radius: 16px;
+            padding: 30px 24px;
+            margin-bottom: 30px;
+        }
+
+        .note-input-container {
+            margin-bottom: 16px;
+        }
+
+        .note-full-input {
+            width: 100%;
+            border: none;
+            background: none;
+            outline: none;
+            font-size: 18px;
+            color: #1f2937;
+            padding: 16px 0;
+            font-weight: 400;
+        }
+
+        .note-full-input::placeholder {
+            color: #9ca3af;
+        }
+
+        .note-input-line {
+            height: 2px;
+            background: #1e40af;
+            width: 100%;
+            margin-top: 8px;
+        }
+
+        .note-character-remaining {
+            text-align: center;
+            font-size: 14px;
+            color: #6b7280;
+        }
+
+        .note-full-actions {
+            position: fixed;
+            bottom: 100px; /* Above navigation */
+            left: 40px;
+            right: 40px;
+            max-width: 335px;
+            margin: 0 auto;
+        }
+
+        .note-done-button {
+            background: #1e40af;
+            color: white;
+            border: none;
+            border-radius: 24px;
+            padding: 16px 32px;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        .note-done-button:disabled {
+            background: #9ca3af;
+            cursor: not-allowed;
+        }
+
+        /* Rewards Page Styles */
+        .rewards-content {
+            padding: 20px 20px 120px 20px;
+            background: #f9fafb;
+            min-height: calc(100vh - 60px);
+            overflow-y: auto;
+            max-height: calc(100vh - 60px);
+        }
+
+        .rewards-balance-section {
+            background: white;
+            border-radius: 16px;
+            padding: 24px;
+            margin-bottom: 24px;
+            text-align: center;
+        }
+
+        .rewards-balance-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #1f2937;
+            margin-bottom: 16px;
+        }
+
+        .rewards-balance-amount {
+            font-size: 48px;
+            font-weight: 300;
+            color: #1f2937;
+            margin-bottom: 24px;
+        }
+
+        .rewards-summary {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 24px;
+            padding: 16px 0;
+            border-top: 1px solid #f3f4f6;
+            border-bottom: 1px solid #f3f4f6;
+        }
+
+        .rewards-summary-item {
+            flex: 1;
+            text-align: center;
+        }
+
+        .rewards-summary-label {
+            font-size: 14px;
+            color: #6b7280;
+            margin-bottom: 4px;
+        }
+
+        .rewards-summary-value {
+            font-size: 16px;
+            font-weight: 600;
+            color: #1f2937;
+        }
+
+        .rewards-actions {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        .rewards-action-button {
+            background: #dbeafe;
+            color: #1e40af;
+            border: none;
+            border-radius: 20px;
+            padding: 12px 20px;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        .rewards-offers-section {
+            margin-bottom: 20px;
+        }
+
+        .rewards-section-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #1f2937;
+            margin-bottom: 20px;
+            padding: 0 4px;
+        }
+
+        .rewards-offer-card {
+            background: white;
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .rewards-card-header {
+            margin-bottom: 16px;
+        }
+
+        .rewards-card-image {
+            height: 120px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #1e40af 0%, #3730a3 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .chase-card-visual {
+            position: absolute;
+            top: 16px;
+            left: 16px;
+            right: 16px;
+            bottom: 16px;
+            background: linear-gradient(45deg, #1e40af 0%, #60a5fa 50%, #fbbf24 100%);
+            border-radius: 8px;
+            display: flex;
+            align-items: flex-end;
+            justify-content: flex-start;
+            padding: 12px;
+            color: white;
+        }
+
+        .chase-card-visual::after {
+            content: 'CHASE';
+            font-size: 12px;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        .rewards-card-image-small {
+            height: 60px;
+            border-radius: 8px;
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .rewards-offer-visual {
+            color: white;
+            font-size: 24px;
+        }
+
+        .rewards-card-content h4 {
+            margin: 0;
+        }
+
+        .rewards-offer-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #1f2937;
+            margin-bottom: 12px;
+        }
+
+        .rewards-offer-description {
+            font-size: 14px;
+            color: #6b7280;
+            line-height: 1.5;
+            margin-bottom: 12px;
+        }
+
+        .rewards-offer-expiry {
+            font-size: 12px;
+            color: #9ca3af;
+            font-style: italic;
+        }
+
         /* Schedule Payment Flow Styles */
         .schedule-content {
             padding: 20px;
@@ -3871,6 +4794,686 @@
                     </div>
                     <div class="category-amount">- £2,587.08</div>
                     <div class="category-arrow">›</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Spending Details Page -->
+    <div id="spending-details-page" class="page">
+        <!-- Header -->
+        <div class="modal-header">
+            <button class="modal-back spending-details-back">←</button>
+            <h2 class="modal-title">September <span style="font-size: 14px;">▼</span></h2>
+            <span></span>
+        </div>
+
+        <!-- Main Content -->
+        <div class="spending-details-content">
+            <!-- Category/Merchant Icon -->
+            <div class="spending-icon-section">
+                <div class="spending-large-icon">🛍️</div>
+            </div>
+
+            <!-- Title and Amount -->
+            <div class="spending-title-section">
+                <div class="spending-title">Spending</div>
+                <div class="spending-amount">- £2,611.39</div>
+            </div>
+
+            <!-- Chart Section -->
+            <div class="spending-chart-section">
+                <div class="chart-container">
+                    <div class="chart-month">
+                        <div class="month-label">AUG</div>
+                        <div class="chart-bar-large">
+                            <div class="bar-segment" style="height: 8px; background: #e5e7eb;"></div>
+                        </div>
+                        <div class="month-amount">£2</div>
+                    </div>
+                    <div class="chart-month">
+                        <div class="month-label">SEP</div>
+                        <div class="chart-bar-large">
+                            <div class="bar-segment" style="height: 200px; background: linear-gradient(180deg, #fbbf24 0%, #f59e0b 100%);"></div>
+                        </div>
+                        <div class="month-amount">£2,611</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Categories/Merchants Toggle -->
+            <div class="spending-toggle-section">
+                <button class="spending-toggle-button" id="categories-merchants-toggle">
+                    <span id="toggle-button-text">Categories</span>
+                </button>
+            </div>
+
+            <!-- Categories View -->
+            <div id="categories-view" class="spending-categories-view">
+                <!-- Categories List -->
+                <div class="spending-category" data-category="investments">
+                    <div class="category-icon">📈</div>
+                    <div class="category-details">
+                        <div class="category-name">Investments</div>
+                    </div>
+                    <div class="category-amount">- £2,000.00</div>
+                    <div class="category-arrow">›</div>
+                </div>
+
+                <div class="spending-category" data-category="holidays">
+                    <div class="category-icon">🌎</div>
+                    <div class="category-details">
+                        <div class="category-name">Holidays</div>
+                    </div>
+                    <div class="category-amount">- £610.39</div>
+                    <div class="category-arrow">›</div>
+                </div>
+
+                <div class="spending-category" data-category="expenses">
+                    <div class="category-icon">💳</div>
+                    <div class="category-details">
+                        <div class="category-name">Expenses</div>
+                    </div>
+                    <div class="category-amount">- £1.00</div>
+                    <div class="category-arrow">›</div>
+                </div>
+
+                <div class="spending-category" data-category="car-fuel">
+                    <div class="category-icon">🚗</div>
+                    <div class="category-details">
+                        <div class="category-name">Car & fuel</div>
+                    </div>
+                    <div class="category-amount">£0.00</div>
+                    <div class="category-arrow">›</div>
+                </div>
+
+                <div class="spending-category" data-category="cash">
+                    <div class="category-icon">💵</div>
+                    <div class="category-details">
+                        <div class="category-name">Cash</div>
+                    </div>
+                    <div class="category-amount">£0.00</div>
+                    <div class="category-arrow">›</div>
+                </div>
+
+                <div class="spending-category" data-category="childcare">
+                    <div class="category-icon">👶</div>
+                    <div class="category-details">
+                        <div class="category-name">Childcare</div>
+                    </div>
+                    <div class="category-amount">£0.00</div>
+                    <div class="category-arrow">›</div>
+                </div>
+
+                <div class="spending-category" data-category="coffee">
+                    <div class="category-icon">☕</div>
+                    <div class="category-details">
+                        <div class="category-name">Coffee</div>
+                    </div>
+                    <div class="category-amount">£0.00</div>
+                    <div class="category-arrow">›</div>
+                </div>
+
+                <div class="spending-category" data-category="charity">
+                    <div class="category-icon">💝</div>
+                    <div class="category-details">
+                        <div class="category-name">Charity</div>
+                    </div>
+                    <div class="category-amount">£0.00</div>
+                    <div class="category-arrow">›</div>
+                </div>
+
+                <div class="spending-category" data-category="drinks">
+                    <div class="category-icon">🍷</div>
+                    <div class="category-details">
+                        <div class="category-name">Drinks</div>
+                    </div>
+                    <div class="category-amount">£0.00</div>
+                    <div class="category-arrow">›</div>
+                </div>
+
+                <div class="spending-category" data-category="education">
+                    <div class="category-icon">🎓</div>
+                    <div class="category-details">
+                        <div class="category-name">Education</div>
+                    </div>
+                    <div class="category-amount">£0.00</div>
+                    <div class="category-arrow">›</div>
+                </div>
+
+                <div class="spending-category" data-category="entertainment">
+                    <div class="category-icon">🎬</div>
+                    <div class="category-details">
+                        <div class="category-name">Entertainment</div>
+                    </div>
+                    <div class="category-amount">£0.00</div>
+                    <div class="category-arrow">›</div>
+                </div>
+
+                <div class="spending-category" data-category="family">
+                    <div class="category-icon">👪</div>
+                    <div class="category-details">
+                        <div class="category-name">Family</div>
+                    </div>
+                    <div class="category-amount">£0.00</div>
+                    <div class="category-arrow">›</div>
+                </div>
+
+                <div class="spending-category" data-category="going-out">
+                    <div class="category-icon">🍽️</div>
+                    <div class="category-details">
+                        <div class="category-name">Going out</div>
+                    </div>
+                    <div class="category-amount">£0.00</div>
+                    <div class="category-arrow">›</div>
+                </div>
+
+                <div class="spending-category" data-category="groceries">
+                    <div class="category-icon">🛒</div>
+                    <div class="category-details">
+                        <div class="category-name">Groceries</div>
+                    </div>
+                    <div class="category-amount">£0.00</div>
+                    <div class="category-arrow">›</div>
+                </div>
+
+                <div class="spending-category" data-category="home">
+                    <div class="category-icon">🏠</div>
+                    <div class="category-details">
+                        <div class="category-name">Home</div>
+                    </div>
+                    <div class="category-amount">£0.00</div>
+                    <div class="category-arrow">›</div>
+                </div>
+
+                <div class="spending-category" data-category="insurance">
+                    <div class="category-icon">🛡️</div>
+                    <div class="category-details">
+                        <div class="category-name">Insurance</div>
+                    </div>
+                    <div class="category-amount">£0.00</div>
+                    <div class="category-arrow">›</div>
+                </div>
+
+                <div class="spending-category" data-category="lunch">
+                    <div class="category-icon">🥙</div>
+                    <div class="category-details">
+                        <div class="category-name">Lunch</div>
+                    </div>
+                    <div class="category-amount">£0.00</div>
+                    <div class="category-arrow">›</div>
+                </div>
+
+                <div class="spending-category" data-category="other">
+                    <div class="category-icon">⚪</div>
+                    <div class="category-details">
+                        <div class="category-name">Other</div>
+                    </div>
+                    <div class="category-amount">£0.00</div>
+                    <div class="category-arrow">›</div>
+                </div>
+
+                <div class="spending-category" data-category="personal-care">
+                    <div class="category-icon">💄</div>
+                    <div class="category-details">
+                        <div class="category-name">Personal care</div>
+                    </div>
+                    <div class="category-amount">£0.00</div>
+                    <div class="category-arrow">›</div>
+                </div>
+
+                <div class="spending-category" data-category="pets">
+                    <div class="category-icon">🐾</div>
+                    <div class="category-details">
+                        <div class="category-name">Pets</div>
+                    </div>
+                    <div class="category-amount">£0.00</div>
+                    <div class="category-arrow">›</div>
+                </div>
+
+                <div class="spending-category" data-category="shopping">
+                    <div class="category-icon">🛍️</div>
+                    <div class="category-details">
+                        <div class="category-name">Shopping</div>
+                    </div>
+                    <div class="category-amount">£0.00</div>
+                    <div class="category-arrow">›</div>
+                </div>
+            </div>
+
+            <!-- Merchants View -->
+            <div id="merchants-view" class="spending-merchants-view" style="display: none;">
+                <div class="spending-merchant" data-merchant="booking-com">
+                    <div class="merchant-icon">
+                        <div class="merchant-logo" style="background: #003580; color: white; font-weight: bold;">B.</div>
+                    </div>
+                    <div class="merchant-details">
+                        <div class="merchant-name">Booking.com</div>
+                        <div class="merchant-transactions">1 transaction</div>
+                    </div>
+                    <div class="merchant-amount">- £338.45</div>
+                    <div class="merchant-arrow">›</div>
+                </div>
+
+                <div class="spending-merchant" data-merchant="easyjet">
+                    <div class="merchant-icon">
+                        <div class="merchant-logo" style="background: #ff6900; color: white; font-weight: bold; font-size: 12px;">easyJet</div>
+                    </div>
+                    <div class="merchant-details">
+                        <div class="merchant-name">easyJet</div>
+                        <div class="merchant-transactions">1 transaction</div>
+                    </div>
+                    <div class="merchant-amount">- £271.94</div>
+                    <div class="merchant-arrow">›</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Filter Spend By Banner -->
+    <div id="filter-spend-banner" class="bottom-banner">
+        <div class="banner-header">
+            <div class="banner-handle"></div>
+            <h2 class="banner-title">Filter spend by:</h2>
+            <button class="banner-close" id="filter-spend-close">×</button>
+        </div>
+        <div class="banner-content">
+            <div class="filter-option" data-filter="categories">
+                <div class="filter-option-details">
+                    <div class="filter-option-title">Categories</div>
+                </div>
+                <div class="filter-checkmark" id="categories-check">✓</div>
+            </div>
+
+            <div class="filter-option" data-filter="merchants">
+                <div class="filter-option-details">
+                    <div class="filter-option-title">Merchants</div>
+                </div>
+                <div class="filter-checkmark" id="merchants-check" style="visibility: hidden;">✓</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Category Detail Page (e.g., Expenses) -->
+    <div id="category-detail-page" class="page">
+        <!-- Header -->
+        <div class="modal-header">
+            <button class="modal-back category-detail-back">←</button>
+            <h2 class="modal-title">September <span style="font-size: 14px;">▼</span></h2>
+            <span></span>
+        </div>
+
+        <!-- Main Content -->
+        <div class="category-detail-content">
+            <!-- Category Icon -->
+            <div class="category-detail-icon-section">
+                <div class="category-detail-large-icon" id="category-detail-icon">📈</div>
+            </div>
+
+            <!-- Title and Amount -->
+            <div class="category-detail-title-section">
+                <div class="category-detail-title" id="category-detail-title">Investments</div>
+                <div class="category-detail-transactions" id="category-detail-transactions">2 transactions</div>
+                <div class="category-detail-amount" id="category-detail-amount">- £2,000.00</div>
+            </div>
+
+            <!-- Chart Section -->
+            <div class="category-detail-chart-section">
+                <div class="chart-container">
+                    <div class="chart-month">
+                        <div class="month-label">AUG</div>
+                        <div class="chart-bar-large">
+                            <div class="bar-segment" style="height: 8px; background: #e5e7eb;"></div>
+                        </div>
+                        <div class="month-amount" id="category-chart-aug">£0</div>
+                    </div>
+                    <div class="chart-month">
+                        <div class="month-label">SEP</div>
+                        <div class="chart-bar-large">
+                            <div class="bar-segment" style="height: 200px; background: linear-gradient(180deg, #fbbf24 0%, #f59e0b 100%);"></div>
+                        </div>
+                        <div class="month-amount" id="category-chart-sep">£2,000</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Transactions List -->
+            <div class="transactions-list" id="category-transactions-list">
+                <!-- Dynamic transaction entries will be added here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Transaction Detail Page -->
+    <div id="transaction-detail-page" class="page">
+        <!-- Header -->
+        <div class="modal-header">
+            <button class="modal-back transaction-detail-back">←</button>
+            <h2 class="modal-title">Payment</h2>
+            <span></span>
+        </div>
+        <div class="transaction-timestamp" id="transaction-timestamp">20:08 7 September 2025</div>
+
+        <!-- Main Content -->
+        <div class="transaction-detail-content">
+            <!-- Payment Info -->
+            <div class="transaction-detail-icon-section">
+                <div class="transaction-detail-large-avatar" id="transaction-avatar">GG</div>
+            </div>
+
+            <!-- Payment Details -->
+            <div class="transaction-detail-title-section">
+                <div class="transaction-detail-recipient" id="transaction-recipient">To Giuliano Giannini</div>
+                <div class="transaction-detail-amount" id="transaction-detail-amount">- £1,500.00</div>
+                <div class="transaction-detail-bank" id="transaction-bank">Chase</div>
+            </div>
+
+            <!-- Spending Category Section -->
+            <div class="transaction-section">
+                <div class="transaction-section-header">SPENDING</div>
+                <div class="transaction-category-row">
+                    <div class="transaction-category-info">
+                        <div class="transaction-category-icon" id="transaction-category-icon">📈</div>
+                        <div class="transaction-category-details">
+                            <div class="transaction-category-name" id="transaction-category-name">Investments</div>
+                            <div class="transaction-category-amount" id="transaction-category-month-amount">- £2,000.00 this month</div>
+                            <div class="transaction-category-count" id="transaction-category-count">2 transactions</div>
+                        </div>
+                    </div>
+                    <button class="change-category-button" id="change-category-button">Change category</button>
+                </div>
+            </div>
+
+            <!-- Note Section -->
+            <div class="transaction-section">
+                <div class="transaction-note-row">
+                    <div class="transaction-note-info">
+                        <div class="transaction-note-icon">📝</div>
+                        <div class="transaction-note-details">
+                            <div class="transaction-note-title" id="transaction-note-title">Notes</div>
+                        </div>
+                    </div>
+                    <button class="edit-note-button" id="edit-note-button">Add</button>
+                </div>
+            </div>
+
+            <!-- Details Section -->
+            <div class="transaction-section">
+                <div class="transaction-section-header">DETAILS</div>
+                <div class="transaction-detail-row">
+                    <div class="transaction-detail-label">From</div>
+                    <div class="transaction-detail-value" id="transaction-from-account">Giuliano's Account</div>
+                </div>
+                <div class="transaction-detail-row">
+                    <div class="transaction-detail-label">Status</div>
+                    <div class="transaction-detail-value" id="transaction-status">Complete</div>
+                </div>
+            </div>
+
+            <!-- Help Section -->
+            <div class="transaction-help-section">
+                <div class="transaction-help-row">
+                    <div class="transaction-help-icon">❓</div>
+                    <div class="transaction-help-text">Something wrong?</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Change Category Full Screen -->
+    <div id="change-category-page" class="page">
+        <!-- Header -->
+        <div class="modal-header">
+            <button class="modal-close" id="change-category-page-close">×</button>
+            <h2 class="modal-title">Choose a category</h2>
+            <span></span>
+        </div>
+
+        <!-- Main Content -->
+        <div class="change-category-content">
+            <!-- Category Grid -->
+            <div class="category-grid">
+                <div class="category-tile" data-new-category="bills">
+                    <div class="category-tile-icon">📱</div>
+                    <div class="category-tile-name">Bills</div>
+                    <div class="category-checkmark" id="bills-checkmark">✓</div>
+                </div>
+
+                <div class="category-tile" data-new-category="car-fuel">
+                    <div class="category-tile-icon">🚗</div>
+                    <div class="category-tile-name">Car & Fuel</div>
+                    <div class="category-checkmark" id="car-fuel-checkmark">✓</div>
+                </div>
+
+                <div class="category-tile" data-new-category="cash">
+                    <div class="category-tile-icon">💵</div>
+                    <div class="category-tile-name">Cash</div>
+                    <div class="category-checkmark" id="cash-checkmark">✓</div>
+                </div>
+
+                <div class="category-tile" data-new-category="childcare">
+                    <div class="category-tile-icon">👶</div>
+                    <div class="category-tile-name">Childcare</div>
+                    <div class="category-checkmark" id="childcare-checkmark">✓</div>
+                </div>
+
+                <div class="category-tile" data-new-category="coffee">
+                    <div class="category-tile-icon">☕</div>
+                    <div class="category-tile-name">Coffee</div>
+                    <div class="category-checkmark" id="coffee-checkmark">✓</div>
+                </div>
+
+                <div class="category-tile" data-new-category="charity">
+                    <div class="category-tile-icon">💝</div>
+                    <div class="category-tile-name">Charity</div>
+                    <div class="category-checkmark" id="charity-checkmark">✓</div>
+                </div>
+
+                <div class="category-tile" data-new-category="drinks">
+                    <div class="category-tile-icon">🍷</div>
+                    <div class="category-tile-name">Drinks</div>
+                    <div class="category-checkmark" id="drinks-checkmark">✓</div>
+                </div>
+
+                <div class="category-tile" data-new-category="education">
+                    <div class="category-tile-icon">🎓</div>
+                    <div class="category-tile-name">Education</div>
+                    <div class="category-checkmark" id="education-checkmark">✓</div>
+                </div>
+
+                <div class="category-tile" data-new-category="entertainment">
+                    <div class="category-tile-icon">🎬</div>
+                    <div class="category-tile-name">Entertainment</div>
+                    <div class="category-checkmark" id="entertainment-checkmark">✓</div>
+                </div>
+
+                <div class="category-tile" data-new-category="expenses">
+                    <div class="category-tile-icon">💳</div>
+                    <div class="category-tile-name">Expenses</div>
+                    <div class="category-checkmark" id="expenses-checkmark">✓</div>
+                </div>
+
+                <div class="category-tile" data-new-category="family">
+                    <div class="category-tile-icon">👪</div>
+                    <div class="category-tile-name">Family</div>
+                    <div class="category-checkmark" id="family-checkmark">✓</div>
+                </div>
+
+                <div class="category-tile" data-new-category="going-out">
+                    <div class="category-tile-icon">🍽️</div>
+                    <div class="category-tile-name">Going out</div>
+                    <div class="category-checkmark" id="going-out-checkmark">✓</div>
+                </div>
+
+                <div class="category-tile" data-new-category="groceries">
+                    <div class="category-tile-icon">🛒</div>
+                    <div class="category-tile-name">Groceries</div>
+                    <div class="category-checkmark" id="groceries-checkmark">✓</div>
+                </div>
+
+                <div class="category-tile" data-new-category="holidays">
+                    <div class="category-tile-icon">🌎</div>
+                    <div class="category-tile-name">Holidays</div>
+                    <div class="category-checkmark" id="holidays-checkmark">✓</div>
+                </div>
+
+                <div class="category-tile" data-new-category="home">
+                    <div class="category-tile-icon">🏠</div>
+                    <div class="category-tile-name">Home</div>
+                    <div class="category-checkmark" id="home-checkmark">✓</div>
+                </div>
+
+                <div class="category-tile" data-new-category="insurance">
+                    <div class="category-tile-icon">🛡️</div>
+                    <div class="category-tile-name">Insurance</div>
+                    <div class="category-checkmark" id="insurance-checkmark">✓</div>
+                </div>
+
+                <div class="category-tile" data-new-category="investments">
+                    <div class="category-tile-icon">📈</div>
+                    <div class="category-tile-name">Investments</div>
+                    <div class="category-checkmark" id="investments-checkmark">✓</div>
+                </div>
+
+                <div class="category-tile" data-new-category="lunch">
+                    <div class="category-tile-icon">🥙</div>
+                    <div class="category-tile-name">Lunch</div>
+                    <div class="category-checkmark" id="lunch-checkmark">✓</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Category Changed Success Page -->
+    <div id="category-changed-page" class="page">
+        <!-- Header (empty for clean look) -->
+        <div class="modal-header" style="border: none;">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+
+        <!-- Main Content -->
+        <div class="category-success-content">
+            <!-- Success Icon -->
+            <div class="category-success-icon-section">
+                <div class="category-success-checkmark">✓</div>
+                <div class="category-success-new-icon" id="success-category-icon">💳</div>
+            </div>
+
+            <!-- Success Message -->
+            <div class="category-success-message-section">
+                <div class="category-success-title">Category changed to <span id="success-category-name">Expenses</span></div>
+            </div>
+
+            <!-- Done Button -->
+            <div class="category-success-footer">
+                <button class="category-success-done-button" id="category-success-done">Done</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add/Edit Note Full Screen -->
+    <div id="add-note-page" class="page">
+        <!-- Header -->
+        <div class="modal-header">
+            <button class="modal-close" id="add-note-page-close">×</button>
+            <h2 class="modal-title" id="add-note-title">Add a note</h2>
+            <span></span>
+        </div>
+
+        <!-- Main Content -->
+        <div class="add-note-content">
+            <!-- Note Input Section -->
+            <div class="note-full-input-section">
+                <div class="note-input-container">
+                    <input type="text" class="note-full-input" id="transaction-note-full-input" placeholder="" maxlength="100" autofocus>
+                    <div class="note-input-line"></div>
+                </div>
+                <div class="note-character-remaining">
+                    <span id="note-char-remaining">100 characters left</span>
+                </div>
+            </div>
+
+            <!-- Done Button -->
+            <div class="note-full-actions">
+                <button class="note-done-button" id="save-note-full-button">Done</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Rewards Page -->
+    <div id="rewards-page" class="page">
+        <!-- Header -->
+        <div class="modal-header">
+            <button class="modal-back rewards-back">←</button>
+            <h2 class="modal-title">Rewards</h2>
+            <span></span>
+        </div>
+
+        <!-- Main Content -->
+        <div class="rewards-content">
+            <!-- Rewards Balance Section -->
+            <div class="rewards-balance-section">
+                <div class="rewards-balance-title">Rewards balance</div>
+                <div class="rewards-balance-amount">£0.00</div>
+                
+                <div class="rewards-summary">
+                    <div class="rewards-summary-item">
+                        <div class="rewards-summary-label">Pending</div>
+                        <div class="rewards-summary-value">£0.00</div>
+                    </div>
+                    
+                    <div class="rewards-summary-item">
+                        <div class="rewards-summary-label">Total earned so far</div>
+                        <div class="rewards-summary-value">£0.00</div>
+                    </div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="rewards-actions">
+                    <button class="rewards-action-button" id="transfer-rewards-button">Transfer</button>
+                    <button class="rewards-action-button" id="see-rewards-activity-button">See activity</button>
+                </div>
+            </div>
+
+            <!-- Your Rewards Section -->
+            <div class="rewards-offers-section">
+                <h3 class="rewards-section-title">Your rewards, Giuliano</h3>
+                
+                <!-- 1% Cashback Card -->
+                <div class="rewards-offer-card">
+                    <div class="rewards-card-header">
+                        <div class="rewards-card-image">
+                            <!-- Chase card image placeholder -->
+                            <div class="chase-card-visual"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="rewards-card-content">
+                        <h4 class="rewards-offer-title">1% cashback</h4>
+                        <p class="rewards-offer-description">
+                            You're getting 1% cashback – up to £15 a month – on groceries, everyday transport and fuel in the UK. Exceptions apply.
+                        </p>
+                        <div class="rewards-offer-expiry">Offer ends 26 August 2026</div>
+                    </div>
+                </div>
+
+                <!-- Additional Offer Card (partially visible placeholder) -->
+                <div class="rewards-offer-card">
+                    <div class="rewards-card-header">
+                        <div class="rewards-card-image-small">
+                            <!-- Second offer image placeholder -->
+                            <div class="rewards-offer-visual"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="rewards-card-content">
+                        <h4 class="rewards-offer-title">More rewards coming soon</h4>
+                        <p class="rewards-offer-description">
+                            Discover new ways to earn with Chase rewards.
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -5177,6 +6780,18 @@
 
             // Spotlight Functionality
             initializeSpotlight();
+
+            // Spending Details Functionality
+            initializeSpendingDetails();
+
+            // Category Detail Functionality
+            initializeCategoryDetails();
+
+            // Transaction Detail Functionality
+            initializeTransactionDetails();
+
+            // Rewards Functionality
+            initializeRewards();
         });
 
         // Global Account Balances (persistent across the app) 
@@ -8099,17 +9714,29 @@
                 screen: currentScreenName
             });
 
-            // For now, just show an alert - this could connect to detailed transaction views
-            const categoryNames = {
-                'spending': 'Spending Details',
-                'bills': 'Bills Details', 
-                'income': 'Income Details',
-                'interest': 'Interest Earned Details',
-                'refunds': 'Refunds Details',
-                'chase-saver': 'Savings Details'
-            };
+            // Handle specific category clicks
+            if (category === 'spending') {
+                // Navigate to spending details page
+                navigateToPage('spending-details');
+                
+                // Update status bar time
+                document.querySelectorAll('.status-left span').forEach(span => {
+                    if (span.textContent.includes(':')) {
+                        span.textContent = '11:32';
+                    }
+                });
+            } else {
+                // For other categories, show placeholder alert
+                const categoryNames = {
+                    'bills': 'Bills Details', 
+                    'income': 'Income Details',
+                    'interest': 'Interest Earned Details',
+                    'refunds': 'Refunds Details',
+                    'chase-saver': 'Savings Details'
+                };
 
-            alert(`${categoryNames[category]} - Feature to be implemented`);
+                alert(`${categoryNames[category]} - Feature to be implemented`);
+            }
         }
 
         function closeSpotlightPromo() {
@@ -8198,19 +9825,819 @@
                 checkOutButton.addEventListener('click', handleSpotlightCheckOut);
             }
 
-            // Rewards widget click handler (placeholder for now)
+            // Rewards widget click handler
             const rewardsWidget = document.getElementById('rewards-widget');
             if (rewardsWidget) {
-                rewardsWidget.addEventListener('click', function() {
-                    window.amplitude.track('Rewards Clicked', {
-                        screenName: 'Home - Spend Tab',
-                        source: 'rewards_widget'
-                    });
+                rewardsWidget.addEventListener('click', openRewardsPage);
+            }
+        }
 
-                    console.log('Amplitude event tracked: Rewards Clicked');
-                    alert('Rewards feature - To be implemented');
+        // Spending Details Functions
+        let spendingViewMode = 'categories'; // 'categories' or 'merchants'
+
+        function openFilterSpendBanner() {
+            // Track Filter Spend By Clicked event
+            window.amplitude.track('Filter Spend By Clicked', {
+                currentView: spendingViewMode,
+                screenName: 'Spending Details',
+                source: 'categories_merchants_toggle'
+            });
+
+            console.log('Amplitude event tracked: Filter Spend By Clicked');
+
+            // Show filter banner
+            const banner = document.getElementById('filter-spend-banner');
+            banner.classList.add('visible');
+
+            // Update checkmarks based on current view
+            updateFilterCheckmarks();
+
+            // Track Banner Viewed event
+            window.amplitude.track('Banner Viewed', {
+                bannerName: 'filter_spend_by',
+                screenName: 'Spending - Filter Options',
+                source: 'filter_toggle_clicked'
+            });
+        }
+
+        function closeFilterSpendBanner() {
+            const banner = document.getElementById('filter-spend-banner');
+            banner.classList.remove('visible');
+        }
+
+        function updateFilterCheckmarks() {
+            const categoriesCheck = document.getElementById('categories-check');
+            const merchantsCheck = document.getElementById('merchants-check');
+
+            if (spendingViewMode === 'categories') {
+                categoriesCheck.style.visibility = 'visible';
+                merchantsCheck.style.visibility = 'hidden';
+            } else {
+                categoriesCheck.style.visibility = 'hidden';
+                merchantsCheck.style.visibility = 'visible';
+            }
+        }
+
+        function selectFilterOption(filterType) {
+            if (filterType === spendingViewMode) {
+                // Same option selected, just close banner
+                closeFilterSpendBanner();
+                return;
+            }
+
+            // Track Filter Changed event
+            window.amplitude.track('Spending Filter Changed', {
+                previousFilter: spendingViewMode,
+                selectedFilter: filterType,
+                screenName: 'Spending Details'
+            });
+
+            console.log('Amplitude event tracked: Spending Filter Changed', {
+                from: spendingViewMode,
+                to: filterType
+            });
+
+            // Update view mode
+            spendingViewMode = filterType;
+
+            // Update toggle button text and style
+            const toggleButton = document.getElementById('categories-merchants-toggle');
+            const toggleButtonText = document.getElementById('toggle-button-text');
+            const spendingAmountElement = document.querySelector('.spending-amount');
+
+            if (filterType === 'merchants') {
+                toggleButtonText.textContent = 'Merchants';
+                toggleButton.classList.add('merchants');
+                // Update amount for merchants view
+                if (spendingAmountElement) {
+                    spendingAmountElement.textContent = '- £610.39';
+                }
+                // Update chart amount for merchants view
+                const chartAmountElements = document.querySelectorAll('.spending-chart-section .month-amount');
+                if (chartAmountElements.length >= 2) {
+                    chartAmountElements[0].textContent = '£0'; // AUG
+                    chartAmountElements[1].textContent = '£610'; // SEP
+                }
+            } else {
+                toggleButtonText.textContent = 'Categories';
+                toggleButton.classList.remove('merchants');
+                // Update amount for categories view
+                if (spendingAmountElement) {
+                    spendingAmountElement.textContent = '- £2,611.39';
+                }
+                // Update chart amount for categories view
+                const chartAmountElements = document.querySelectorAll('.spending-chart-section .month-amount');
+                if (chartAmountElements.length >= 2) {
+                    chartAmountElements[0].textContent = '£2'; // AUG
+                    chartAmountElements[1].textContent = '£2,611'; // SEP
+                }
+            }
+
+            // Switch views
+            const categoriesView = document.getElementById('categories-view');
+            const merchantsView = document.getElementById('merchants-view');
+
+            if (filterType === 'merchants') {
+                categoriesView.style.display = 'none';
+                merchantsView.style.display = 'block';
+            } else {
+                categoriesView.style.display = 'block';
+                merchantsView.style.display = 'none';
+            }
+
+            // Close banner
+            closeFilterSpendBanner();
+        }
+
+        function handleSpendingCategoryClick(category) {
+            // Track Spending Category Clicked event
+            window.amplitude.track('Spending Category Clicked', {
+                categoryName: category,
+                viewMode: spendingViewMode,
+                screenName: 'Spending Details'
+            });
+
+            console.log('Amplitude event tracked: Spending Category Clicked', {
+                category: category,
+                viewMode: spendingViewMode
+            });
+
+            // Handle specific categories that have detailed views
+            if (category === 'investments') {
+                openCategoryDetailPage('investments');
+            } else {
+                // Show placeholder for other categories
+                alert(`${category.charAt(0).toUpperCase() + category.slice(1)} details - Feature to be implemented`);
+            }
+        }
+
+        function handleMerchantClick(merchant) {
+            // Track Merchant Clicked event
+            window.amplitude.track('Merchant Clicked', {
+                merchantName: merchant,
+                screenName: 'Spending Details - Merchants'
+            });
+
+            console.log('Amplitude event tracked: Merchant Clicked', {
+                merchant: merchant
+            });
+
+            // Show placeholder for now
+            const merchantNames = {
+                'booking-com': 'Booking.com',
+                'easyjet': 'easyJet'
+            };
+
+            alert(`${merchantNames[merchant]} transaction details - Feature to be implemented`);
+        }
+
+        function initializeSpendingDetails() {
+            // Spending details back button
+            const spendingDetailsBack = document.querySelector('.spending-details-back');
+            if (spendingDetailsBack) {
+                spendingDetailsBack.addEventListener('click', function() {
+                    navigateToPage('spotlight-details');
+                    // Reset status bar time
+                    document.querySelectorAll('.status-left span').forEach(span => {
+                        if (span.textContent.includes(':')) {
+                            span.textContent = '18:37';
+                        }
+                    });
                 });
             }
+
+            // Categories/Merchants toggle button
+            const toggleButton = document.getElementById('categories-merchants-toggle');
+            if (toggleButton) {
+                toggleButton.addEventListener('click', openFilterSpendBanner);
+            }
+
+            // Filter banner functionality
+            const filterSpendClose = document.getElementById('filter-spend-close');
+            if (filterSpendClose) {
+                filterSpendClose.addEventListener('click', closeFilterSpendBanner);
+            }
+
+            // Filter option selection
+            const filterOptions = document.querySelectorAll('.filter-option');
+            filterOptions.forEach(option => {
+                option.addEventListener('click', function() {
+                    const filterType = this.getAttribute('data-filter');
+                    selectFilterOption(filterType);
+                });
+            });
+
+            // Spending category clicks
+            const spendingCategories = document.querySelectorAll('.spending-category');
+            spendingCategories.forEach(category => {
+                category.addEventListener('click', function() {
+                    const categoryType = this.getAttribute('data-category');
+                    handleSpendingCategoryClick(categoryType);
+                });
+            });
+
+            // Merchant clicks
+            const merchants = document.querySelectorAll('.spending-merchant');
+            merchants.forEach(merchant => {
+                merchant.addEventListener('click', function() {
+                    const merchantType = this.getAttribute('data-merchant');
+                    handleMerchantClick(merchantType);
+                });
+            });
+
+            // Click outside filter banner to close
+            const filterBanner = document.getElementById('filter-spend-banner');
+            if (filterBanner) {
+                filterBanner.addEventListener('click', function(e) {
+                    if (e.target === filterBanner) {
+                        closeFilterSpendBanner();
+                    }
+                });
+            }
+        }
+
+        // Transaction Data (simulated)
+        let transactionData = {
+            'investments': [
+                {
+                    id: 'txn_001',
+                    date: '7 SEPTEMBER 2025',
+                    time: '20:08',
+                    description: 'To Giuliano Giannini',
+                    amount: -1500.00,
+                    category: 'investments',
+                    note: '',
+                    status: 'Complete',
+                    fromAccount: "Giuliano's Account"
+                },
+                {
+                    id: 'txn_002', 
+                    date: '4 SEPTEMBER 2025',
+                    time: '20:28',
+                    description: 'To Giuliano Giannini',
+                    amount: -500.00,
+                    category: 'investments',
+                    note: 'Test',
+                    status: 'Complete',
+                    fromAccount: "Giuliano's Account"
+                }
+            ]
+        };
+
+        let currentTransaction = null;
+        let currentCategoryDetail = null;
+
+        // Category Detail Functions
+        function openCategoryDetailPage(category) {
+            currentCategoryDetail = category;
+            
+            // Update category detail page content
+            updateCategoryDetailDisplay(category);
+            
+            // Navigate to category detail page
+            navigateToPage('category-detail');
+
+            // Update status bar time
+            document.querySelectorAll('.status-left span').forEach(span => {
+                if (span.textContent.includes(':')) {
+                    span.textContent = '14:02';
+                }
+            });
+        }
+
+        function updateCategoryDetailDisplay(category) {
+            const categoryInfo = {
+                'investments': {
+                    title: 'Investments',
+                    icon: '📈',
+                    transactions: transactionData.investments || [],
+                    totalAmount: -2000.00
+                }
+            };
+
+            const info = categoryInfo[category];
+            if (!info) return;
+
+            // Update header info
+            document.getElementById('category-detail-title').textContent = info.title;
+            document.getElementById('category-detail-icon').textContent = info.icon;
+            document.getElementById('category-detail-amount').textContent = `- £${Math.abs(info.totalAmount).toLocaleString('en-GB', {minimumFractionDigits: 2})}`;
+            document.getElementById('category-detail-transactions').textContent = `${info.transactions.length} transactions`;
+
+            // Update chart amounts
+            document.getElementById('category-chart-aug').textContent = '£0';
+            document.getElementById('category-chart-sep').textContent = `£${Math.abs(info.totalAmount).toLocaleString('en-GB', {maximumFractionDigits: 0})}`;
+
+            // Populate transactions list
+            const transactionsList = document.getElementById('category-transactions-list');
+            transactionsList.innerHTML = '';
+
+            info.transactions.forEach(transaction => {
+                const transactionElement = document.createElement('div');
+                transactionElement.className = 'transaction-item';
+                transactionElement.setAttribute('data-transaction-id', transaction.id);
+                transactionElement.innerHTML = `
+                    <div class="transaction-item-details">
+                        <div class="transaction-date">${transaction.date}</div>
+                        <div class="transaction-description">${transaction.description}</div>
+                        <div class="transaction-time">Payment • ${transaction.time}</div>
+                    </div>
+                    <div class="transaction-amount">- £${Math.abs(transaction.amount).toLocaleString('en-GB', {minimumFractionDigits: 2})}</div>
+                `;
+                transactionElement.addEventListener('click', () => openTransactionDetail(transaction.id));
+                transactionsList.appendChild(transactionElement);
+            });
+        }
+
+        function openTransactionDetail(transactionId) {
+            // Find transaction data
+            let transaction = null;
+            for (const category in transactionData) {
+                transaction = transactionData[category].find(t => t.id === transactionId);
+                if (transaction) break;
+            }
+
+            if (!transaction) return;
+
+            currentTransaction = transaction;
+
+            // Track Transaction Detail Clicked event
+            window.amplitude.track('Transaction Detail Clicked', {
+                transactionId: transactionId,
+                categoryName: transaction.category,
+                amount: transaction.amount,
+                screenName: 'Category Details'
+            });
+
+            console.log('Amplitude event tracked: Transaction Detail Clicked');
+
+            // Update transaction detail page
+            updateTransactionDetailDisplay(transaction);
+
+            // Navigate to transaction detail page
+            navigateToPage('transaction-detail');
+
+            // Update status bar time
+            document.querySelectorAll('.status-left span').forEach(span => {
+                if (span.textContent.includes(':')) {
+                    span.textContent = '13:49';
+                }
+            });
+        }
+
+        function updateTransactionDetailDisplay(transaction) {
+            // Update transaction details
+            document.getElementById('transaction-timestamp').textContent = `${transaction.time} ${transaction.date}`;
+            document.getElementById('transaction-recipient').textContent = transaction.description;
+            document.getElementById('transaction-detail-amount').textContent = `- £${Math.abs(transaction.amount).toLocaleString('en-GB', {minimumFractionDigits: 2})}`;
+            document.getElementById('transaction-bank').textContent = 'Chase';
+            document.getElementById('transaction-from-account').textContent = transaction.fromAccount;
+            document.getElementById('transaction-status').textContent = transaction.status;
+
+            // Update category section
+            const categoryInfo = getCategoryInfo(transaction.category);
+            document.getElementById('transaction-category-icon').textContent = categoryInfo.icon;
+            document.getElementById('transaction-category-name').textContent = categoryInfo.name;
+            document.getElementById('transaction-category-month-amount').textContent = `- £${Math.abs(categoryInfo.monthlyTotal).toLocaleString('en-GB', {minimumFractionDigits: 2})} this month`;
+            document.getElementById('transaction-category-count').textContent = `${categoryInfo.transactionCount} transactions`;
+
+            // Update note section
+            const noteTitle = document.getElementById('transaction-note-title');
+            const noteButton = document.getElementById('edit-note-button');
+            
+            if (transaction.note && transaction.note.trim() !== '') {
+                noteTitle.textContent = transaction.note;
+                noteButton.textContent = 'Edit';
+            } else {
+                noteTitle.textContent = 'Notes';
+                noteButton.textContent = 'Add';
+            }
+        }
+
+        function getCategoryInfo(category) {
+            const categoryMap = {
+                'investments': { icon: '📈', name: 'Investments', monthlyTotal: 2000.00, transactionCount: 2 },
+                'expenses': { icon: '💳', name: 'Expenses', monthlyTotal: 1501.00, transactionCount: 2 },
+                'holidays': { icon: '🌎', name: 'Holidays', monthlyTotal: 610.39, transactionCount: 1 },
+                'groceries': { icon: '🛒', name: 'Groceries', monthlyTotal: 0, transactionCount: 0 },
+                'going-out': { icon: '🍽️', name: 'Going out', monthlyTotal: 0, transactionCount: 0 }
+            };
+            return categoryMap[category] || { icon: '💳', name: 'Other', monthlyTotal: 0, transactionCount: 0 };
+        }
+
+        // Category Change Functions
+        function openChangeCategoryPage() {
+            // Track Change Category Clicked event
+            window.amplitude.track('Change Category Clicked', {
+                transactionId: currentTransaction.id,
+                currentCategory: currentTransaction.category,
+                screenName: 'Transaction Detail'
+            });
+
+            console.log('Amplitude event tracked: Change Category Clicked');
+
+            // Update checkmarks for current category
+            updateCategoryCheckmarks();
+
+            // Navigate to change category page
+            navigateToPage('change-category');
+
+            // Update status bar time
+            document.querySelectorAll('.status-left span').forEach(span => {
+                if (span.textContent.includes(':')) {
+                    span.textContent = '15:17';
+                }
+            });
+        }
+
+        function closeChangeCategoryPage() {
+            navigateToPage('transaction-detail');
+            // Reset status bar time
+            document.querySelectorAll('.status-left span').forEach(span => {
+                if (span.textContent.includes(':')) {
+                    span.textContent = '13:49';
+                }
+            });
+        }
+
+        function updateCategoryCheckmarks() {
+            // Hide all checkmarks first
+            document.querySelectorAll('.category-checkmark').forEach(checkmark => {
+                checkmark.style.visibility = 'hidden';
+            });
+
+            // Remove selected class from all tiles
+            document.querySelectorAll('.category-tile').forEach(tile => {
+                tile.classList.remove('selected');
+            });
+
+            // Show checkmark for current category
+            const currentCategoryCheckmark = document.getElementById(`${currentTransaction.category}-checkmark`);
+            const currentCategoryTile = document.querySelector(`[data-new-category="${currentTransaction.category}"]`);
+            
+            if (currentCategoryCheckmark && currentCategoryTile) {
+                currentCategoryCheckmark.style.visibility = 'visible';
+                currentCategoryTile.classList.add('selected');
+            }
+        }
+
+        function selectNewCategory(newCategory) {
+            if (!currentTransaction) return;
+            if (newCategory === currentTransaction.category) {
+                // Same category selected, just close
+                closeChangeCategoryPage();
+                return;
+            }
+
+            const previousCategory = currentTransaction.category;
+
+            // Track Category Changed event
+            window.amplitude.track('Transaction Category Changed', {
+                transactionId: currentTransaction.id,
+                previousCategory: previousCategory,
+                newCategory: newCategory,
+                amount: currentTransaction.amount,
+                screenName: 'Change Category'
+            });
+
+            console.log('Amplitude event tracked: Transaction Category Changed', {
+                from: previousCategory,
+                to: newCategory
+            });
+
+            // Update transaction data
+            currentTransaction.category = newCategory;
+
+            // Show success page
+            showCategoryChangeSuccess(newCategory);
+        }
+
+        function showCategoryChangeSuccess(newCategory) {
+            // Update success page content
+            const categoryInfo = getCategoryInfo(newCategory);
+            document.getElementById('success-category-icon').textContent = categoryInfo.icon;
+            document.getElementById('success-category-name').textContent = categoryInfo.name;
+
+            // Navigate to success page
+            navigateToPage('category-changed');
+
+            // Track virtual page view for success
+            window.amplitude.track('[Amplitude] Page Viewed', {
+                page_location: window.location.href + '#category-change-success',
+                page_title: 'Category Change Success',
+                virtual_page: 'category-change-success',
+                page_type: 'virtual'
+            });
+
+            console.log('Amplitude event tracked: Category Change Success Page Viewed');
+        }
+
+        function completeCategoryChange() {
+            // Track Category Change Completed event
+            window.amplitude.track('Category Change Completed', {
+                transactionId: currentTransaction.id,
+                newCategory: currentTransaction.category,
+                screenName: 'Category Change Success'
+            });
+
+            console.log('Amplitude event tracked: Category Change Completed');
+
+            // Update transaction detail display
+            updateTransactionDetailDisplay(currentTransaction);
+
+            // Navigate back to transaction detail
+            navigateToPage('transaction-detail');
+
+            // Update status bar time
+            document.querySelectorAll('.status-left span').forEach(span => {
+                if (span.textContent.includes(':')) {
+                    span.textContent = '15:24';
+                }
+            });
+        }
+
+        // Note Edit Functions
+        function openAddNotePage() {
+            const hasExistingNote = currentTransaction.note && currentTransaction.note.trim() !== '';
+            
+            // Track appropriate event based on whether adding or editing
+            if (hasExistingNote) {
+                window.amplitude.track('Edit Expense Note Clicked', {
+                    transactionId: currentTransaction.id,
+                    currentNote: currentTransaction.note,
+                    currentCategory: currentTransaction.category,
+                    screenName: 'Transaction Detail'
+                });
+                console.log('Amplitude event tracked: Edit Expense Note Clicked');
+            } else {
+                window.amplitude.track('Add Expense Note Clicked', {
+                    transactionId: currentTransaction.id,
+                    currentCategory: currentTransaction.category,
+                    screenName: 'Transaction Detail'
+                });
+                console.log('Amplitude event tracked: Add Expense Note Clicked');
+            }
+
+            // Update page title
+            const pageTitle = document.getElementById('add-note-title');
+            pageTitle.textContent = hasExistingNote ? 'Edit note' : 'Add a note';
+
+            // Populate current note
+            const noteInput = document.getElementById('transaction-note-full-input');
+            noteInput.value = currentTransaction.note || '';
+            updateNoteCharRemaining();
+
+            // Navigate to add note page
+            navigateToPage('add-note');
+
+            // Focus input
+            setTimeout(() => noteInput.focus(), 300);
+        }
+
+        function closeAddNotePage() {
+            navigateToPage('transaction-detail');
+        }
+
+        function updateNoteCharRemaining() {
+            const noteInput = document.getElementById('transaction-note-full-input');
+            const charRemaining = document.getElementById('note-char-remaining');
+            const remaining = 100 - noteInput.value.length;
+            charRemaining.textContent = `${remaining} characters left`;
+        }
+
+        function saveTransactionNote() {
+            if (!currentTransaction) return;
+
+            const noteInput = document.getElementById('transaction-note-full-input');
+            const newNote = noteInput.value.trim();
+            const previousNote = currentTransaction.note;
+            const wasAdding = !previousNote || previousNote.trim() === '';
+
+            // Track appropriate event based on whether adding or editing
+            if (wasAdding) {
+                window.amplitude.track('Expense Note Added', {
+                    transactionId: currentTransaction.id,
+                    newNote: newNote,
+                    noteLength: newNote.length,
+                    currentCategory: currentTransaction.category,
+                    screenName: 'Add Note'
+                });
+                console.log('Amplitude event tracked: Expense Note Added');
+            } else {
+                window.amplitude.track('Expense Note Updated', {
+                    transactionId: currentTransaction.id,
+                    previousNote: previousNote,
+                    newNote: newNote,
+                    noteLength: newNote.length,
+                    currentCategory: currentTransaction.category,
+                    screenName: 'Edit Note'
+                });
+                console.log('Amplitude event tracked: Expense Note Updated');
+            }
+
+            // Update transaction data
+            currentTransaction.note = newNote;
+
+            // Update display
+            updateTransactionDetailDisplay(currentTransaction);
+
+            // Navigate back to transaction detail
+            navigateToPage('transaction-detail');
+
+            // No alert needed - smooth transition
+        }
+
+        function initializeCategoryDetails() {
+            // Category detail back button
+            const categoryDetailBack = document.querySelector('.category-detail-back');
+            if (categoryDetailBack) {
+                categoryDetailBack.addEventListener('click', function() {
+                    navigateToPage('spending-details');
+                    // Reset status bar time
+                    document.querySelectorAll('.status-left span').forEach(span => {
+                        if (span.textContent.includes(':')) {
+                            span.textContent = '11:32';
+                        }
+                    });
+                });
+            }
+        }
+
+        function initializeTransactionDetails() {
+            // Transaction detail back button
+            const transactionDetailBack = document.querySelector('.transaction-detail-back');
+            if (transactionDetailBack) {
+                transactionDetailBack.addEventListener('click', function() {
+                    navigateToPage('category-detail');
+                    // Reset status bar time
+                    document.querySelectorAll('.status-left span').forEach(span => {
+                        if (span.textContent.includes(':')) {
+                            span.textContent = '14:02';
+                        }
+                    });
+                });
+            }
+
+            // Change category functionality
+            const changeCategoryButton = document.getElementById('change-category-button');
+            if (changeCategoryButton) {
+                changeCategoryButton.addEventListener('click', openChangeCategoryPage);
+            }
+
+            // Category page close button
+            const changeCategoryPageClose = document.getElementById('change-category-page-close');
+            if (changeCategoryPageClose) {
+                changeCategoryPageClose.addEventListener('click', closeChangeCategoryPage);
+            }
+
+            // Category tile selection
+            const categoryTiles = document.querySelectorAll('.category-tile');
+            categoryTiles.forEach(tile => {
+                tile.addEventListener('click', function() {
+                    const newCategory = this.getAttribute('data-new-category');
+                    selectNewCategory(newCategory);
+                });
+            });
+
+            // Category success done button
+            const categorySuccessDone = document.getElementById('category-success-done');
+            if (categorySuccessDone) {
+                categorySuccessDone.addEventListener('click', completeCategoryChange);
+            }
+
+            // Edit note functionality
+            const editNoteButton = document.getElementById('edit-note-button');
+            if (editNoteButton) {
+                editNoteButton.addEventListener('click', openAddNotePage);
+            }
+
+            // Add note page close button
+            const addNotePageClose = document.getElementById('add-note-page-close');
+            if (addNotePageClose) {
+                addNotePageClose.addEventListener('click', closeAddNotePage);
+            }
+
+            // Note input character counting
+            const noteFullInput = document.getElementById('transaction-note-full-input');
+            if (noteFullInput) {
+                noteFullInput.addEventListener('input', updateNoteCharRemaining);
+            }
+
+            // Save note functionality
+            const saveNoteFullButton = document.getElementById('save-note-full-button');
+            if (saveNoteFullButton) {
+                saveNoteFullButton.addEventListener('click', saveTransactionNote);
+            }
+
+            // Help section click
+            const helpSection = document.querySelector('.transaction-help-row');
+            if (helpSection) {
+                helpSection.addEventListener('click', function() {
+                    window.amplitude.track('Transaction Help Clicked', {
+                        transactionId: currentTransaction?.id,
+                        screenName: 'Transaction Detail'
+                    });
+
+                    alert('Help & Support - Feature to be implemented');
+                });
+            }
+        }
+
+        // Rewards Functions
+        function openRewardsPage() {
+            // Track Rewards Clicked event
+            window.amplitude.track('Rewards Clicked', {
+                screenName: 'Home - Spend Tab',
+                source: 'rewards_widget'
+            });
+
+            console.log('Amplitude event tracked: Rewards Clicked');
+
+            // Navigate to Rewards page
+            navigateToPage('rewards');
+
+            // Update status bar time
+            document.querySelectorAll('.status-left span').forEach(span => {
+                if (span.textContent.includes(':')) {
+                    span.textContent = '16:13';
+                }
+            });
+        }
+
+        function handleTransferRewards() {
+            // Track Transfer Rewards Clicked event
+            window.amplitude.track('Transfer Rewards Clicked', {
+                rewardsBalance: '0.00',
+                screenName: 'Rewards',
+                source: 'transfer_button'
+            });
+
+            console.log('Amplitude event tracked: Transfer Rewards Clicked');
+
+            // Placeholder functionality
+            alert('Transfer Rewards - Feature to be implemented');
+        }
+
+        function handleSeeRewardsActivity() {
+            // Track See Rewards Activity Clicked event
+            window.amplitude.track('See Rewards Activity Clicked', {
+                rewardsBalance: '0.00',
+                screenName: 'Rewards',
+                source: 'see_activity_button'
+            });
+
+            console.log('Amplitude event tracked: See Rewards Activity Clicked');
+
+            // Placeholder functionality
+            alert('See Rewards Activity - Feature to be implemented');
+        }
+
+        function initializeRewards() {
+            // Rewards back button
+            const rewardsBack = document.querySelector('.rewards-back');
+            if (rewardsBack) {
+                rewardsBack.addEventListener('click', function() {
+                    navigateToPage('home');
+                    // Reset status bar time
+                    document.querySelectorAll('.status-left span').forEach(span => {
+                        if (span.textContent.includes(':')) {
+                            span.textContent = '10:14';
+                        }
+                    });
+                });
+            }
+
+            // Transfer button functionality
+            const transferRewardsButton = document.getElementById('transfer-rewards-button');
+            if (transferRewardsButton) {
+                transferRewardsButton.addEventListener('click', handleTransferRewards);
+            }
+
+            // See activity button functionality
+            const seeRewardsActivityButton = document.getElementById('see-rewards-activity-button');
+            if (seeRewardsActivityButton) {
+                seeRewardsActivityButton.addEventListener('click', handleSeeRewardsActivity);
+            }
+
+            // Rewards offer cards click tracking (optional)
+            const rewardsOfferCards = document.querySelectorAll('.rewards-offer-card');
+            rewardsOfferCards.forEach((card, index) => {
+                card.addEventListener('click', function() {
+                    const offerType = index === 0 ? '1_percent_cashback' : 'coming_soon';
+                    
+                    window.amplitude.track('Rewards Offer Clicked', {
+                        offerType: offerType,
+                        screenName: 'Rewards',
+                        source: 'offer_card'
+                    });
+
+                    console.log('Amplitude event tracked: Rewards Offer Clicked', {
+                        offerType: offerType
+                    });
+
+                    alert(`${offerType === '1_percent_cashback' ? '1% Cashback' : 'More Rewards'} - Feature to be implemented`);
+                });
+            });
         }
     </script>
 </body>
