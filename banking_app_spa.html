@@ -9950,14 +9950,14 @@
         }
 
         function handleSpendingCategoryClick(category) {
-            // Track Spotlight Subcategory Clicked
-            window.amplitude.track('Spotlight Subcategory Clicked', {
+            // Track Spending Category Clicked
+            window.amplitude.track('Spending Category Clicked', {
                 categoryName: category,
                 viewMode: spendingViewMode,
                 screenName: 'Spending Details'
             });
 
-            console.log('Amplitude event tracked: Spotlight Subcategory Clicked', {
+            console.log('Amplitude event tracked: Spending Category Clicked', {
                 category: category,
                 viewMode: spendingViewMode
             });
