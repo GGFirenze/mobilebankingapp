@@ -6631,6 +6631,22 @@
                     
                     // Get tab type
                     const tabType = this.getAttribute('data-tab');
+                    const previousTab = document.querySelector('.tab.active')?.getAttribute('data-tab');
+                    
+                    // Only track if actually changing tabs
+                    if (previousTab && previousTab !== tabType) {
+                        // Track Account Type Changed event
+                        window.amplitude.track('Account Type Changed', {
+                            previous_account_type: previousTab.replace('-', '_'),
+                            selected_account_type: tabType.replace('-', '_'),
+                            screenName: 'Home'
+                        });
+                        
+                        console.log('Amplitude event tracked: Account Type Changed', {
+                            from: previousTab,
+                            to: tabType
+                        });
+                    }
                     
                     // Remove active class from all tabs
                     tabs.forEach(t => t.classList.remove('active'));
@@ -6641,7 +6657,22 @@
                     // Switch content
                     switchTabContent(tabType);
                     
-                    // No tracking for tabs as requested
+                    // Track virtual page view for tab content change
+                    const virtualPageName = tabType === 'spend' ? 'home-spend' : 'home-save-invest';
+                    const pageTitle = `Banking App - Home - ${tabType === 'spend' ? 'Spend' : 'Save & Invest'}`;
+                    
+                    window.amplitude.track('[Amplitude] Page Viewed', {
+                        page_location: window.location.href + '#' + virtualPageName,
+                        page_title: pageTitle,
+                        virtual_page: virtualPageName,
+                        page_type: 'virtual',
+                        account_type: tabType.replace('-', '_')
+                    });
+                    
+                    console.log('Amplitude virtual page view tracked:', {
+                        virtualPage: virtualPageName,
+                        accountType: tabType
+                    });
                 });
             });
 
@@ -9950,7 +9981,7 @@
         }
 
         function handleSpendingCategoryClick(category) {
-            // Track Spending Category Clicked
+            // Track Spending Category Clicked event
             window.amplitude.track('Spending Category Clicked', {
                 categoryName: category,
                 viewMode: spendingViewMode,
@@ -10161,15 +10192,15 @@
 
             currentTransaction = transaction;
 
-            // Track Expense Detail Clicked event
-            window.amplitude.track('Expense Detail Clicked', {
+            // Track Transaction Detail Clicked event
+            window.amplitude.track('Transaction Detail Clicked', {
                 transactionId: transactionId,
                 categoryName: transaction.category,
                 amount: transaction.amount,
                 screenName: 'Category Details'
             });
 
-            console.log('Amplitude event tracked: Expense Detail Clicked');
+            console.log('Amplitude event tracked: Transaction Detail Clicked');
 
             // Update transaction detail page
             updateTransactionDetailDisplay(transaction);
@@ -10227,14 +10258,14 @@
 
         // Category Change Functions
         function openChangeCategoryPage() {
-            // Track Change Expense Category Clicked event
-            window.amplitude.track('Change Expense Category Clicked', {
+            // Track Change Category Clicked event
+            window.amplitude.track('Change Category Clicked', {
                 transactionId: currentTransaction.id,
                 currentCategory: currentTransaction.category,
                 screenName: 'Transaction Detail'
             });
 
-            console.log('Amplitude event tracked: Change Expense Category Clicked');
+            console.log('Amplitude event tracked: Change Category Clicked');
 
             // Update checkmarks for current category
             updateCategoryCheckmarks();
@@ -10292,7 +10323,7 @@
             const previousCategory = currentTransaction.category;
 
             // Track Category Changed event
-            window.amplitude.track('Expense Category Changed', {
+            window.amplitude.track('Transaction Category Changed', {
                 transactionId: currentTransaction.id,
                 previousCategory: previousCategory,
                 newCategory: newCategory,
@@ -10300,7 +10331,7 @@
                 screenName: 'Change Category'
             });
 
-            console.log('Amplitude event tracked: Expense Category Changed', {
+            console.log('Amplitude event tracked: Transaction Category Changed', {
                 from: previousCategory,
                 to: newCategory
             });
@@ -10333,14 +10364,14 @@
         }
 
         function completeCategoryChange() {
-            // Track Expense Category Change Completed event
-            window.amplitude.track('Expense Category Change Completed', {
+            // Track Category Change Completed event
+            window.amplitude.track('Category Change Completed', {
                 transactionId: currentTransaction.id,
                 newCategory: currentTransaction.category,
                 screenName: 'Category Change Success'
             });
 
-            console.log('Amplitude event tracked: Expense Category Change Completed');
+            console.log('Amplitude event tracked: Category Change Completed');
 
             // Update transaction detail display
             updateTransactionDetailDisplay(currentTransaction);
