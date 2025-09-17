@@ -925,6 +925,147 @@
         .search-expandable-arrow {
             color: #6b7280;
             font-size: 16px;
+            transition: transform 0.2s ease;
+        }
+
+        .search-expandable-item.expanded .search-expandable-arrow {
+            transform: rotate(180deg);
+        }
+
+        .search-expandable-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+            padding: 0;
+        }
+
+        .search-expandable-item.expanded .search-expandable-content {
+            max-height: 300px;
+            padding: 16px 0 0 0;
+        }
+
+        .search-expandable-description {
+            font-size: 14px;
+            color: #6b7280;
+            line-height: 1.5;
+            margin-bottom: 16px;
+        }
+
+        .search-internal-link, .search-external-link {
+            background: none;
+            border: none;
+            color: #1e40af;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            text-decoration: underline;
+            padding: 0;
+            text-align: left;
+        }
+
+        .search-external-link {
+            color: #7c3aed;
+        }
+
+        .search-internal-link:hover, .search-external-link:hover {
+            opacity: 0.8;
+        }
+
+        /* Search Not Found Section */
+        .search-not-found-section {
+            background: white;
+            border-radius: 16px;
+            padding: 24px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .search-section-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #1f2937;
+            margin-bottom: 8px;
+        }
+
+        .search-section-subtitle {
+            font-size: 14px;
+            color: #6b7280;
+            line-height: 1.5;
+            margin-bottom: 20px;
+        }
+
+        .search-contact-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #f9fafb;
+            border-radius: 12px;
+            padding: 16px 20px;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+
+        .search-contact-item:hover {
+            background-color: #f3f4f6;
+        }
+
+        .search-contact-icon {
+            font-size: 20px;
+            margin-right: 12px;
+        }
+
+        .search-contact-text {
+            flex: 1;
+            font-size: 16px;
+            color: #1f2937;
+            font-weight: 500;
+            text-align: left;
+        }
+
+        .search-contact-arrow {
+            color: #6b7280;
+            font-size: 16px;
+        }
+
+        /* Contact Options Banner Styles */
+        .contact-option {
+            padding: 20px 0;
+            border-bottom: 1px solid #f3f4f6;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+
+        .contact-option:last-child {
+            border-bottom: none;
+        }
+
+        .contact-option:hover {
+            background-color: #f8fafc;
+            margin: 0 -20px;
+            padding: 20px 20px;
+        }
+
+        .contact-option-info {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .contact-option-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            background: #f3f4f6;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+        }
+
+        .contact-option-text {
+            font-size: 16px;
+            color: #1f2937;
+            font-weight: 500;
         }
 
         /* Move Money Modal Styles */
@@ -4562,6 +4703,14 @@
                         <span class="search-expandable-title">Saving accounts</span>
                         <span class="search-expandable-arrow">⌄</span>
                     </div>
+                    <div class="search-expandable-content">
+                        <p class="search-expandable-description">
+                            If you have any saver accounts, round-ups and investment pots, these will be under 'Save and Invest'.
+                        </p>
+                        <button class="search-internal-link" data-link-type="internal" data-destination="save-invest">
+                            Go to 'Save and Invest'
+                        </button>
+                    </div>
                 </div>
 
                 <div class="search-expandable-item" data-result="creating-amending-goal">
@@ -4569,12 +4718,28 @@
                         <span class="search-expandable-title">Creating, amending or deleting a goal</span>
                         <span class="search-expandable-arrow">⌄</span>
                     </div>
+                    <div class="search-expandable-content">
+                        <p class="search-expandable-description">
+                            You can set savings goals to help track your progress. Learn more about managing your goals.
+                        </p>
+                        <button class="search-external-link" data-link-type="external" data-destination="jpmc-goals">
+                            View goals guide on chase.co.uk
+                        </button>
+                    </div>
                 </div>
 
                 <div class="search-expandable-item" data-result="opening-accounts">
                     <div class="search-expandable-header">
                         <span class="search-expandable-title">Opening more accounts</span>
                         <span class="search-expandable-arrow">⌄</span>
+                    </div>
+                    <div class="search-expandable-content">
+                        <p class="search-expandable-description">
+                            You can open additional Chase accounts through the app or website.
+                        </p>
+                        <button class="search-external-link" data-link-type="external" data-destination="jpmc-accounts">
+                            Learn more on chase.co.uk
+                        </button>
                     </div>
                 </div>
 
@@ -4597,6 +4762,49 @@
                         <span class="search-expandable-title">Interest rates explained</span>
                         <span class="search-expandable-arrow">⌄</span>
                     </div>
+                </div>
+            </div>
+
+            <!-- Not What You're Looking For Section -->
+            <div class="search-not-found-section">
+                <h3 class="search-section-title">Not what you're looking for?</h3>
+                <p class="search-section-subtitle">Our friendly team are ready to talk to you 24/7</p>
+                
+                <div class="search-contact-item" id="search-contact-us">
+                    <div class="search-contact-icon">💬</div>
+                    <div class="search-contact-text">Contact us</div>
+                    <div class="search-contact-arrow">›</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contact Us Options Banner (from Search Results) -->
+    <div id="search-contact-banner" class="bottom-banner">
+        <div class="banner-header">
+            <div class="banner-handle"></div>
+            <h2 class="banner-title">Contact us</h2>
+            <button class="banner-close" id="search-contact-close">×</button>
+        </div>
+        <div class="banner-content">
+            <div class="contact-option" data-contact-type="message">
+                <div class="contact-option-info">
+                    <div class="contact-option-icon">💬</div>
+                    <div class="contact-option-text">Message us</div>
+                </div>
+            </div>
+
+            <div class="contact-option" data-contact-type="call-uk">
+                <div class="contact-option-info">
+                    <div class="contact-option-icon">📞</div>
+                    <div class="contact-option-text">Call from UK (free)</div>
+                </div>
+            </div>
+
+            <div class="contact-option" data-contact-type="call-abroad">
+                <div class="contact-option-info">
+                    <div class="contact-option-icon">🌍</div>
+                    <div class="contact-option-text">Call from abroad (charges may apply)</div>
                 </div>
             </div>
         </div>
@@ -11129,27 +11337,197 @@
                 });
             }
 
-            // Expandable search results
-            const expandableItems = document.querySelectorAll('.search-expandable-item');
-            expandableItems.forEach(item => {
-                item.addEventListener('click', function() {
-                    const resultType = this.getAttribute('data-result');
+            // Expandable search results headers (for expand/collapse)
+            const expandableHeaders = document.querySelectorAll('.search-expandable-header');
+            expandableHeaders.forEach(header => {
+                header.addEventListener('click', function(e) {
+                    e.stopPropagation(); // Prevent bubbling
+                    
+                    const expandableItem = this.closest('.search-expandable-item');
+                    const resultType = expandableItem.getAttribute('data-result');
                     const resultTitle = this.querySelector('.search-expandable-title').textContent;
+                    const isCurrentlyExpanded = expandableItem.classList.contains('expanded');
 
-                    window.amplitude.track('Search Result Clicked', {
-                        resultType: resultType,
-                        resultTitle: resultTitle,
-                        searchTerm: document.querySelector('.search-input')?.value || '',
-                        screenName: 'Support Search Results'
-                    });
+                    // Toggle expanded state
+                    expandableItem.classList.toggle('expanded');
 
-                    console.log('Amplitude event tracked: Search Result Clicked', {
-                        result: resultTitle
-                    });
+                    // Only track when expanding (opening), not when collapsing (closing)
+                    if (!isCurrentlyExpanded) {
+                        window.amplitude.track('Support Search Result Expanded', {
+                            resultType: resultType,
+                            resultTitle: resultTitle,
+                            searchTerm: document.querySelector('.search-input')?.value || '',
+                            screenName: 'Support Search Results'
+                        });
 
-                    alert(`${resultTitle} - Feature to be implemented`);
+                        console.log('Amplitude event tracked: Support Search Result Expanded', {
+                            result: resultTitle
+                        });
+                    }
                 });
             });
+
+            // Internal and external link handlers
+            const searchLinks = document.querySelectorAll('.search-internal-link, .search-external-link');
+            searchLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.stopPropagation(); // Prevent bubbling to expandable item
+                    
+                    const linkType = this.getAttribute('data-link-type');
+                    const destination = this.getAttribute('data-destination');
+                    const linkText = this.textContent;
+
+                    if (linkType === 'internal') {
+                        // Track internal link clicked
+                        window.amplitude.track('Support Internal Link Clicked', {
+                            linkDestination: destination,
+                            linkText: linkText,
+                            searchTerm: document.querySelector('.search-input')?.value || '',
+                            screenName: 'Support Search Results'
+                        });
+
+                        console.log('Amplitude event tracked: Support Internal Link Clicked', {
+                            destination: destination,
+                            linkText: linkText
+                        });
+
+                        // Handle internal navigation
+                        if (destination === 'save-invest') {
+                            // Navigate to home page and switch to Save & Invest tab
+                            navigateToPage('home');
+                            setTimeout(() => {
+                                switchTabContent('save-invest');
+                                document.querySelector('[data-tab="save-invest"]').classList.add('active');
+                                document.querySelector('[data-tab="spend"]').classList.remove('active');
+                            }, 300);
+                        }
+
+                    } else if (linkType === 'external') {
+                        // Track external link clicked
+                        window.amplitude.track('Support External Link Clicked', {
+                            linkDestination: destination,
+                            linkText: linkText,
+                            searchTerm: document.querySelector('.search-input')?.value || '',
+                            screenName: 'Support Search Results'
+                        });
+
+                        console.log('Amplitude event tracked: Support External Link Clicked', {
+                            destination: destination,
+                            linkText: linkText
+                        });
+
+                        // Show placeholder for external links
+                        alert(`External link: ${linkText}\n\nThis would open ${linkText} in a new tab.`);
+                    }
+                });
+            });
+
+            // Search results contact us functionality
+            const searchContactUs = document.getElementById('search-contact-us');
+            if (searchContactUs) {
+                searchContactUs.addEventListener('click', openSearchContactBanner);
+            }
+
+            // Search contact banner functionality
+            const searchContactClose = document.getElementById('search-contact-close');
+            if (searchContactClose) {
+                searchContactClose.addEventListener('click', closeSearchContactBanner);
+            }
+
+            // Contact option handlers
+            const contactOptions = document.querySelectorAll('.contact-option');
+            contactOptions.forEach(option => {
+                option.addEventListener('click', function() {
+                    const contactType = this.getAttribute('data-contact-type');
+                    handleSearchContactOption(contactType);
+                });
+            });
+
+            // Click outside contact banner to close
+            const searchContactBanner = document.getElementById('search-contact-banner');
+            if (searchContactBanner) {
+                searchContactBanner.addEventListener('click', function(e) {
+                    if (e.target === searchContactBanner) {
+                        closeSearchContactBanner();
+                    }
+                });
+            }
+        }
+
+        function openSearchContactBanner() {
+            // Track Contact Us Clicked from search results
+            window.amplitude.track('Support Contact Us Clicked', {
+                searchTerm: document.querySelector('.search-input')?.value || '',
+                screenName: 'Support Search Results',
+                source: 'contact_us_section'
+            });
+
+            console.log('Amplitude event tracked: Support Contact Us Clicked');
+
+            // Show contact banner
+            const banner = document.getElementById('search-contact-banner');
+            banner.classList.add('visible');
+
+            // Track Banner Viewed event
+            window.amplitude.track('Banner Viewed', {
+                bannerName: 'search_contact_options',
+                screenName: 'Support Search - Contact Options',
+                source: 'contact_us_clicked'
+            });
+        }
+
+        function closeSearchContactBanner() {
+            const banner = document.getElementById('search-contact-banner');
+            banner.classList.remove('visible');
+        }
+
+        function handleSearchContactOption(contactType) {
+            // Determine contact method and call type for enhanced tracking
+            let contactMethod, callType;
+
+            if (contactType === 'message') {
+                contactMethod = 'message';
+                callType = null;
+            } else if (contactType === 'call-uk') {
+                contactMethod = 'call';
+                callType = 'domestic';
+            } else if (contactType === 'call-abroad') {
+                contactMethod = 'call';
+                callType = 'international';
+            }
+
+            // Build event properties
+            const eventProperties = {
+                contactMethod: contactMethod,
+                searchTerm: document.querySelector('.search-input')?.value || '',
+                screenName: 'Support Search Results',
+                source: 'contact_options_banner'
+            };
+
+            // Add call_type property only for phone calls
+            if (callType) {
+                eventProperties.call_type = callType;
+            }
+
+            // Track enhanced Support Contact Clicked event
+            window.amplitude.track('Support Contact Clicked', eventProperties);
+
+            console.log('Amplitude event tracked: Support Contact Clicked', {
+                contactMethod: contactMethod,
+                callType: callType || 'N/A'
+            });
+
+            // Close banner
+            closeSearchContactBanner();
+
+            // Show placeholder functionality
+            const contactMessages = {
+                'message': 'Message Support - Opening chat interface...',
+                'call-uk': 'Call from UK (free) - Initiating domestic call...',
+                'call-abroad': 'Call from abroad - Initiating international call (charges may apply)...'
+            };
+
+            alert(contactMessages[contactType]);
         }
 
         function performSupportSearch() {
