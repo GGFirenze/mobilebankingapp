@@ -11163,17 +11163,42 @@
         }
 
         function handleCallSupport() {
-            // Track Support Call Clicked event
-            window.amplitude.track('Support Contact Clicked', {
-                contactMethod: 'call',
+            // Track Support Call Menu Opened event (intent to explore call options)
+            window.amplitude.track('Support Call Menu Opened', {
                 screenName: 'Support',
-                source: 'get_in_touch_section'
+                source: 'call_button'
             });
 
-            console.log('Amplitude event tracked: Support Contact Clicked (Call)');
+            console.log('Amplitude event tracked: Support Call Menu Opened');
 
-            // Placeholder for call support functionality
-            alert('Call Support - Feature to be implemented\n\nThis would typically initiate a phone call or callback request.');
+            // Open the same contact banner that search results use
+            openMainSupportContactBanner();
+        }
+
+        function openMainSupportContactBanner() {
+            // Hide message option and show only call options
+            const messageOption = document.querySelector('[data-contact-type="message"]');
+            if (messageOption) {
+                messageOption.style.display = 'none';
+            }
+
+            // Show contact banner (same as search results banner but filtered)
+            const banner = document.getElementById('search-contact-banner');
+            banner.classList.add('visible');
+
+            // Track Banner Viewed event
+            window.amplitude.track('Banner Viewed', {
+                bannerName: 'support_call_options',
+                screenName: 'Support - Call Options',
+                source: 'call_menu_opened'
+            });
+
+            console.log('Amplitude event tracked: Banner Viewed (Support Call Options)');
+        }
+
+        function closeMainSupportContactBanner() {
+            const banner = document.getElementById('search-contact-banner');
+            banner.classList.remove('visible');
         }
 
         function handleServiceQualityClick() {
@@ -11212,11 +11237,14 @@
                 messageSupportButton.addEventListener('click', handleMessageSupport);
             }
 
-            // Call support button
+            // Call support button (opens call options banner)
             const callSupportButton = document.getElementById('call-support-button');
             if (callSupportButton) {
                 callSupportButton.addEventListener('click', handleCallSupport);
             }
+
+            // Note: Contact banner functionality is handled in search results initialization
+            // The handleSearchContactOption function now intelligently handles both support page and search results paths
 
             // Service quality results click
             const serviceQualityItem = document.querySelector('.service-quality-item');
@@ -11455,14 +11483,20 @@
         }
 
         function openSearchContactBanner() {
-            // Track Contact Us Clicked from search results
-            window.amplitude.track('Support Contact Us Clicked', {
+            // Track Contact Us Button Clicked from search results
+            window.amplitude.track('Contact Us Button Clicked', {
                 searchTerm: document.querySelector('.search-input')?.value || '',
                 screenName: 'Support Search Results',
                 source: 'contact_us_section'
             });
 
-            console.log('Amplitude event tracked: Support Contact Us Clicked');
+            console.log('Amplitude event tracked: Contact Us Button Clicked');
+
+            // Show message option for search results (all contact methods available)
+            const messageOption = document.querySelector('[data-contact-type="message"]');
+            if (messageOption) {
+                messageOption.style.display = 'block';
+            }
 
             // Show contact banner
             const banner = document.getElementById('search-contact-banner');
@@ -11496,13 +11530,20 @@
                 callType = 'international';
             }
 
-            // Build event properties
+            // Determine the source path - are we coming from search results or main support page?
+            const isFromSearchResults = document.getElementById('support-search-results-page').classList.contains('active');
+            
+            // Build event properties based on source path
             const eventProperties = {
                 contactMethod: contactMethod,
-                searchTerm: document.querySelector('.search-input')?.value || '',
-                screenName: 'Support Search Results',
-                source: 'contact_options_banner'
+                screenName: isFromSearchResults ? 'Support Search Results' : 'Support',
+                source: isFromSearchResults ? 'contact_options_banner' : 'call_options_banner'
             };
+
+            // Add search term only if coming from search results
+            if (isFromSearchResults) {
+                eventProperties.searchTerm = document.querySelector('.search-input')?.value || '';
+            }
 
             // Add call_type property only for phone calls
             if (callType) {
@@ -11514,11 +11555,13 @@
 
             console.log('Amplitude event tracked: Support Contact Clicked', {
                 contactMethod: contactMethod,
-                callType: callType || 'N/A'
+                callType: callType || 'N/A',
+                source: eventProperties.source
             });
 
-            // Close banner
-            closeSearchContactBanner();
+            // Close banner (works for both search and main support)
+            const banner = document.getElementById('search-contact-banner');
+            banner.classList.remove('visible');
 
             // Show placeholder functionality
             const contactMessages = {
