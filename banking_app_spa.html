@@ -737,6 +737,196 @@
             font-size: 16px;
         }
 
+        /* Service Quality Section */
+        .service-quality-section {
+            background: white;
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .service-quality-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 0;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .service-quality-item:hover {
+            background-color: #f8fafc;
+            margin: 0 -20px;
+            padding: 16px 20px;
+        }
+
+        .service-quality-text {
+            font-size: 16px;
+            color: #1f2937;
+            font-weight: 500;
+        }
+
+        .service-quality-arrow {
+            color: #6b7280;
+            font-size: 16px;
+        }
+
+        /* Get in Touch Section */
+        .get-in-touch-section {
+            background: white;
+            border-radius: 16px;
+            padding: 24px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .get-in-touch-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #1f2937;
+            margin-bottom: 12px;
+        }
+
+        .get-in-touch-subtitle {
+            font-size: 16px;
+            color: #6b7280;
+            line-height: 1.5;
+            margin-bottom: 32px;
+        }
+
+        .contact-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+        }
+
+        .contact-button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+            padding: 16px;
+            transition: transform 0.2s ease;
+        }
+
+        .contact-button:hover {
+            transform: translateY(-2px);
+        }
+
+        .contact-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: white;
+        }
+
+        .message-icon {
+            background: linear-gradient(135deg, #1e40af 0%, #3730a3 100%);
+        }
+
+        .call-icon {
+            background: linear-gradient(135deg, #16a34a 0%, #15803d 100%);
+        }
+
+        .contact-label {
+            font-size: 16px;
+            color: #1f2937;
+            font-weight: 500;
+        }
+
+        /* Support Search Results Styles */
+        .search-results-content {
+            padding: 20px 20px 120px 20px;
+            background: #f9fafb;
+            min-height: calc(100vh - 60px);
+            overflow-y: auto;
+            max-height: calc(100vh - 60px);
+        }
+
+        .search-top-result {
+            margin-bottom: 32px;
+        }
+
+        .search-result-label {
+            font-size: 14px;
+            color: #6b7280;
+            font-weight: 500;
+            margin-bottom: 12px;
+        }
+
+        .search-result-item {
+            background: white;
+            border-radius: 16px;
+            padding: 24px;
+            cursor: pointer;
+        }
+
+        .search-result-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #1f2937;
+            margin-bottom: 12px;
+        }
+
+        .search-result-description {
+            font-size: 16px;
+            color: #6b7280;
+            line-height: 1.5;
+            margin-bottom: 20px;
+        }
+
+        .search-result-cta {
+            background: #1e40af;
+            color: white;
+            border: none;
+            border-radius: 24px;
+            padding: 12px 24px;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        .search-other-results {
+            background: white;
+            border-radius: 16px;
+            padding: 20px;
+        }
+
+        .search-expandable-item {
+            padding: 16px 0;
+            border-bottom: 1px solid #f3f4f6;
+            cursor: pointer;
+        }
+
+        .search-expandable-item:last-child {
+            border-bottom: none;
+        }
+
+        .search-expandable-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .search-expandable-title {
+            font-size: 16px;
+            color: #1f2937;
+            font-weight: 500;
+        }
+
+        .search-expandable-arrow {
+            color: #6b7280;
+            font-size: 16px;
+        }
+
         /* Move Money Modal Styles */
         .modal-overlay {
             position: fixed;
@@ -4311,6 +4501,104 @@
                     <span class="faq-arrow">↗</span>
                 </div>
             </div>
+
+            <!-- Independent Service Quality Indicators Section -->
+            <div class="service-quality-section">
+                <h2 class="section-title">Independent service quality indicators</h2>
+                
+                <div class="service-quality-item">
+                    <span class="service-quality-text">See the full results</span>
+                    <span class="service-quality-arrow">↗</span>
+                </div>
+            </div>
+
+            <!-- Get in Touch Section -->
+            <div class="get-in-touch-section">
+                <h2 class="get-in-touch-title">Get in touch</h2>
+                <p class="get-in-touch-subtitle">Our friendly team are ready to talk to you 24/7</p>
+                
+                <div class="contact-buttons">
+                    <button class="contact-button" id="message-support-button">
+                        <div class="contact-icon message-icon">💬</div>
+                        <div class="contact-label">Message</div>
+                    </button>
+                    
+                    <button class="contact-button" id="call-support-button">
+                        <div class="contact-icon call-icon">📞</div>
+                        <div class="contact-label">Call</div>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Support Search Results Page -->
+    <div id="support-search-results-page" class="page">
+        <!-- Header -->
+        <div class="modal-header">
+            <button class="modal-back support-search-back">←</button>
+            <h2 class="modal-title" id="search-results-title">Search Results</h2>
+            <span></span>
+        </div>
+
+        <!-- Main Content -->
+        <div class="search-results-content">
+            <!-- Top Result -->
+            <div class="search-top-result">
+                <div class="search-result-label">Top result</div>
+                <div class="search-result-item" data-result="top">
+                    <div class="search-result-title" id="top-result-title">How to open a saver account</div>
+                    <div class="search-result-description">You can easily open a Chase saver account in the app.</div>
+                    <button class="search-result-cta" id="top-result-cta">Go to 'Create account'</button>
+                </div>
+            </div>
+
+            <!-- Other Results -->
+            <div class="search-other-results">
+                <div class="search-result-label">Other results</div>
+                
+                <div class="search-expandable-item" data-result="saving-accounts">
+                    <div class="search-expandable-header">
+                        <span class="search-expandable-title">Saving accounts</span>
+                        <span class="search-expandable-arrow">⌄</span>
+                    </div>
+                </div>
+
+                <div class="search-expandable-item" data-result="creating-amending-goal">
+                    <div class="search-expandable-header">
+                        <span class="search-expandable-title">Creating, amending or deleting a goal</span>
+                        <span class="search-expandable-arrow">⌄</span>
+                    </div>
+                </div>
+
+                <div class="search-expandable-item" data-result="opening-accounts">
+                    <div class="search-expandable-header">
+                        <span class="search-expandable-title">Opening more accounts</span>
+                        <span class="search-expandable-arrow">⌄</span>
+                    </div>
+                </div>
+
+                <div class="search-expandable-item" data-result="round-up-account">
+                    <div class="search-expandable-header">
+                        <span class="search-expandable-title">Opening, having or closing a round-up account</span>
+                        <span class="search-expandable-arrow">⌄</span>
+                    </div>
+                </div>
+
+                <div class="search-expandable-item" data-result="open-round-up">
+                    <div class="search-expandable-header">
+                        <span class="search-expandable-title">Open a round-up account</span>
+                        <span class="search-expandable-arrow">⌄</span>
+                    </div>
+                </div>
+
+                <div class="search-expandable-item" data-result="interest-rates">
+                    <div class="search-expandable-header">
+                        <span class="search-expandable-title">Interest rates explained</span>
+                        <span class="search-expandable-arrow">⌄</span>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -6539,6 +6827,12 @@
 
         // SPA navigation function with virtual page view tracking
         function navigateToPage(pageName) {
+            // Skip navigation if we're in a controlled search navigation
+            if (isNavigatingFromSearch) {
+                console.log('Navigation skipped - controlled search navigation in progress');
+                return;
+            }
+
             // Hide all pages
             document.querySelectorAll('.page').forEach(page => {
                 page.classList.remove('active');
@@ -6742,51 +7036,16 @@
                 });
             });
 
-            // Support page interactions
-            const searchButton = document.querySelector('.search-button');
-            if (searchButton) {
-                searchButton.addEventListener('click', function() {
-                    const searchInput = document.querySelector('.search-input');
-                    const query = searchInput.value.trim();
-                    if (query) {
-                        alert(`Search for: "${query}" - Feature not implemented yet`);
-                    } else {
-                        alert('Please enter a search term');
-                    }
-                });
-            }
-
-            const searchInput = document.querySelector('.search-input');
-            if (searchInput) {
-                searchInput.addEventListener('keypress', function(e) {
-                    if (e.key === 'Enter') {
-                        const query = this.value.trim();
-                        if (query) {
-                            alert(`Search for: "${query}" - Feature not implemented yet`);
-                        }
-                    }
-                });
-            }
-
-            const topicItems = document.querySelectorAll('.topic-item');
-            topicItems.forEach(item => {
-                item.addEventListener('click', function() {
-                    const topicText = this.querySelector('.topic-text').textContent;
-                    alert(`${topicText} - Feature not implemented yet`);
-                });
-            });
-
-            const browseFaqs = document.querySelector('.browse-faqs');
-            if (browseFaqs) {
-                browseFaqs.addEventListener('click', function() {
-                    alert('Browse FAQs - Feature not implemented yet');
-                });
-            }
+            // Old support page interactions removed - now handled in initializeSupport()
 
             const searchHistory = document.querySelector('.search-history');
             if (searchHistory) {
                 searchHistory.addEventListener('click', function() {
-                    alert('Search History - Feature not implemented yet');
+                    window.amplitude.track('Search History Clicked', {
+                        screenName: 'Support',
+                        source: 'search_section'
+                    });
+                    alert('Search History - Feature to be implemented');
                 });
                 searchHistory.style.cursor = 'pointer';
             }
@@ -6823,6 +7082,12 @@
 
             // Rewards Functionality
             initializeRewards();
+
+            // Support Functionality
+            initializeSupport();
+
+            // Support Search Results Functionality
+            initializeSupportSearchResults();
         });
 
         // Global Account Balances (persistent across the app) 
@@ -10669,6 +10934,304 @@
                     alert(`${offerType === '1_percent_cashback' ? '1% Cashback' : 'More Rewards'} - Feature to be implemented`);
                 });
             });
+        }
+
+        // Navigation control flag to prevent unwanted events
+        let isNavigatingFromSearch = false;
+
+        // Support Functions
+        function handleMessageSupport() {
+            // Track Support Message Clicked event
+            window.amplitude.track('Support Contact Clicked', {
+                contactMethod: 'message',
+                screenName: 'Support',
+                source: 'get_in_touch_section'
+            });
+
+            console.log('Amplitude event tracked: Support Contact Clicked (Message)');
+
+            // Placeholder for message support functionality
+            alert('Message Support - Feature to be implemented\n\nThis would typically open a chat interface or messaging system.');
+        }
+
+        function handleCallSupport() {
+            // Track Support Call Clicked event
+            window.amplitude.track('Support Contact Clicked', {
+                contactMethod: 'call',
+                screenName: 'Support',
+                source: 'get_in_touch_section'
+            });
+
+            console.log('Amplitude event tracked: Support Contact Clicked (Call)');
+
+            // Placeholder for call support functionality
+            alert('Call Support - Feature to be implemented\n\nThis would typically initiate a phone call or callback request.');
+        }
+
+        function handleServiceQualityClick() {
+            // Track Service Quality Clicked event
+            window.amplitude.track('Service Quality Results Clicked', {
+                screenName: 'Support',
+                source: 'service_quality_section'
+            });
+
+            console.log('Amplitude event tracked: Service Quality Results Clicked');
+
+            // Placeholder functionality
+            alert('Service Quality Results - Feature to be implemented');
+        }
+
+        function handleSupportTopicClick(topic) {
+            // Track Support Topic Clicked event
+            window.amplitude.track('Support Topic Clicked', {
+                topicName: topic,
+                screenName: 'Support',
+                source: 'popular_topics'
+            });
+
+            console.log('Amplitude event tracked: Support Topic Clicked', {
+                topic: topic
+            });
+
+            // Placeholder functionality
+            alert(`${topic} - Feature to be implemented`);
+        }
+
+        function initializeSupport() {
+            // Message support button
+            const messageSupportButton = document.getElementById('message-support-button');
+            if (messageSupportButton) {
+                messageSupportButton.addEventListener('click', handleMessageSupport);
+            }
+
+            // Call support button
+            const callSupportButton = document.getElementById('call-support-button');
+            if (callSupportButton) {
+                callSupportButton.addEventListener('click', handleCallSupport);
+            }
+
+            // Service quality results click
+            const serviceQualityItem = document.querySelector('.service-quality-item');
+            if (serviceQualityItem) {
+                serviceQualityItem.addEventListener('click', handleServiceQualityClick);
+            }
+
+            // Popular topics click tracking
+            const topicItems = document.querySelectorAll('.topic-item');
+            topicItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    const topicText = this.querySelector('.topic-text').textContent;
+                    handleSupportTopicClick(topicText);
+                });
+            });
+
+            // Browse FAQs click tracking
+            const browseFaqs = document.querySelector('.browse-faqs');
+            if (browseFaqs) {
+                browseFaqs.addEventListener('click', function() {
+                    window.amplitude.track('Browse FAQs Clicked', {
+                        screenName: 'Support',
+                        source: 'popular_topics_section'
+                    });
+
+                    console.log('Amplitude event tracked: Browse FAQs Clicked');
+                    alert('Browse FAQs - Feature to be implemented');
+                });
+            }
+
+            // Search functionality
+            const searchButton = document.querySelector('.search-button');
+            if (searchButton) {
+                searchButton.addEventListener('click', performSupportSearch);
+            }
+
+            // Search input Enter key support
+            const searchInput = document.querySelector('.search-input');
+            if (searchInput) {
+                searchInput.addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter') {
+                        performSupportSearch();
+                    }
+                });
+            }
+
+            // Search results back button
+            const supportSearchBack = document.querySelector('.support-search-back');
+            if (supportSearchBack) {
+                supportSearchBack.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    
+                    // Store original Amplitude track function
+                    const originalAmplitudeTrack = window.amplitude.track;
+                    
+                    // Override Amplitude track to filter out unwanted events
+                    window.amplitude.track = function(eventName, properties) {
+                        // Only allow the specific support page view event we want
+                        if (eventName === '[Amplitude] Page Viewed' && 
+                            properties && 
+                            properties.virtual_page === 'support' &&
+                            properties.page_title === 'Banking App - Support') {
+                            originalAmplitudeTrack.call(window.amplitude, eventName, properties);
+                            console.log('Amplitude virtual page view tracked: Support (return from search)');
+                        } else if (eventName !== '[Amplitude] Page Viewed') {
+                            // Allow non-page-view events through
+                            originalAmplitudeTrack.call(window.amplitude, eventName, properties);
+                        } else {
+                            // Block any other Page Viewed events during this navigation
+                            console.log('Blocked unwanted Page Viewed event:', eventName, properties);
+                        }
+                    };
+
+                    // Manually navigate back to support page
+                    document.querySelectorAll('.page').forEach(page => {
+                        page.classList.remove('active');
+                    });
+                    document.getElementById('support-page').classList.add('active');
+                    currentPage = 'support';
+                    document.title = 'Banking App - Support';
+
+                    // Track the intended support page view
+                    window.amplitude.track('[Amplitude] Page Viewed', {
+                        page_location: window.location.href + '#support',
+                        page_title: 'Banking App - Support',
+                        virtual_page: 'support',
+                        page_type: 'virtual'
+                    });
+
+                    // Reset status bar time
+                    document.querySelectorAll('.status-left span').forEach(span => {
+                        if (span.textContent.includes(':')) {
+                            span.textContent = '10:14';
+                        }
+                    });
+
+                    // Restore original Amplitude function after a delay
+                    setTimeout(() => {
+                        window.amplitude.track = originalAmplitudeTrack;
+                        console.log('Amplitude tracking restored to normal');
+                    }, 500);
+                });
+            }
+
+            // Search result interactions
+            const topResultCta = document.getElementById('top-result-cta');
+            if (topResultCta) {
+                topResultCta.addEventListener('click', function() {
+                    window.amplitude.track('Search Result Action Clicked', {
+                        resultType: 'top_result',
+                        actionType: 'create_account_cta',
+                        searchTerm: document.querySelector('.search-input')?.value || '',
+                        screenName: 'Support Search Results'
+                    });
+
+                    alert('Go to Create Account - Feature to be implemented');
+                });
+            }
+
+            // Expandable search results
+            const expandableItems = document.querySelectorAll('.search-expandable-item');
+            expandableItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    const resultType = this.getAttribute('data-result');
+                    const resultTitle = this.querySelector('.search-expandable-title').textContent;
+
+                    window.amplitude.track('Search Result Clicked', {
+                        resultType: resultType,
+                        resultTitle: resultTitle,
+                        searchTerm: document.querySelector('.search-input')?.value || '',
+                        screenName: 'Support Search Results'
+                    });
+
+                    console.log('Amplitude event tracked: Search Result Clicked', {
+                        result: resultTitle
+                    });
+
+                    alert(`${resultTitle} - Feature to be implemented`);
+                });
+            });
+        }
+
+        function performSupportSearch() {
+            const searchInput = document.querySelector('.search-input');
+            const searchTerm = searchInput.value.trim();
+
+            if (!searchTerm) {
+                return; // Just return silently if no search term
+            }
+
+            // Track Search Started event
+            window.amplitude.track('Support Search Started', {
+                searchTerm: searchTerm,
+                screenName: 'Support',
+                source: 'search_section'
+            });
+
+            console.log('Amplitude event tracked: Support Search Started', {
+                searchTerm: searchTerm
+            });
+
+            // Set flag to control navigation events
+            isNavigatingFromSearch = true;
+
+            // Update search results content based on search term
+            updateSearchResults(searchTerm);
+
+            // Navigate to search results page with manual page view tracking
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active');
+            });
+            document.getElementById('support-search-results-page').classList.add('active');
+            currentPage = 'support-search-results';
+            document.title = `Banking App - Search Results`;
+
+            // Track specific virtual page view for search results
+            window.amplitude.track('[Amplitude] Page Viewed', {
+                page_location: window.location.href + '#support-search-results',
+                page_title: `Banking App - Search Results for "${searchTerm}"`,
+                virtual_page: 'support-search-results',
+                page_type: 'virtual',
+                search_term: searchTerm
+            });
+
+            console.log('Amplitude virtual page view tracked: Support Search Results');
+
+            // Reset flag after navigation is complete
+            setTimeout(() => {
+                isNavigatingFromSearch = false;
+            }, 200);
+
+            // Update status bar time
+            document.querySelectorAll('.status-left span').forEach(span => {
+                if (span.textContent.includes(':')) {
+                    span.textContent = '15:39';
+                }
+            });
+        }
+
+        function updateSearchResults(searchTerm) {
+            // Simulate different search results based on search term
+            const searchResultsTitle = document.getElementById('search-results-title');
+            const topResultTitle = document.getElementById('top-result-title');
+            
+            // Default to savings-related results, but could customize based on searchTerm
+            searchResultsTitle.textContent = `Results for "${searchTerm}"`;
+            
+            if (searchTerm.toLowerCase().includes('saving') || searchTerm.toLowerCase().includes('account')) {
+                topResultTitle.textContent = 'How to open a saver account';
+            } else if (searchTerm.toLowerCase().includes('card')) {
+                topResultTitle.textContent = 'My card is expiring - what happens next?';
+            } else if (searchTerm.toLowerCase().includes('cashback') || searchTerm.toLowerCase().includes('reward')) {
+                topResultTitle.textContent = 'How to earn cashback with Chase';
+            } else {
+                topResultTitle.textContent = 'How can we help you?';
+            }
+        }
+
+        function initializeSupportSearchResults() {
+            // This function is called during initialization to set up search results page functionality
+            // Most event handlers are set up in the main initializeSupport function
+            console.log('Support Search Results functionality initialized');
         }
     </script>
 </body>
