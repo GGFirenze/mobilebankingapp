@@ -3912,6 +3912,769 @@
             font-style: italic;
         }
 
+        /* Rewards Activity Pages Styles */
+        .rewards-activity-subtitle {
+            text-align: center;
+            font-size: 16px;
+            color: #6b7280;
+            padding: 0 20px 20px 20px;
+            border-bottom: 1px solid #f3f4f6;
+        }
+
+        .rewards-activity-content {
+            padding: 20px 20px 160px 20px;
+            background: #f9fafb;
+            min-height: calc(100vh - 60px);
+            overflow-y: auto;
+            max-height: calc(100vh - 60px);
+        }
+
+        .month-tabs {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 30px;
+            justify-content: center;
+        }
+
+        .month-tab {
+            background: none;
+            border: none;
+            font-size: 16px;
+            color: #6b7280;
+            cursor: pointer;
+            padding: 8px 0;
+            font-weight: 500;
+            position: relative;
+        }
+
+        .month-tab.active {
+            color: #1e40af;
+        }
+
+        .month-tab.active::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: #1e40af;
+            border-radius: 1px;
+        }
+
+        .activity-list {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+        }
+
+        .activity-date-section {
+            border-bottom: 1px solid #f3f4f6;
+        }
+
+        .activity-date-section:last-child {
+            border-bottom: none;
+        }
+
+        .activity-date-header {
+            background: #f8fafc;
+            padding: 12px 20px;
+            font-size: 12px;
+            font-weight: 600;
+            color: #6b7280;
+            letter-spacing: 0.5px;
+        }
+
+        .activity-item {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 16px 20px;
+            cursor: pointer;
+            border-bottom: 1px solid #f3f4f6;
+            transition: background-color 0.2s;
+        }
+
+        .activity-item:hover {
+            background-color: #f8fafc;
+        }
+
+        .activity-item:last-child {
+            border-bottom: none;
+        }
+
+        .activity-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            flex-shrink: 0;
+        }
+
+        .transfer-icon {
+            background: linear-gradient(135deg, #1e40af 0%, #3730a3 100%);
+            color: white;
+        }
+
+        .waitrose-icon {
+            background: #8BC34A;
+        }
+
+        .waitrose-logo {
+            background: #8BC34A;
+            color: white;
+            font-weight: bold;
+            font-size: 16px;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 12px;
+        }
+
+        .activity-details {
+            flex: 1;
+        }
+
+        .activity-title {
+            font-size: 16px;
+            font-weight: 500;
+            color: #1f2937;
+            margin-bottom: 2px;
+        }
+
+        .activity-time {
+            font-size: 14px;
+            color: #6b7280;
+        }
+
+        .activity-amount {
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        .activity-amount.positive {
+            color: #16a34a;
+        }
+
+        .activity-amount.negative {
+            color: #1f2937;
+        }
+
+        /* Cashback Detail Page Styles */
+        .cashback-detail-timestamp {
+            text-align: center;
+            font-size: 14px;
+            color: #6b7280;
+            padding: 8px 0;
+            border-bottom: 1px solid #f3f4f6;
+        }
+
+        .cashback-detail-content {
+            padding: 20px 20px 160px 20px;
+            background: #f9fafb;
+            min-height: calc(100vh - 60px);
+            overflow-y: auto;
+            max-height: calc(100vh - 60px);
+        }
+
+        .cashback-icon-section {
+            text-align: center;
+            margin: 40px 0 30px 0;
+        }
+
+        .cashback-circle {
+            width: 80px;
+            height: 80px;
+            background: #dcfce7;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto;
+        }
+
+        .cashback-symbol {
+            font-size: 24px;
+            font-weight: bold;
+            color: #16a34a;
+        }
+
+        .cashback-amount-section {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .cashback-title {
+            font-size: 24px;
+            font-weight: 600;
+            color: #1f2937;
+            margin-bottom: 8px;
+        }
+
+        .cashback-amount {
+            font-size: 36px;
+            font-weight: 300;
+            color: #16a34a;
+        }
+
+        .cashback-activity-section, .cashback-details-section {
+            background: white;
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .section-header-small {
+            font-size: 12px;
+            color: #6b7280;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            margin-bottom: 16px;
+        }
+
+        .cashback-source-item {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            cursor: pointer;
+            padding: 8px 0;
+        }
+
+        .cashback-source-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #8BC34A;
+            flex-shrink: 0;
+        }
+
+        .cashback-source-icon .waitrose-logo {
+            font-size: 14px;
+        }
+
+        .cashback-source-details {
+            flex: 1;
+        }
+
+        .cashback-source-name {
+            font-size: 16px;
+            color: #1f2937;
+            font-weight: 500;
+            margin-bottom: 2px;
+        }
+
+        .cashback-source-time {
+            font-size: 14px;
+            color: #6b7280;
+        }
+
+        .cashback-source-amount {
+            font-size: 16px;
+            color: #1f2937;
+            font-weight: 500;
+        }
+
+        .detail-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid #f3f4f6;
+        }
+
+        .detail-row:last-child {
+            border-bottom: none;
+        }
+
+        .detail-label {
+            font-size: 16px;
+            color: #6b7280;
+        }
+
+        .detail-value {
+            font-size: 16px;
+            color: #1f2937;
+            font-weight: 500;
+        }
+
+        /* Waitrose Purchase Detail Page Styles */
+        .purchase-timestamp {
+            text-align: center;
+            font-size: 14px;
+            color: #6b7280;
+            padding: 8px 0;
+            border-bottom: 1px solid #f3f4f6;
+        }
+
+        .purchase-detail-content {
+            padding: 0 0 160px 0;
+            background: #f9fafb;
+            min-height: calc(100vh - 60px);
+            overflow-y: auto;
+            max-height: calc(100vh - 60px);
+        }
+
+        .purchase-map-section {
+            background: white;
+            margin-bottom: 1px;
+        }
+
+        .purchase-map {
+            height: 200px;
+            position: relative;
+            background: linear-gradient(135deg, #bae6fd 0%, #7dd3fc 50%, #38bdf8 100%);
+            overflow: hidden;
+        }
+
+        .map-background {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            background-image: 
+                radial-gradient(circle at 20% 40%, rgba(34, 197, 94, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 80% 60%, rgba(239, 68, 68, 0.2) 0%, transparent 50%),
+                linear-gradient(45deg, rgba(156, 163, 175, 0.1) 25%, transparent 25%),
+                linear-gradient(-45deg, rgba(156, 163, 175, 0.1) 25%, transparent 25%);
+            background-size: 60px 60px, 80px 80px, 20px 20px, 20px 20px;
+        }
+
+        .map-location-marker {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 24px;
+            height: 24px;
+            background: #ef4444;
+            border-radius: 50% 50% 50% 0;
+            transform: translate(-50%, -50%) rotate(-45deg);
+            border: 2px solid white;
+        }
+
+        .map-location-marker::after {
+            content: '';
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            width: 16px;
+            height: 16px;
+            background: #dc2626;
+            border-radius: 50%;
+        }
+
+        .map-labels {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+        }
+
+        .map-label {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 500;
+            color: #374151;
+            border: 1px solid rgba(156, 163, 175, 0.3);
+        }
+
+        .map-label.tesco {
+            top: 20px;
+            left: 20px;
+        }
+
+        .map-label.primark {
+            bottom: 60px;
+            right: 30px;
+            background: rgba(59, 130, 246, 0.9);
+            color: white;
+        }
+
+        .map-label.chai {
+            top: 30px;
+            right: 20px;
+            background: rgba(249, 115, 22, 0.9);
+            color: white;
+        }
+
+        .map-label.kingston {
+            bottom: 20px;
+            right: 60px;
+            font-weight: 600;
+        }
+
+        .store-info {
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .store-logo {
+            width: 60px;
+            height: 60px;
+            border-radius: 12px;
+            background: #8BC34A;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .store-logo .waitrose-logo {
+            color: white;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .store-details {
+            flex: 1;
+        }
+
+        .store-name {
+            font-size: 24px;
+            font-weight: 600;
+            color: #1f2937;
+            margin-bottom: 4px;
+        }
+
+        .store-address {
+            font-size: 16px;
+            color: #6b7280;
+            margin-bottom: 12px;
+            line-height: 1.4;
+        }
+
+        .purchase-amount {
+            font-size: 36px;
+            font-weight: 300;
+            color: #1f2937;
+        }
+
+        .cashback-earned-section {
+            background: white;
+            margin-bottom: 1px;
+        }
+
+        .cashback-earned-row {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 16px 20px;
+            cursor: pointer;
+            border-bottom: 1px solid #f3f4f6;
+        }
+
+        .cashback-earned-icon {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: #dbeafe;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            flex-shrink: 0;
+        }
+
+        .cashback-earned-text {
+            font-size: 16px;
+            color: #1f2937;
+            font-weight: 500;
+            flex: 1;
+        }
+
+        .cashback-earned-amount {
+            font-size: 16px;
+            color: #16a34a;
+            font-weight: 600;
+        }
+
+        .cashback-earned-arrow {
+            font-size: 18px;
+            color: #6b7280;
+        }
+
+        .purchase-section {
+            background: white;
+            margin-bottom: 1px;
+            padding: 20px;
+        }
+
+        .purchase-section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+
+        .section-title-left {
+            font-size: 12px;
+            color: #6b7280;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        .change-category-link {
+            background: none;
+            border: none;
+            color: #1e40af;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+        }
+
+        .purchase-section-header-simple {
+            font-size: 12px;
+            color: #6b7280;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            margin-bottom: 16px;
+        }
+
+        .purchase-category-item {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 12px 0;
+            cursor: pointer;
+            border-bottom: 1px solid #f3f4f6;
+        }
+
+        .purchase-category-item:last-child {
+            border-bottom: none;
+        }
+
+        .purchase-category-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            flex-shrink: 0;
+        }
+
+        .groceries-icon {
+            background: #dbeafe;
+        }
+
+        .purchase-category-icon .waitrose-logo {
+            background: #8BC34A;
+            color: white;
+            font-size: 14px;
+            font-weight: bold;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 12px;
+        }
+
+        .purchase-category-details {
+            flex: 1;
+        }
+
+        .purchase-category-name {
+            font-size: 16px;
+            color: #1f2937;
+            font-weight: 500;
+            margin-bottom: 2px;
+        }
+
+        .purchase-category-subtitle {
+            font-size: 14px;
+            color: #6b7280;
+        }
+
+        .purchase-category-amount {
+            text-align: right;
+            margin-right: 8px;
+        }
+
+        .category-amount {
+            font-size: 16px;
+            color: #1f2937;
+            font-weight: 500;
+        }
+
+        .category-period {
+            font-size: 14px;
+            color: #6b7280;
+        }
+
+        .purchase-category-arrow {
+            font-size: 18px;
+            color: #6b7280;
+        }
+
+        .purchase-notes-row {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 0;
+        }
+
+        .purchase-notes-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            background: #dbeafe;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            flex-shrink: 0;
+        }
+
+        .purchase-notes-text {
+            font-size: 16px;
+            color: #1f2937;
+            font-weight: 500;
+            flex: 1;
+        }
+
+        .add-note-button {
+            background: none;
+            border: none;
+            color: #1e40af;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+        }
+
+        .purchase-detail-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid #f3f4f6;
+        }
+
+        .purchase-detail-row:last-child {
+            border-bottom: none;
+        }
+
+        .purchase-help-section {
+            background: white;
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        .purchase-help-row {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            cursor: pointer;
+        }
+
+        .purchase-help-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #dbeafe;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            color: #1e40af;
+            flex-shrink: 0;
+        }
+
+        .purchase-help-text {
+            font-size: 16px;
+            color: #1e40af;
+            font-weight: 500;
+        }
+
+        /* Transfer Detail Page Styles */
+        .transfer-detail-timestamp {
+            text-align: center;
+            font-size: 14px;
+            color: #6b7280;
+            padding: 8px 0;
+            border-bottom: 1px solid #f3f4f6;
+        }
+
+        .transfer-detail-content {
+            padding: 20px 20px 160px 20px;
+            background: #f9fafb;
+            min-height: calc(100vh - 60px);
+            overflow-y: auto;
+            max-height: calc(100vh - 60px);
+        }
+
+        .transfer-detail-icon-section {
+            text-align: center;
+            margin: 60px 0 40px 0;
+        }
+
+        .transfer-detail-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #1e40af 0%, #3730a3 100%);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            color: white;
+            margin: 0 auto;
+            box-shadow: 0 4px 12px rgba(30, 58, 138, 0.3);
+        }
+
+        .transfer-detail-info-section {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .transfer-detail-title {
+            font-size: 24px;
+            font-weight: 600;
+            color: #1f2937;
+            margin-bottom: 12px;
+        }
+
+        .transfer-detail-amount {
+            font-size: 48px;
+            font-weight: 300;
+            color: #1f2937;
+        }
+
+        .transfer-details-section {
+            background: white;
+            border-radius: 16px;
+            padding: 20px;
+        }
+
+        .transfer-details-header {
+            font-size: 12px;
+            color: #6b7280;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            margin-bottom: 16px;
+        }
+
+        .transfer-detail-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+        }
+
         /* Schedule Payment Flow Styles */
         .schedule-content {
             padding: 20px;
@@ -4402,8 +5165,8 @@
                         </div>
                         <div class="rewards-info">
                             <div class="rewards-balance-label">Your balance</div>
-                            <div class="rewards-balance">£0.00</div>
-                            <div class="rewards-pending">⏱ £0.00 pending</div>
+                            <div class="rewards-balance" id="home-rewards-balance">£0.73</div>
+                            <div class="rewards-pending" id="home-rewards-pending">⏱ £0.00 pending</div>
                         </div>
                         <div class="rewards-cta">
                             <div class="rewards-cta-icon">ℹ️</div>
@@ -5912,17 +6675,17 @@
             <!-- Rewards Balance Section -->
             <div class="rewards-balance-section">
                 <div class="rewards-balance-title">Rewards balance</div>
-                <div class="rewards-balance-amount">£0.00</div>
+                <div class="rewards-balance-amount" id="rewards-balance-amount">£0.73</div>
                 
                 <div class="rewards-summary">
                     <div class="rewards-summary-item">
                         <div class="rewards-summary-label">Pending</div>
-                        <div class="rewards-summary-value">£0.00</div>
+                        <div class="rewards-summary-value" id="rewards-pending-amount">£0.00</div>
                     </div>
                     
                     <div class="rewards-summary-item">
                         <div class="rewards-summary-label">Total earned so far</div>
-                        <div class="rewards-summary-value">£0.00</div>
+                        <div class="rewards-summary-value" id="rewards-total-earned">£0.73</div>
                     </div>
                 </div>
 
@@ -5970,6 +6733,374 @@
                             Discover new ways to earn with Chase rewards.
                         </p>
                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Transfer Rewards Account Selection Banner -->
+    <div id="transfer-rewards-banner" class="bottom-banner">
+        <div class="banner-header">
+            <div class="banner-handle"></div>
+            <h2 class="banner-title">Transfer money to:</h2>
+            <button class="banner-close" id="transfer-rewards-banner-close">×</button>
+        </div>
+        <div class="banner-content">
+            <div class="account-choice" data-rewards-account="giuliano">
+                <div class="account-choice-info">
+                    <div class="account-choice-icon current">👁️</div>
+                    <div class="account-choice-details">
+                        <h3>Giuliano's Account</h3>
+                    </div>
+                </div>
+                <div class="account-choice-balance" id="rewards-giuliano-balance">£0.00</div>
+            </div>
+
+            <div class="account-choice" data-rewards-account="chase-saver">
+                <div class="account-choice-info">
+                    <div class="account-choice-icon savings">🐷</div>
+                    <div class="account-choice-details">
+                        <h3>Chase Saver</h3>
+                        <p>4.75% AER • Boosted</p>
+                    </div>
+                </div>
+                <div class="account-choice-balance" id="rewards-chase-balance">£1,000,000.00</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Rewards Transfer Check Details Page -->
+    <div id="rewards-check-details-page" class="page">
+        <!-- Header -->
+        <div class="modal-header">
+            <button class="modal-back rewards-check-back">←</button>
+            <h2 class="modal-title">Check the details</h2>
+            <span></span>
+        </div>
+
+        <!-- Main Content -->
+        <div class="rewards-check-details-content" style="padding: 20px 20px 160px 20px;">
+            <!-- Transfer Summary -->
+            <div class="transfer-summary" style="padding: 40px 0;">
+                <div class="transfer-accounts">
+                    <div class="summary-account">
+                        <div class="summary-account-icon rewards-icon" style="background: linear-gradient(135deg, #1e40af 0%, #3730a3 100%); color: white; font-size: 20px;">👑</div>
+                        <div class="summary-account-name">Rewards</div>
+                    </div>
+                    
+                    <div class="transfer-arrow">
+                        <span>›</span>
+                        <span>›</span>
+                    </div>
+                    
+                    <div class="summary-account">
+                        <div class="summary-account-icon" id="rewards-summary-to-icon">🐷</div>
+                        <div class="summary-account-name" id="rewards-summary-to-name">Chase Saver</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Amount Summary -->
+            <div class="amount-summary">
+                <div class="summary-row">
+                    <span class="summary-label">Amount</span>
+                    <span class="summary-value" id="rewards-summary-amount">£0.73</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal Footer -->
+        <div style="position: fixed; bottom: 80px; left: 50%; transform: translateX(-50%); width: calc(100% - 40px); max-width: 335px; z-index: 100;">
+            <button class="move-money-button" id="rewards-transfer-button" style="width: 100%; background: #1e3a8a; color: white; border: none; border-radius: 28px; padding: 18px 32px; font-size: 18px; font-weight: 600; cursor: pointer; min-height: 56px;">Transfer</button>
+        </div>
+    </div>
+
+    <!-- Rewards Transfer Success Page -->
+    <div id="rewards-success-page" class="page">
+        <!-- Success Content -->
+        <div class="success-content" style="padding: 120px 20px 160px 20px;">
+            <div class="success-icon">
+                <div class="checkmark-circle">
+                    <div class="checkmark">✓</div>
+                </div>
+            </div>
+            
+            <div class="success-message" id="rewards-success-message">
+                You've sent £0.73 to Chase Saver
+            </div>
+        </div>
+
+        <!-- Modal Footer -->
+        <div style="position: fixed; bottom: 80px; left: 50%; transform: translateX(-50%); width: calc(100% - 40px); max-width: 335px; z-index: 100;">
+            <button class="done-button" id="rewards-done-button" style="width: 100%; background: #1e3a8a; color: white; border: none; border-radius: 28px; padding: 18px 32px; font-size: 18px; font-weight: 600; cursor: pointer; min-height: 56px;">Done</button>
+        </div>
+    </div>
+
+    <!-- Rewards Activity List Page -->
+    <div id="rewards-activity-page" class="page">
+        <!-- Header -->
+        <div class="modal-header">
+            <button class="modal-back rewards-activity-back">←</button>
+            <h2 class="modal-title">All activity</h2>
+            <span></span>
+        </div>
+        <div class="rewards-activity-subtitle">Rewards</div>
+
+        <!-- Main Content -->
+        <div class="rewards-activity-content">
+            <!-- Month Tabs -->
+            <div class="month-tabs">
+                <button class="month-tab">Aug</button>
+                <button class="month-tab active">Sep 2025</button>
+            </div>
+
+            <!-- Activity List -->
+            <div class="activity-list">
+                <!-- September 23rd Section (Transfer) - Initially hidden -->
+                <div class="activity-date-section" id="transfer-section" style="display: none;">
+                    <div class="activity-date-header">23 SEPTEMBER 2025</div>
+                    <div class="activity-item" data-activity="transfer">
+                        <div class="activity-icon transfer-icon">👑</div>
+                        <div class="activity-details">
+                            <div class="activity-title">Transfer</div>
+                            <div class="activity-time">15:06 23 September</div>
+                        </div>
+                        <div class="activity-amount negative">- £0.73</div>
+                    </div>
+                </div>
+
+                <!-- September 18th Section (Cashback Earned) -->
+                <div class="activity-date-section">
+                    <div class="activity-date-header">18 SEPTEMBER 2025</div>
+                    <div class="activity-item" data-activity="cashback-waitrose">
+                        <div class="activity-icon waitrose-icon">
+                            <div class="waitrose-logo">W</div>
+                        </div>
+                        <div class="activity-details">
+                            <div class="activity-title">Waitrose</div>
+                            <div class="activity-time">3:41 18 September</div>
+                        </div>
+                        <div class="activity-amount positive">+ £0.73</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cashback Detail Page -->
+    <div id="cashback-detail-page" class="page">
+        <!-- Header -->
+        <div class="modal-header">
+            <button class="modal-back cashback-detail-back">←</button>
+            <h2 class="modal-title">Rewards</h2>
+            <span></span>
+        </div>
+        <div class="cashback-detail-timestamp">03:41 • 18 September 2025</div>
+
+        <!-- Main Content -->
+        <div class="cashback-detail-content">
+            <!-- Cashback Icon -->
+            <div class="cashback-icon-section">
+                <div class="cashback-circle">
+                    <div class="cashback-symbol">£</div>
+                </div>
+            </div>
+
+            <!-- Cashback Amount -->
+            <div class="cashback-amount-section">
+                <div class="cashback-title">Cashback earned</div>
+                <div class="cashback-amount">+ £0.73</div>
+            </div>
+
+            <!-- Activity Section -->
+            <div class="cashback-activity-section">
+                <div class="section-header-small">ACTIVITY</div>
+                <div class="cashback-source-item" data-transaction="waitrose-purchase">
+                    <div class="cashback-source-icon">
+                        <div class="waitrose-logo">W</div>
+                    </div>
+                    <div class="cashback-source-details">
+                        <div class="cashback-source-name">Waitrose</div>
+                        <div class="cashback-source-time">17:14 16 September 2025</div>
+                    </div>
+                    <div class="cashback-source-amount">£72.73</div>
+                </div>
+            </div>
+
+            <!-- Details Section -->
+            <div class="cashback-details-section">
+                <div class="section-header-small">DETAILS</div>
+                <div class="detail-row">
+                    <div class="detail-label">From</div>
+                    <div class="detail-value">Giuliano's Account</div>
+                </div>
+                <div class="detail-row">
+                    <div class="detail-label">Status</div>
+                    <div class="detail-value">Complete</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Waitrose Purchase Detail Page -->
+    <div id="waitrose-purchase-page" class="page">
+        <!-- Header -->
+        <div class="modal-header">
+            <button class="modal-back waitrose-purchase-back">←</button>
+            <h2 class="modal-title">Purchase</h2>
+            <span></span>
+        </div>
+        <div class="purchase-timestamp">17:14 16 September 2025</div>
+
+        <!-- Main Content -->
+        <div class="purchase-detail-content">
+            <!-- Map Section -->
+            <div class="purchase-map-section">
+                <div class="purchase-map">
+                    <!-- Map placeholder with location markers -->
+                    <div class="map-background">
+                        <div class="map-location-marker"></div>
+                        <div class="map-labels">
+                            <div class="map-label tesco">Tesco Royal</div>
+                            <div class="map-label primark">Primark</div>
+                            <div class="map-label chai">Chai Nashta</div>
+                            <div class="map-label kingston">Kingston upon Thames</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Store Info -->
+                <div class="store-info">
+                    <div class="store-logo">
+                        <div class="waitrose-logo">W</div>
+                    </div>
+                    <div class="store-details">
+                        <div class="store-name">Waitrose</div>
+                        <div class="store-address">Wood St, Kingston upon Thames KT1 1TN, UK</div>
+                        <div class="purchase-amount">- £72.73</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Cashback Section -->
+            <div class="cashback-earned-section">
+                <div class="cashback-earned-row">
+                    <div class="cashback-earned-icon">💰</div>
+                    <div class="cashback-earned-text">Cashback earned</div>
+                    <div class="cashback-earned-amount">+ £0.73</div>
+                    <div class="cashback-earned-arrow">›</div>
+                </div>
+            </div>
+
+            <!-- Spending Categories Section -->
+            <div class="purchase-section">
+                <div class="purchase-section-header">
+                    <div class="section-title-left">SPENDING</div>
+                    <button class="change-category-link">Change category</button>
+                </div>
+                
+                <div class="purchase-category-item">
+                    <div class="purchase-category-icon groceries-icon">🛒</div>
+                    <div class="purchase-category-details">
+                        <div class="purchase-category-name">Groceries</div>
+                        <div class="purchase-category-subtitle">1 transaction</div>
+                    </div>
+                    <div class="purchase-category-amount">
+                        <div class="category-amount">- £72.73</div>
+                        <div class="category-period">this month</div>
+                    </div>
+                    <div class="purchase-category-arrow">›</div>
+                </div>
+
+                <div class="purchase-category-item">
+                    <div class="purchase-category-icon">
+                        <div class="waitrose-logo">W</div>
+                    </div>
+                    <div class="purchase-category-details">
+                        <div class="purchase-category-name">Waitrose</div>
+                        <div class="purchase-category-subtitle">1 transaction</div>
+                    </div>
+                    <div class="purchase-category-amount">
+                        <div class="category-amount">- £72.73</div>
+                        <div class="category-period">this month</div>
+                    </div>
+                    <div class="purchase-category-arrow">›</div>
+                </div>
+            </div>
+
+            <!-- Notes Section -->
+            <div class="purchase-section">
+                <div class="purchase-notes-row">
+                    <div class="purchase-notes-icon">📝</div>
+                    <div class="purchase-notes-text">Notes</div>
+                    <button class="add-note-button">Add</button>
+                </div>
+            </div>
+
+            <!-- Details Section -->
+            <div class="purchase-section">
+                <div class="purchase-section-header-simple">DETAILS</div>
+                
+                <div class="purchase-detail-row">
+                    <div class="detail-label">From</div>
+                    <div class="detail-value">Giuliano's Account</div>
+                </div>
+                
+                <div class="purchase-detail-row">
+                    <div class="detail-label">Payment method</div>
+                    <div class="detail-value">Contactless</div>
+                </div>
+                
+                <div class="purchase-detail-row">
+                    <div class="detail-label">Status</div>
+                    <div class="detail-value">Complete</div>
+                </div>
+                
+                <div class="purchase-detail-row">
+                    <div class="detail-label">Card ending with</div>
+                    <div class="detail-value">4375</div>
+                </div>
+            </div>
+
+            <!-- Help Section -->
+            <div class="purchase-help-section">
+                <div class="purchase-help-row">
+                    <div class="purchase-help-icon">❓</div>
+                    <div class="purchase-help-text">Something wrong?</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Transfer Detail Page -->
+    <div id="transfer-detail-page" class="page">
+        <!-- Header -->
+        <div class="modal-header">
+            <button class="modal-back transfer-detail-back">←</button>
+            <h2 class="modal-title">Rewards</h2>
+            <span></span>
+        </div>
+        <div class="transfer-detail-timestamp">15:06 • Today</div>
+
+        <!-- Main Content -->
+        <div class="transfer-detail-content">
+            <!-- Transfer Icon -->
+            <div class="transfer-detail-icon-section">
+                <div class="transfer-detail-icon">👑</div>
+            </div>
+
+            <!-- Transfer Info -->
+            <div class="transfer-detail-info-section">
+                <div class="transfer-detail-title">Transfer</div>
+                <div class="transfer-detail-amount">£0.73</div>
+            </div>
+
+            <!-- Details Section -->
+            <div class="transfer-details-section">
+                <div class="transfer-details-header">DETAILS</div>
+                <div class="transfer-detail-row">
+                    <div class="detail-label">Status</div>
+                    <div class="detail-value">Complete</div>
                 </div>
             </div>
         </div>
@@ -11048,6 +12179,11 @@
         }
 
         // Rewards Functions
+        let rewardsState = {
+            balance: 0.73,
+            selectedAccount: null
+        };
+
         function openRewardsPage() {
             // Track Rewards Clicked event
             window.amplitude.track('Rewards Clicked', {
@@ -11063,7 +12199,7 @@
             // Update status bar time
             document.querySelectorAll('.status-left span').forEach(span => {
                 if (span.textContent.includes(':')) {
-                    span.textContent = '16:13';
+                    span.textContent = '16:03';
                 }
             });
         }
@@ -11071,29 +12207,251 @@
         function handleTransferRewards() {
             // Track Transfer Rewards Clicked event
             window.amplitude.track('Transfer Rewards Clicked', {
-                rewardsBalance: '0.00',
+                rewardsBalance: rewardsState.balance.toFixed(2),
                 screenName: 'Rewards',
                 source: 'transfer_button'
             });
 
             console.log('Amplitude event tracked: Transfer Rewards Clicked');
 
-            // Placeholder functionality
-            alert('Transfer Rewards - Feature to be implemented');
+            // Open account selection banner
+            openTransferRewardsBanner();
+        }
+
+        function openTransferRewardsBanner() {
+            // Update account balances in the banner
+            document.getElementById('rewards-giuliano-balance').textContent = `£${globalBalances["Giuliano's Account"].toFixed(2)}`;
+            document.getElementById('rewards-chase-balance').textContent = `£${globalBalances['Chase Saver'].toLocaleString('en-GB', {minimumFractionDigits: 2})}`;
+
+            // Show banner
+            const banner = document.getElementById('transfer-rewards-banner');
+            banner.classList.add('visible');
+
+            // Track Banner Viewed event
+            window.amplitude.track('Banner Viewed', {
+                bannerName: 'transfer_rewards_account_selection',
+                screenName: 'Rewards - Transfer Account Selection',
+                source: 'transfer_button_clicked'
+            });
+
+            console.log('Amplitude event tracked: Banner Viewed (Transfer Rewards Account Selection)');
+        }
+
+        function closeTransferRewardsBanner() {
+            const banner = document.getElementById('transfer-rewards-banner');
+            banner.classList.remove('visible');
+        }
+
+        function selectRewardsAccount(accountType) {
+            rewardsState.selectedAccount = accountType;
+
+            // Track account selection event
+            const accountName = accountType === 'chase-saver' ? 'Chase Saver' : "Giuliano's Account";
+            window.amplitude.track('Rewards Transfer Account Selected', {
+                selectedAccount: accountType.replace('-', '_'),
+                accountName: accountName,
+                rewardsBalance: rewardsState.balance.toFixed(2),
+                screenName: 'Rewards - Account Selection',
+                source: 'account_selection_banner'
+            });
+
+            console.log('Amplitude event tracked: Rewards Transfer Account Selected', {
+                selectedAccount: accountType,
+                accountName: accountName,
+                rewardsBalance: rewardsState.balance.toFixed(2)
+            });
+
+            // Close banner
+            closeTransferRewardsBanner();
+
+            // Navigate to check details page after a short delay
+            setTimeout(() => {
+                openRewardsCheckDetails(accountType);
+            }, 300);
+        }
+
+        function openRewardsCheckDetails(accountType) {
+            // Update the check details display based on selected account
+            const toIcon = document.getElementById('rewards-summary-to-icon');
+            const toName = document.getElementById('rewards-summary-to-name');
+            const amount = document.getElementById('rewards-summary-amount');
+
+            if (accountType === 'chase-saver') {
+                toIcon.style.background = 'linear-gradient(135deg, #1e40af 0%, #3730a3 100%)';
+                toIcon.textContent = '🐷';
+                toName.textContent = 'Chase Saver';
+            } else {
+                toIcon.style.background = 'linear-gradient(135deg, #0ea5e9 0%, #06b6d4 100%)';
+                toIcon.textContent = '👁️';
+                toName.textContent = "Giuliano's Account";
+            }
+
+            amount.textContent = `£${rewardsState.balance.toFixed(2)}`;
+
+            // Navigate to check details page
+            navigateToPage('rewards-check-details');
+
+            // Update status bar time
+            document.querySelectorAll('.status-left span').forEach(span => {
+                if (span.textContent.includes(':')) {
+                    span.textContent = '16:06';
+                }
+            });
+        }
+
+        function completeRewardsTransfer() {
+            const toAccount = rewardsState.selectedAccount === 'chase-saver' ? 'Chase Saver' : "Giuliano's Account";
+            const transferAmount = rewardsState.balance;
+
+            // Update account balances
+            globalBalances[toAccount] += transferAmount;
+            rewardsState.balance = 0.00;
+
+            // Update rewards display
+            document.getElementById('rewards-balance-amount').textContent = '£0.00';
+            document.getElementById('rewards-pending-amount').textContent = '£0.00';
+            // Keep total earned the same as it represents cumulative earnings
+
+            // Update home page rewards widget
+            document.getElementById('home-rewards-balance').textContent = '£0.00';
+            document.getElementById('home-rewards-pending').textContent = '⏱ £0.00 pending';
+
+            // Update success message
+            document.getElementById('rewards-success-message').textContent = 
+                `You've sent £${transferAmount.toFixed(2)} to ${toAccount}`;
+
+            // Track transfer completion BEFORE navigating
+            window.amplitude.track('Rewards Transfer Completed', {
+                amount: transferAmount.toFixed(2),
+                fromSource: 'rewards',
+                toAccount: toAccount,
+                screenName: 'Rewards Transfer - Check Details'
+            });
+
+            console.log('Amplitude event tracked: Rewards Transfer Completed', {
+                amount: transferAmount.toFixed(2),
+                toAccount: toAccount
+            });
+
+            // Update main app balances
+            updateMainAppBalances();
+
+            // Update activity list to show the transfer
+            updateActivityListAfterTransfer();
+
+            // Navigate to success page AFTER tracking completion
+            navigateToPage('rewards-success');
+        }
+
+        function returnToRewards() {
+            // Navigate back to rewards page
+            navigateToPage('rewards');
+
+            // Reset status bar time
+            document.querySelectorAll('.status-left span').forEach(span => {
+                if (span.textContent.includes(':')) {
+                    span.textContent = '16:07';
+                }
+            });
         }
 
         function handleSeeRewardsActivity() {
             // Track See Rewards Activity Clicked event
             window.amplitude.track('See Rewards Activity Clicked', {
-                rewardsBalance: '0.00',
+                rewardsBalance: rewardsState.balance.toFixed(2),
                 screenName: 'Rewards',
                 source: 'see_activity_button'
             });
 
             console.log('Amplitude event tracked: See Rewards Activity Clicked');
 
-            // Placeholder functionality
-            alert('See Rewards Activity - Feature to be implemented');
+            // Navigate to rewards activity page
+            navigateToPage('rewards-activity');
+
+            // Update status bar time
+            document.querySelectorAll('.status-left span').forEach(span => {
+                if (span.textContent.includes(':')) {
+                    span.textContent = '17:39';
+                }
+            });
+        }
+
+        // Rewards Activity Functions
+        function handleActivityItemClick(activityType) {
+            if (activityType === 'transfer') {
+                // Track transfer item clicked
+                window.amplitude.track('Rewards Activity Item Clicked', {
+                    activityType: 'transfer',
+                    screenName: 'Rewards Activity',
+                    source: 'activity_list'
+                });
+
+                console.log('Amplitude event tracked: Rewards Activity Item Clicked (Transfer)');
+                
+                // Navigate to transfer detail page
+                navigateToPage('transfer-detail');
+
+                // Update status bar time
+                document.querySelectorAll('.status-left span').forEach(span => {
+                    if (span.textContent.includes(':')) {
+                        span.textContent = '17:46';
+                    }
+                });
+
+            } else if (activityType === 'cashback-waitrose') {
+                // Track cashback item clicked
+                window.amplitude.track('Rewards Activity Item Clicked', {
+                    activityType: 'cashback_earned',
+                    merchant: 'waitrose',
+                    screenName: 'Rewards Activity',
+                    source: 'activity_list'
+                });
+
+                console.log('Amplitude event tracked: Rewards Activity Item Clicked (Cashback - Waitrose)');
+
+                // Navigate to cashback detail page
+                navigateToPage('cashback-detail');
+
+                // Update status bar time
+                document.querySelectorAll('.status-left span').forEach(span => {
+                    if (span.textContent.includes(':')) {
+                        span.textContent = '17:39';
+                    }
+                });
+            }
+        }
+
+        function handleCashbackSourceClick(transactionType) {
+            if (transactionType === 'waitrose-purchase') {
+                // Track source transaction clicked
+                window.amplitude.track('Cashback Source Transaction Clicked', {
+                    transactionType: 'purchase',
+                    merchant: 'waitrose',
+                    amount: '72.73',
+                    screenName: 'Cashback Detail',
+                    source: 'activity_section'
+                });
+
+                console.log('Amplitude event tracked: Cashback Source Transaction Clicked (Waitrose Purchase)');
+
+                // Navigate to the full Waitrose purchase detail page
+                navigateToPage('waitrose-purchase');
+
+                // Update status bar time
+                document.querySelectorAll('.status-left span').forEach(span => {
+                    if (span.textContent.includes(':')) {
+                        span.textContent = '17:42';
+                    }
+                });
+            }
+        }
+
+        function updateActivityListAfterTransfer() {
+            // Show the transfer section when a transfer is completed
+            const transferSection = document.getElementById('transfer-section');
+            if (transferSection) {
+                transferSection.style.display = 'block';
+            }
         }
 
         function initializeRewards() {
@@ -11121,6 +12479,174 @@
             const seeRewardsActivityButton = document.getElementById('see-rewards-activity-button');
             if (seeRewardsActivityButton) {
                 seeRewardsActivityButton.addEventListener('click', handleSeeRewardsActivity);
+            }
+
+            // Transfer rewards banner functionality
+            const transferRewardsBannerClose = document.getElementById('transfer-rewards-banner-close');
+            if (transferRewardsBannerClose) {
+                transferRewardsBannerClose.addEventListener('click', closeTransferRewardsBanner);
+            }
+
+            // Account selection handlers
+            const accountChoices = document.querySelectorAll('#transfer-rewards-banner .account-choice');
+            accountChoices.forEach(choice => {
+                choice.addEventListener('click', function() {
+                    const accountType = this.getAttribute('data-rewards-account');
+                    selectRewardsAccount(accountType);
+                });
+            });
+
+            // Click outside transfer banner to close
+            const transferRewardsBanner = document.getElementById('transfer-rewards-banner');
+            if (transferRewardsBanner) {
+                transferRewardsBanner.addEventListener('click', function(e) {
+                    if (e.target === transferRewardsBanner) {
+                        closeTransferRewardsBanner();
+                    }
+                });
+            }
+
+            // Check details back button
+            const rewardsCheckBack = document.querySelector('.rewards-check-back');
+            if (rewardsCheckBack) {
+                rewardsCheckBack.addEventListener('click', function() {
+                    navigateToPage('rewards');
+                });
+            }
+
+            // Transfer confirmation button
+            const rewardsTransferButton = document.getElementById('rewards-transfer-button');
+            if (rewardsTransferButton) {
+                rewardsTransferButton.addEventListener('click', completeRewardsTransfer);
+            }
+
+            // Success done button
+            const rewardsDoneButton = document.getElementById('rewards-done-button');
+            if (rewardsDoneButton) {
+                rewardsDoneButton.addEventListener('click', returnToRewards);
+            }
+
+            // Rewards activity back button
+            const rewardsActivityBack = document.querySelector('.rewards-activity-back');
+            if (rewardsActivityBack) {
+                rewardsActivityBack.addEventListener('click', function() {
+                    navigateToPage('rewards');
+                    // Reset status bar time
+                    document.querySelectorAll('.status-left span').forEach(span => {
+                        if (span.textContent.includes(':')) {
+                            span.textContent = '16:03';
+                        }
+                    });
+                });
+            }
+
+            // Activity item handlers
+            const activityItems = document.querySelectorAll('.activity-item');
+            activityItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    const activityType = this.getAttribute('data-activity');
+                    handleActivityItemClick(activityType);
+                });
+            });
+
+            // Cashback detail back button
+            const cashbackDetailBack = document.querySelector('.cashback-detail-back');
+            if (cashbackDetailBack) {
+                cashbackDetailBack.addEventListener('click', function() {
+                    navigateToPage('rewards-activity');
+                    // Reset status bar time
+                    document.querySelectorAll('.status-left span').forEach(span => {
+                        if (span.textContent.includes(':')) {
+                            span.textContent = '17:39';
+                        }
+                    });
+                });
+            }
+
+            // Cashback source item handler
+            const cashbackSourceItems = document.querySelectorAll('.cashback-source-item');
+            cashbackSourceItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    const transactionType = this.getAttribute('data-transaction');
+                    handleCashbackSourceClick(transactionType);
+                });
+            });
+
+            // Waitrose purchase back button
+            const waitrosePurchaseBack = document.querySelector('.waitrose-purchase-back');
+            if (waitrosePurchaseBack) {
+                waitrosePurchaseBack.addEventListener('click', function() {
+                    navigateToPage('cashback-detail');
+                    // Reset status bar time
+                    document.querySelectorAll('.status-left span').forEach(span => {
+                        if (span.textContent.includes(':')) {
+                            span.textContent = '17:39';
+                        }
+                    });
+                });
+            }
+
+            // Cashback earned row click handler (from purchase page)
+            const cashbackEarnedRow = document.querySelector('.cashback-earned-row');
+            if (cashbackEarnedRow) {
+                cashbackEarnedRow.addEventListener('click', function() {
+                    // Track cashback earned clicked from purchase page
+                    window.amplitude.track('Purchase Cashback Clicked', {
+                        merchant: 'waitrose',
+                        amount: '0.73',
+                        screenName: 'Purchase Detail',
+                        source: 'cashback_earned_section'
+                    });
+
+                    console.log('Amplitude event tracked: Purchase Cashback Clicked');
+
+                    // Navigate back to cashback detail
+                    navigateToPage('cashback-detail');
+                });
+            }
+
+            // Purchase page interaction handlers
+            const changeCategory = document.querySelector('.change-category-link');
+            if (changeCategory) {
+                changeCategory.addEventListener('click', function() {
+                    alert('Change Category - Feature to be implemented');
+                });
+            }
+
+            const addNoteButton = document.querySelector('.add-note-button');
+            if (addNoteButton) {
+                addNoteButton.addEventListener('click', function() {
+                    alert('Add Note - Feature to be implemented');
+                });
+            }
+
+            const purchaseHelpRow = document.querySelector('.purchase-help-row');
+            if (purchaseHelpRow) {
+                purchaseHelpRow.addEventListener('click', function() {
+                    alert('Something wrong? Help - Feature to be implemented');
+                });
+            }
+
+            // Purchase category item handlers
+            const purchaseCategoryItems = document.querySelectorAll('.purchase-category-item');
+            purchaseCategoryItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    alert('Category/Merchant detail - Feature to be implemented');
+                });
+            });
+
+            // Transfer detail back button
+            const transferDetailBack = document.querySelector('.transfer-detail-back');
+            if (transferDetailBack) {
+                transferDetailBack.addEventListener('click', function() {
+                    navigateToPage('rewards-activity');
+                    // Reset status bar time
+                    document.querySelectorAll('.status-left span').forEach(span => {
+                        if (span.textContent.includes(':')) {
+                            span.textContent = '17:39';
+                        }
+                    });
+                });
             }
 
             // Rewards offer cards click tracking (optional)
